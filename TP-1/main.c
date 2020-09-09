@@ -25,7 +25,7 @@ int obtNum();
 int suma(int a, int b);
 int resta(int a, int b);
 int multiplicacion(int a, int b);
-int factorial(int a);
+long long int factorial(int a);
 float division(int a, int b);
 
 
@@ -127,7 +127,7 @@ int main()
                 printf("   b) Resultado de (A-B): %d\n", resta(x, y));
                 printf("   c) Division de (A/B): %f\n", division(x, y));
                 printf("   d) Multiplicacion de (A*B): %d\n", multiplicacion(x, y));
-                printf("   e) Factorial (A!): %d\n", factorial(x));
+                printf("   e) Factorial (A!): %lld\n", factorial(x));
                 printf("5. Salir\n\n");
             }
             else
@@ -142,7 +142,7 @@ int main()
         default:
             printf("\nOpcion invalida\n");
         }
-        //system("pause");
+        system("pause");
     }
     while( seguir == 's');
 
@@ -179,9 +179,9 @@ int multiplicacion(int a, int b)
     return resultado;
 }
 
-int factorial(int a)
+long long int factorial(int a)
 {
-    int resultado = 1;
+    long long int resultado = 1;
     for(int i = 1; i <= a; i++)
     {
         resultado *= i;
