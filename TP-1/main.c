@@ -22,6 +22,12 @@ e) “El factorial de A es: r1 y El factorial de B es: r2”
 */
 
 int obtNum();
+int suma(int a, int b);
+int resta(int a, int b);
+int multiplicacion(int a, int b);
+int factorial(int a);
+float division(int a, int b);
+
 
 int main()
 {
@@ -31,11 +37,17 @@ int main()
     int y;
     int opc1 = 0;
     int opc2 = 0;
+    int opc3 = 0;
 
     printf("******Menu de opciones******\n");
     printf("1. Ingresar 1er operando (A=x)\n");
     printf("2. Ingresar 2do operando (B=y)\n");
-    printf("3. Calcular todas las operaciones\n");
+    printf("3. Calcular todas las operaciones: \n");
+    printf("   a) Calcular la suma (A+B)\n");
+    printf("   b) Calcular la resta (A-B)\n");
+    printf("   c) Calcular la division (A/B)\n");
+    printf("   d) Calcular la multiplicacion (A*B)\n");
+    printf("   e) Calcular el factorial (A!)\n");
     printf("4. Informar resultados\n");
     printf("5. Salir\n\n");
 
@@ -55,15 +67,16 @@ int main()
             printf("1. Ingresar 1er operando (A = %d)\n", x);
             printf("2. Ingresar 2do operando (B = y)\n");
             printf("3. Calcular todas las operaciones\n");
+            printf("   a) Calcular la suma (A+B)\n");
+            printf("   b) Calcular la resta (A-B)\n");
+            printf("   c) Calcular la division (A/B)\n");
+            printf("   d) Calcular la multiplicacion (A*B)\n");
+            printf("   e) Calcular el factorial (A!)\n");
             printf("4. Informar resultados\n");
             printf("5. Salir\n\n");
             break;
         case 2:
-            if(!opc1)
-            {
-                printf("Primero deberías ingresar el primer operando.\n");
-            }
-            else
+            if(opc1)
             {
                 opc2 = 1;
                 y = obtNum();
@@ -72,24 +85,53 @@ int main()
                 printf("1. Ingresar 1er operando (A = %d)\n", x);
                 printf("2. Ingresar 2do operando (B = %d)\n", y);
                 printf("3. Calcular todas las operaciones\n");
+                printf("   a) Calcular la suma (A+B)\n");
+                printf("   b) Calcular la resta (A-B)\n");
+                printf("   c) Calcular la division (A/B)\n");
+                printf("   d) Calcular la multiplicacion (A*B)\n");
+                printf("   e) Calcular el factorial (A!)\n");
                 printf("4. Informar resultados\n");
                 printf("5. Salir\n\n");
             }
+            else
+            {
+                printf("\nPrimero deberias ingresar el primer operando.\n");
+            }
             break;
         case 3:
-            if(!opc2)
+            if(opc2)
             {
-                printf("No has ingresado todos los operandos.\n");
+                opc3 = 1;
+                printf("\nCalculando...\n");
             }
             else
             {
-                printf("Calculando...\n");
+                printf("No has ingresado todos los operandos.\n");
             }
             break;
         case 4:
+            if(opc3)
+            {
+                system("cls");
+                printf("******Menu de opciones******\n");
+                printf("1. Ingresar 1er operando (A = %d)\n", x);
+                printf("2. Ingresar 2do operando (B = %d)\n", y);
+                printf("3. Calcular todas las operaciones\n");
+                printf("   a) Resultado de (A+B): %d\n", suma(x, y));
+                printf("   b) Resultado de (A-B): %d\n", resta(x, y));
+                printf("   c) Division de (A/B): %f\n", division(x, y));
+                printf("   d) Multiplicacion de (A*B): %d\n", multiplicacion(x, y));
+                printf("   e) Factorial (A!): %d\n", factorial(x));
+                printf("4. Informar resultados\n");
+                printf("5. Salir\n\n");
+            }
+            else
+            {
+                printf("No has hecho los calculos.\n");
+            }
             break;
         case 5:
-            printf("Realmente desea salir? s para si, n para no\n");
+            printf("Realmente desea salir?\ns salir \nn continuar\n");
             fflush(stdin);
             scanf("%c", &seguir);
             seguir = tolower(seguir);
@@ -112,7 +154,7 @@ int main()
         default:
             printf("\nOpcion invalida\n");
         }
-        system("pause");
+        //system("pause");
     }
     while( seguir == 's');
 
@@ -129,6 +171,49 @@ int obtNum()
     scanf("%d", &num);
 
     return num;
+}
+
+int suma(int a, int b)
+{
+    int resultado = a + b;
+    return resultado;
+}
+
+int resta(int a, int b)
+{
+    int resultado = a - b;
+    return resultado;
+}
+
+int multiplicacion(int a, int b)
+{
+    int resultado = a * b;
+    return resultado;
+}
+
+int factorial(int a)
+{
+    int resultado;
+    for(int i = 1; i <= a; i++)
+    {
+        resultado *= i;
+    }
+    return resultado;
+}
+
+float division(int a, int b)
+{
+    float resultado;
+    char error = 'n';
+    if(b == 0)
+    {
+        return error;
+    }
+    else
+    {
+        resultado = (float) a / b;
+        return resultado;
+    }
 }
 
 
