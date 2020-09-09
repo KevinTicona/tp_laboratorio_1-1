@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1599615979 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+
