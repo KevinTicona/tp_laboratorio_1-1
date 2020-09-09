@@ -117,12 +117,17 @@ int main()
                 printf("1. Ingresar 1er operando (A = %d)\n", x);
                 printf("2. Ingresar 2do operando (B = %d)\n", y);
                 printf("3. Calcular todas las operaciones\n");
+                printf("   a) Calcular la suma (A+B)\n");
+                printf("   b) Calcular la resta (A-B)\n");
+                printf("   c) Calcular la division (A/B)\n");
+                printf("   d) Calcular la multiplicacion (A*B)\n");
+                printf("   e) Calcular el factorial (A!)\n");
+                printf("4. Informar resultados\n");
                 printf("   a) Resultado de (A+B): %d\n", suma(x, y));
                 printf("   b) Resultado de (A-B): %d\n", resta(x, y));
                 printf("   c) Division de (A/B): %f\n", division(x, y));
                 printf("   d) Multiplicacion de (A*B): %d\n", multiplicacion(x, y));
                 printf("   e) Factorial (A!): %d\n", factorial(x));
-                printf("4. Informar resultados\n");
                 printf("5. Salir\n\n");
             }
             else
@@ -131,25 +136,8 @@ int main()
             }
             break;
         case 5:
-            printf("Realmente desea salir?\ns salir \nn continuar\n");
-            fflush(stdin);
-            scanf("%c", &seguir);
-            seguir = tolower(seguir);
-            if(seguir == 's')
-            {
-                printf("\nSaliendo...\n");
-                seguir = 'n';
-            }
-            else if (seguir == 'n')
-            {
-                printf("Bueno, segui...\n");
-                seguir = 's';
-            }
-            else
-            {
-                printf("Opcion invalida\n");
-                seguir = 's';
-            }
+            printf("Saliendo...\n");
+            seguir = 'n';
             break;
         default:
             printf("\nOpcion invalida\n");
@@ -193,7 +181,7 @@ int multiplicacion(int a, int b)
 
 int factorial(int a)
 {
-    int resultado;
+    int resultado = 1;
     for(int i = 1; i <= a; i++)
     {
         resultado *= i;
