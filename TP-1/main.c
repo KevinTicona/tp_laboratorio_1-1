@@ -37,14 +37,12 @@ int main()
     int opc3 = 0;
     int respuesta;
 
-    respuesta = getOption(&opcion, "1. Ingresar 1er operando (A=x)\n2. Ingresar 2do operando (B=y)\n3. Calcular todas las operaciones\na) Calcular la suma (A+B)\nb) Calcular la resta (A-B)\nc) Calcular la division (A/B)\nd) Calcular la multiplicacion (A*B)\ne) Calcular el factorial (A!)\n 4. Informar resultados\n a) El resultado de A+B es: r\n b) El resultado de A-B es: r\n c) El resultado de A/B es: r\n d) El resultado de A*B es: r\n e) El factorial de A es: r1 y El factorial de B es: r2\n 5. Salir.\n", "Opción invalida", 1, 5);
-
-    if(!respuesta)
+    do
     {
-        do
+        system("cls");
+        respuesta = getOption(&opcion, "1. Ingresar 1er operando (A=x)\n2. Ingresar 2do operando (B=y)\n3. Calcular todas las operaciones\na) Calcular la suma (A+B)\nb) Calcular la resta (A-B)\nc) Calcular la division (A/B)\nd) Calcular la multiplicacion (A*B)\ne) Calcular el factorial (A!)\n 4. Informar resultados\n a) El resultado de A+B es: r\n b) El resultado de A-B es: r\n c) El resultado de A/B es: r\n d) El resultado de A*B es: r\n e) El factorial de A es: r1 y El factorial de B es: r2\n 5. Salir.\n", "Opción invalida", 1, 5);
+        if (!respuesta)
         {
-            printf("Ingrese opcion\n\n");
-
             switch(opcion)
             {
             case 1:
@@ -66,7 +64,6 @@ int main()
                 {
                     opc3 = 1;
                     printf("Calculando...");
-                    system("pause");
                 }
                 break;
             case 4:
@@ -76,12 +73,11 @@ int main()
                     printf("Aun no hiciste los calculos...");
                     break;
                 }
-
                 float resultadoDivision;
                 int divisionError = division(&resultadoDivision, x, y);
                 if(!divisionError)
                 {
-                    system("cls");
+                    //system("cls");
                     printf("******Menu de opciones******\n");
                     printf("1. Ingresar 1er operando (A = %d)\n", x);
                     printf("2. Ingresar 2do operando (B = %d)\n", y);
@@ -101,7 +97,7 @@ int main()
                 }
                 else
                 {
-                    system("cls");
+                    //system("cls");
                     printf("******Menu de opciones******\n");
                     printf("1. Ingresar 1er operando (A = %d)\n", x);
                     printf("2. Ingresar 2do operando (B = %d)\n", y);
@@ -127,15 +123,14 @@ int main()
                 system("pause");
                 break;
             }
+            system("pause");
         }
-        while(opcion != 5);
     }
-
+    while(opcion != 5);
     /*do
     {
         printf("Ingrese opcion\n\n");
         scanf("%d", &opcion);
-
         switch(opcion)
         {
         case 1:
@@ -224,10 +219,8 @@ int main()
         //(system("pause");
     }
     while( seguir == 's');
-
     //printf("\nUsted ingreso opcion: %d\n", menu());
     */
-
     return 0;
 }
 
@@ -294,6 +287,7 @@ int getOption(int* pResultado, char* mensaje, char* mensajeError, int minimo, in
         do
         {
             printf("%s", mensaje);
+            printf("\nIngrese opcion\n\n");
             scanf("%d", &opcion);
             if(opcion >= minimo && opcion <= maximo)
             {
