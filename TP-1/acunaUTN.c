@@ -17,15 +17,15 @@ int getOption(int* pResultado, char* mensajeError, int minimo, int maximo)
             if(opcion >= minimo && opcion <= maximo)
             {
                 *pResultado = opcion;
-                return 0;
+                retorno = 0;
             }
             else
             {
-                printf("%s", mensajeError);
+                printf("%s\n", mensajeError);
                 system("pause");
             }
         }
-        while(!retorno);
+        while(retorno != 0);
     }
     return retorno;
 }
