@@ -36,8 +36,9 @@ int main()
     int opc1 = 0;
     int opc2 = 0;
     int opc3 = 0;
-    int opc4 = 0;
     int respuesta;
+
+    int band;
 
     do
     {
@@ -69,7 +70,13 @@ int main()
                 }
                 break;
             case 4:
-                mostarResultado(opc3, x, y);
+                    band = mostarResultado(opc3, x, y);
+                    //mostarResultado(opc3, x, y);
+                    if(band){
+                        opc1 = 0;
+                        opc2 = 0;
+                        opc3 = 0;
+                    }
                 break;
             case 5:
                 //Salir
@@ -122,59 +129,34 @@ int menu(int b1, int b2, int b3, int operando1, int operando2)
 
 int mostarResultado(int bandera, int operando1, int operando2)
 {
-    system("cls");
-    printf("********Menu de opciones********\n");
-    printf("1. Ingresar 1er operando (A = %d)\n", operando1);
-    printf("2. Ingresar 2do operando (B = %d)\n", operando2);
-    printf("3. Calcular todas las operaciones\n");
-    printf("   a) Calcular la suma (A+B)\n");
-    printf("   b) Calcular la resta (A-B)\n");
-    printf("   c) Calcular la division (A/B)\n");
-    printf("   d) Calcular la multiplicacion (A*B)\n");
-    printf("   e) Calcular el factorial (A!)\n");
-    printf("4. Informar resultados\n");
+    int reset = 0;
     if(!bandera)
     {
-        system("cls");
-        printf("********Menu de opciones********\n");
-        printf("1. Ingresar 1er operando (A = %d)\n", operando1);
-        printf("2. Ingresar 2do operando (B = %d)\n", operando2);
-        printf("3. Calcular todas las operaciones\n");
-        printf("   a) Calcular la suma (A+B)\n");
-        printf("   b) Calcular la resta (A-B)\n");
-        printf("   c) Calcular la division (A/B)\n");
-        printf("   d) Calcular la multiplicacion (A*B)\n");
-        printf("   e) Calcular el factorial (A!)\n");
-        printf("4. Informar resultados\n");
-        printf("5. Salir\n\n");
         printf("\nAun no hiciste los calculos...\n");
-
     }
     else
     {
-
-        printf("   a) Resultado de (A+B): %d\n", suma(operando1, operando2));
-        printf("   b) Resultado de (A-B): %d\n", resta(operando1, operando2));
+        printf("\nRESULTADOS\n");
+        printf("a) Resultado de (A+B): %d\n", suma(operando1, operando2));
+        printf("b) Resultado de (A-B): %d\n", resta(operando1, operando2));
 
         float resultadoDivision;
         int divisionError = division(&resultadoDivision, operando1, operando2);
         if(!divisionError)
         {
-            printf("   c) Division de (A/B): %f\n", resultadoDivision);
+            printf("c) Division de (A/B): %f\n", resultadoDivision);
         }
         else
         {
-            printf("   c) Division de (A/B): No se puede dividir por cero.\n");
+            printf("c) Division de (A/B): No se puede dividir por cero.\n");
         }
 
+        printf("d) Multiplicacion de (A*B): %lld\n", multiplicacion(operando1, operando2));
+        printf("e) Factorial (A!) y (B!): %lld - %lld\n", factorial(operando1), factorial(operando2));
 
-        printf("   d) Multiplicacion de (A*B): %lld\n", multiplicacion(operando1, operando2));
-        printf("   e) Factorial (A!) y (B!): %lld - %lld\n", factorial(operando1), factorial(operando2));
-        printf("5. Salir\n\n");
-
-        bandera = 0;
+        reset = 1;
     }
-
+    return reset;
 }
 
 int obtNum()
