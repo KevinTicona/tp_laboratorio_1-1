@@ -30,7 +30,7 @@ int getOption(int* pResultado, char* mensajeError, int minimo, int maximo)
     return retorno;
 }
 
-int menu(int b1, int b2, int b3, int operando1, int operando2)
+int menu(int b1, int b2, float operando1, float operando2)
 {
     system("cls");
     printf("***************************************\n");
@@ -46,18 +46,18 @@ int menu(int b1, int b2, int b3, int operando1, int operando2)
     }
     else if(b1 == 1 && b2 == 0)
     {
-        printf("1. Ingresar 1er operando (A = %d)\n", operando1);
+        printf("1. Ingresar 1er operando (A = %.2f)\n", operando1);
         printf("2. Ingresar 2do operando (B = y)\n");
     }
     else if(b1 == 0 && b2 == 1)
     {
         printf("1. Ingresar 1er operando (A = x)\n");
-        printf("2. Ingresar 2do operando (B = %d)\n", operando2);
+        printf("2. Ingresar 2do operando (B = %.2f)\n", operando2);
     }
     else
     {
-        printf("1. Ingresar 1er operando (A = %d)\n", operando1);
-        printf("2. Ingresar 2do operando (B = %d)\n", operando2);
+        printf("1. Ingresar 1er operando (A = %.2f)\n", operando1);
+        printf("2. Ingresar 2do operando (B = %.2f)\n", operando2);
     }
     printf("3. Calcular todas las operaciones\n");
     printf("   a) Calcular la suma (A+B)\n");
@@ -70,7 +70,7 @@ int menu(int b1, int b2, int b3, int operando1, int operando2)
     return 0;
 }
 
-int mostarResultado(int bandera, int operando1, int operando2)
+int mostarResultado(int bandera, float operando1, float operando2)
 {
     int reset = 0;
     if(!bandera)
@@ -82,8 +82,8 @@ int mostarResultado(int bandera, int operando1, int operando2)
         printf("***************************************\n");
         printf("              RESULTADOS               \n");
         printf("***************************************\n");
-        printf("a) Resultado de (A+B): %d\n", suma(operando1, operando2));
-        printf("b) Resultado de (A-B): %d\n", resta(operando1, operando2));
+        printf("a) Resultado de (A+B): %.2f\n", suma(operando1, operando2));
+        printf("b) Resultado de (A-B): %.2f\n", resta(operando1, operando2));
 
         float resultadoDivision;
         int divisionError = division(&resultadoDivision, operando1, operando2);
@@ -96,7 +96,7 @@ int mostarResultado(int bandera, int operando1, int operando2)
             printf("c) Division de (A/B): No se puede dividir por cero.\n");
         }
 
-        printf("d) Multiplicacion de (A*B): %lld\n", multiplicacion(operando1, operando2));
+        printf("d) Multiplicacion de (A*B): %.2lf\n", multiplicacion(operando1, operando2));
         printf("e) Factorial (A!) y (B!): %lld - %lld\n", factorial(operando1), factorial(operando2));
 
         reset = 1;
@@ -104,30 +104,30 @@ int mostarResultado(int bandera, int operando1, int operando2)
     return reset;
 }
 
-int obtNum()
+float obtNum()
 {
-    int num;
+    float num;
     printf("Ingresar operando\n");
-    scanf("%d", &num);
+    scanf("%f", &num);
 
     return num;
 }
 
-int suma(int a, int b)
+float suma(float a, float b)
 {
-    int resultado = a + b;
+    float resultado = a + b;
     return resultado;
 }
 
-int resta(int a, int b)
+float resta(float a, float b)
 {
-    int resultado = a - b;
+    float resultado = a - b;
     return resultado;
 }
 
-long long int multiplicacion(int a, int b)
+double multiplicacion(float a, float b)
 {
-    long long int resultado = a * b;
+    double resultado = a * b;
     return resultado;
 }
 
@@ -141,7 +141,7 @@ long long int factorial(int a)
     return resultado;
 }
 
-int division(float* pResultado,int a, int b)
+int division(float* pResultado, float a, float b)
 {
     int error = -1;
     if(b == 0)
@@ -150,7 +150,7 @@ int division(float* pResultado,int a, int b)
     }
     else
     {
-        *pResultado = (float) a / b;
+        *pResultado = a / b;
         error = 0;
         return error;
     }

@@ -7,17 +7,17 @@
 int main()
 {
     int opcion;
-    int x;
-    int y;
+    int respuesta;
+    int reset;
     int opc1 = 0;
     int opc2 = 0;
     int opc3 = 0;
-    int respuesta;
-    int reset;
+    float x;
+    float y;
 
     do
     {
-        menu(opc1, opc2, opc3, x, y);
+        menu(opc1, opc2, x, y);
         respuesta = getOption(&opcion, "\nOpcion invalida\n", 1, 5);
         if (!respuesta)
         {
