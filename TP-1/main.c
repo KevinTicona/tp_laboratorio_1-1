@@ -37,8 +37,7 @@ int main()
     int opc2 = 0;
     int opc3 = 0;
     int respuesta;
-
-    int band;
+    int reset;
 
     do
     {
@@ -70,13 +69,13 @@ int main()
                 }
                 break;
             case 4:
-                    band = mostarResultado(opc3, x, y);
-                    //mostarResultado(opc3, x, y);
-                    if(band){
-                        opc1 = 0;
-                        opc2 = 0;
-                        opc3 = 0;
-                    }
+                reset = mostarResultado(opc3, x, y);
+                if(reset)
+                {
+                    opc1 = 0;
+                    opc2 = 0;
+                    opc3 = 0;
+                }
                 break;
             case 5:
                 //Salir
@@ -94,7 +93,11 @@ int main()
 int menu(int b1, int b2, int b3, int operando1, int operando2)
 {
     system("cls");
-    printf("********Menu de opciones********\n");
+    printf("***************************************\n");
+    printf("        Trabajo Practico nro. 1        \n");
+    printf("***************************************\n");
+    printf("          Menu de opciones             \n");
+    printf("***************************************\n");
 
     if(b1 == 0 && b2 == 0)
     {
@@ -136,7 +139,9 @@ int mostarResultado(int bandera, int operando1, int operando2)
     }
     else
     {
-        printf("\nRESULTADOS\n");
+        printf("***************************************\n");
+        printf("               RESULTADOS              \n");
+        printf("***************************************\n");
         printf("a) Resultado de (A+B): %d\n", suma(operando1, operando2));
         printf("b) Resultado de (A-B): %d\n", resta(operando1, operando2));
 
