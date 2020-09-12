@@ -1,7 +1,17 @@
 # depslib dependency file v1.0
-1599881486 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-1\main.c
+1599884852 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-1\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
 	<conio.h>
+	"acunaUTN.h"
+
+1599884852 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-1\acunautn.h
+
+1599884852 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-1\acunautn.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	"acunaUTN.h"
 
