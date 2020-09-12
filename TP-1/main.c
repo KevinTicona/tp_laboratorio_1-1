@@ -133,8 +133,26 @@ int mostarResultado(int bandera, int operando1, int operando2)
     printf("   d) Calcular la multiplicacion (A*B)\n");
     printf("   e) Calcular el factorial (A!)\n");
     printf("4. Informar resultados\n");
-    if(bandera)
+    if(!bandera)
     {
+        system("cls");
+        printf("********Menu de opciones********\n");
+        printf("1. Ingresar 1er operando (A = %d)\n", operando1);
+        printf("2. Ingresar 2do operando (B = %d)\n", operando2);
+        printf("3. Calcular todas las operaciones\n");
+        printf("   a) Calcular la suma (A+B)\n");
+        printf("   b) Calcular la resta (A-B)\n");
+        printf("   c) Calcular la division (A/B)\n");
+        printf("   d) Calcular la multiplicacion (A*B)\n");
+        printf("   e) Calcular el factorial (A!)\n");
+        printf("4. Informar resultados\n");
+        printf("5. Salir\n\n");
+        printf("\nAun no hiciste los calculos...\n");
+
+    }
+    else
+    {
+
         printf("   a) Resultado de (A+B): %d\n", suma(operando1, operando2));
         printf("   b) Resultado de (A-B): %d\n", resta(operando1, operando2));
 
@@ -155,22 +173,6 @@ int mostarResultado(int bandera, int operando1, int operando2)
         printf("5. Salir\n\n");
 
         bandera = 0;
-    }
-    else
-    {
-        system("cls");
-        printf("********Menu de opciones********\n");
-        printf("1. Ingresar 1er operando (A = %d)\n", operando1);
-        printf("2. Ingresar 2do operando (B = %d)\n", operando2);
-        printf("3. Calcular todas las operaciones\n");
-        printf("   a) Calcular la suma (A+B)\n");
-        printf("   b) Calcular la resta (A-B)\n");
-        printf("   c) Calcular la division (A/B)\n");
-        printf("   d) Calcular la multiplicacion (A*B)\n");
-        printf("   e) Calcular el factorial (A!)\n");
-        printf("4. Informar resultados\n");
-        printf("5. Salir\n\n");
-        printf("\nAun no hiciste los calculos...\n");
     }
 
 }
