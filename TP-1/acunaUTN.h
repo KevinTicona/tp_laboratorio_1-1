@@ -25,7 +25,7 @@ int getOption(int* pResultado, char* mensajeError, int minimo, int maximo);
  * \return 0.
  *
  */
-int menu(int b1, int b2, float operando1, float operando2);
+int menu(int b1, int b2, int operando1, int operando2);
 
 
 /** \brief Muestra los resultados de las operaciones.
@@ -36,7 +36,7 @@ int menu(int b1, int b2, float operando1, float operando2);
  * \return Reset para setear las banderas a 0 nuevamente.
  *
  */
-int mostarResultado(int bandera, float operando1, float operando2);
+int mostarResultado(int bandera, int operando1, int operando2);
 
 
 /** \brief Solicita al usuario el ingreso de un numero y lo guarda.
@@ -44,7 +44,7 @@ int mostarResultado(int bandera, float operando1, float operando2);
  * \return Numero.
  *
  */
-float obtNum();
+int obtNum();
 
 
 /** \brief Suma dos numeros.
@@ -54,7 +54,7 @@ float obtNum();
  * \return Resultado de la suma de los dos operadores.
  *
  */
-float suma(float a, float b);
+int suma(int a, int b);
 
 
 /** \brief Resta dos numeros.
@@ -64,7 +64,7 @@ float suma(float a, float b);
  * \return Resultado de la resta de los dos operadores.
  *
  */
-float resta(float a, float b);
+int resta(int a, int b);
 
 
 /** \brief Multiplica dos numeros.
@@ -74,7 +74,7 @@ float resta(float a, float b);
  * \return Resultado de la multiplicación de los dos operadores.
  *
  */
-double multiplicacion(float a, float b);
+long long int multiplicacion(int a, int b);
 
 
 /** \brief Calcula el factorial de un entero.
@@ -94,4 +94,4 @@ long long int factorial(int a);
  * \return Resultado de la división de los dos operadores.
  *
  */
-int division(float* pResultado, float a, float b);
+int division(float* pResultado, int a, int b);

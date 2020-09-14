@@ -6,14 +6,14 @@
 
 int main()
 {
-    int opcion;
+    int opcion = 0;
     int respuesta;
     int reset;
     int opc1 = 0;
     int opc2 = 0;
     int opc3 = 0;
-    float x;
-    float y;
+    int x;
+    int y;
 
     do
     {
