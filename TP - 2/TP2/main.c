@@ -82,7 +82,7 @@ int sortEmployees(Employee* list, int len, int order);
 int printEmployees(Employee* list, int len);
 
 
-/** \brief print one Employee
+/** \brief print one Employee of a list of Employees
  *
  * \param one employee
  *
@@ -122,7 +122,7 @@ int main()
 
 int initEmployees(Employee* list, int len)
 {
-    if(list != NULL && len >= 0 && len <= 1000)
+    if(list != NULL && len > 0 && len <= 1000)
     {
         for(int i = 0; i < len; i++)
         {
@@ -136,7 +136,7 @@ int initEmployees(Employee* list, int len)
 
 int addEmployee(Employee* list, int len, char name[],char lastName[],float salary,int sector)
 {
-    if(list != NULL && len >= 0 && len <= 1000)
+    if(list != NULL && len > 0 && len <= 1000)
     {
         for(int i = 0; i < len; i++)
         {
@@ -159,25 +159,27 @@ int addEmployee(Employee* list, int len, char name[],char lastName[],float salar
 
 int findEmployeeById(Employee* list, int len,int id)
 {
-    if(list != NULL && len >= 0 && len <= 1000)
+    int indiceId = -1;
+    if(list != NULL && len > 0 && len <= 1000)
     {
         for(int i = 0; i < len; i++)
         {
-            if(list[i].id == id)
+            if(list[i].id == id && list[i].isEmpty == 0)
             {
-                return i;
+                indiceId = i;
             }
         }
     }
-    return -1;
+    return indiceId;
 }
 
 int removeEmployee(Employee* list, int len, int id)
 {
+    int index;
     //Ver si limpiar los datos viejos o no
-    if(list != NULL && len >= 0 && len <= 1000)
+    if(list != NULL && len > 0 && len <= 1000)
     {
-        int index = findEmployeeById(list, len, id);
+        index = findEmployeeById(list, len, id);
         if(index != -1)
         {
             list[index].isEmpty = 1;
@@ -243,7 +245,7 @@ int sortEmployees(Employee* list, int len, int order)
 
 int printEmployees(Employee* list, int len)
 {
-    if(list != NULL && len >= 0 && len <= 1000)
+    if(list != NULL && len > 0 && len <= 1000)
     {
         //system("cls");
         printf("ID Nombre  Apellido  Salario  Sector \n");
