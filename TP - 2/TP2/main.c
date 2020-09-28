@@ -105,15 +105,7 @@ int main()
 
     printEmployees(list, 1000);
 
-    sortEmployees(list, 1000, 1);
-
-    printf("\n\n");
-
-    printEmployees(list, 1000);
-
-    printf("\n\n");
-
-    sortEmployees(list, 1000, 0);
+    removeEmployee(list, 1000, 3);
 
     printEmployees(list, 1000);
 
@@ -167,6 +159,7 @@ int findEmployeeById(Employee* list, int len,int id)
             if(list[i].id == id && list[i].isEmpty == 0)
             {
                 indiceId = i;
+                break;
             }
         }
     }
@@ -175,24 +168,43 @@ int findEmployeeById(Employee* list, int len,int id)
 
 int removeEmployee(Employee* list, int len, int id)
 {
+    int error = -1;
     int index;
-    //Ver si limpiar los datos viejos o no
+    char confirmacion;
+    //No es necesario limpiar todos los campos
+    //Falta: mostrar datos de la persona y pedir confirmación
     if(list != NULL && len > 0 && len <= 1000)
     {
         index = findEmployeeById(list, len, id);
         if(index != -1)
         {
-            list[index].isEmpty = 1;
-            return 0;
+            printf("ID Nombre  Apellido  Salario  Sector \n");
+            showEmployee(list[index]);
+            printf("Esta seguro de eliminar este empleado? s - si; n - no\n");
+            fflush(stdin);
+            scanf("%c", &confirmacion);
+            while(confirmacion != 's' && confirmacion != 'n')
+            {
+                printf("Opción invalida. s - si; n - no\n");
+                fflush(stdin);
+                scanf("%c", &confirmacion);
+            }
+
+            if(confirmacion == 's')
+            {
+                list[index].isEmpty = 1;
+            }
+            error = 0;
         }
     }
 
-    return -1;
+    return error;
 }
 
 int sortEmployees(Employee* list, int len, int order)
 {
-    if(list == NULL || len < 0 || len > 1000 || order < 0 || order > 1 ){
+    if(list == NULL || len < 0 || len > 1000 || order < 0 || order > 1 )
+    {
         return -1;
     }
 
@@ -224,7 +236,7 @@ int sortEmployees(Employee* list, int len, int order)
         {
             for(int j = i + 1; j < len; j++)
             {
-                if(list[i].sector < list[j].sector)  // Ordenar alfabeticamente por apellido && sector
+                if(list[i].sector < list[j].sector)  // Ordenar en forma inversa alfabeticamente por apellido && sector
                 {
                     aux = list[i];
                     list[i] = list[j];
