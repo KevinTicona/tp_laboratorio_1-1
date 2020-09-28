@@ -128,6 +128,7 @@ int initEmployees(Employee* list, int len)
 
 int addEmployee(Employee* list, int len, char name[],char lastName[],float salary,int sector)
 {
+    //falta: agregar un Employee auxiliar antes de copiar todos los datos
     if(list != NULL && len > 0 && len <= 1000)
     {
         for(int i = 0; i < len; i++)
@@ -166,13 +167,16 @@ int findEmployeeById(Employee* list, int len,int id)
     return indiceId;
 }
 
+//FALTA: MODIFICAR EMPLEADO
+
+
 int removeEmployee(Employee* list, int len, int id)
 {
     int error = -1;
     int index;
     char confirmacion;
     //No es necesario limpiar todos los campos
-    //Falta: Cambiar la identación cuando obtengo el index. La función podría devolver 3 enteros (0 - ok, -1 error, 2 ok pero no borró a nadie
+    //Falta: Cambiar la identación cuando obtengo el index & La función podría devolver 3 enteros (0 - ok, -1 error, 2 ok pero no borró a nadie
     if(list != NULL && len > 0 && len <= 1000)
     {
         index = findEmployeeById(list, len, id);
