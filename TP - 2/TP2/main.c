@@ -96,8 +96,24 @@ int main()
     Employee list[1000];
     initEmployees(list, 1000);
 
-    addEmployee(list, 1000, "Pepe", "Gonsalez", 45000.98, 7);
-    addEmployee(list, 1000, "Jose", "Peralta", 55248.98, 4);
+    addEmployee(list, 1000, "Pepe", "Argento", 45000.98, 3);
+    addEmployee(list, 1000, "Jose", "Cayola", 55248.98, 1);
+    addEmployee(list, 1000, "Jose", "Berutti", 55248.98, 2);
+    addEmployee(list, 1000, "Pepe", "Zarasa", 45000.98, 3);
+    addEmployee(list, 1000, "Jose", "Jiji", 55248.98, 1);
+    addEmployee(list, 1000, "Jose", "Walace", 55248.98, 2);
+
+    printEmployees(list, 1000);
+
+    sortEmployees(list, 1000, 1);
+
+    printf("\n\n");
+
+    printEmployees(list, 1000);
+
+    printf("\n\n");
+
+    sortEmployees(list, 1000, 0);
 
     printEmployees(list, 1000);
 
@@ -174,14 +190,58 @@ int removeEmployee(Employee* list, int len, int id)
 
 int sortEmployees(Employee* list, int len, int order)
 {
+    Employee aux;
+    if(order == 1)
+    {
+        for(int i = 0; i < len - 1; i++)
+        {
+            for(int j = i + 1; j < len; j++)
+            {
+                if(list[i].sector > list[j].sector)  // Ordenar alfabeticamente por apellido && sector
+                {
+                    aux = list[i];
+                    list[i] = list[j];
+                    list[j] = aux;
+                }
+                else if (list[i].sector == list[j].sector && strcmp(list[i].lastName, list[j].lastName) > 0)
+                {
+                    aux = list[i];
+                    list[i] = list[j];
+                    list[j] = aux;
+                }
+            }
+        }
+    }
+    else if(order == 0)
+    {
+        for(int i = 0; i < len - 1; i++)
+        {
+            for(int j = i + 1; j < len; j++)
+            {
+                if(list[i].sector < list[j].sector)  // Ordenar alfabeticamente por apellido && sector
+                {
+                    aux = list[i];
+                    list[i] = list[j];
+                    list[j] = aux;
+                }
+                else if (list[i].sector == list[j].sector && strcmp(list[i].lastName, list[j].lastName) < 0)
+                {
+                    aux = list[i];
+                    list[i] = list[j];
+                    list[j] = aux;
+                }
+            }
+        }
+    }
 
+    return 0;
 }
 
 int printEmployees(Employee* list, int len)
 {
     if(list != NULL && len >= 0 && len <= 1000)
     {
-        system("cls");
+        //system("cls");
         printf("ID Nombre  Apellido  Salario  Sector \n");
         for(int i = 0; i < len; i++)
         {
