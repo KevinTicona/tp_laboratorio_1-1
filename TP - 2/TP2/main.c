@@ -172,7 +172,7 @@ int removeEmployee(Employee* list, int len, int id)
     int index;
     char confirmacion;
     //No es necesario limpiar todos los campos
-    //Falta: mostrar datos de la persona y pedir confirmación
+    //Falta: Cambiar la identación cuando obtengo el index. La función podría devolver 3 enteros (0 - ok, -1 error, 2 ok pero no borró a nadie
     if(list != NULL && len > 0 && len <= 1000)
     {
         index = findEmployeeById(list, len, id);
@@ -180,7 +180,7 @@ int removeEmployee(Employee* list, int len, int id)
         {
             printf("ID Nombre  Apellido  Salario  Sector \n");
             showEmployee(list[index]);
-            printf("Esta seguro de eliminar este empleado? s - si; n - no\n");
+            printf("Confirmar baja? s - si; n - no\n");
             fflush(stdin);
             scanf("%c", &confirmacion);
             while(confirmacion != 's' && confirmacion != 'n')
@@ -195,6 +195,8 @@ int removeEmployee(Employee* list, int len, int id)
                 list[index].isEmpty = 1;
             }
             error = 0;
+        } else{
+            printf("No hay personas con ese ID\n");
         }
     }
 
