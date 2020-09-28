@@ -190,6 +190,10 @@ int removeEmployee(Employee* list, int len, int id)
 
 int sortEmployees(Employee* list, int len, int order)
 {
+    if(list == NULL || len < 0 || len > 1000 || order < 0 || order > 1 ){
+        return -1;
+    }
+
     Employee aux;
     if(order == 1)
     {
