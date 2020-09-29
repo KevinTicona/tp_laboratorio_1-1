@@ -87,27 +87,63 @@ int printEmployees(Employee* list, int len);
  * \param one employee
  *
  */
-
 void showEmployee(Employee emp);
+
+/** \brief Makes the sum of all salaries
+ *
+ * \param list Employee* Pointer to array of employees
+ * \param len int Array length
+ * \param float pSum* Pointer to result of sum
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
+int acumWages(Employee* list, int len, float* pSum);
+
+/** \brief Makes the average of all salaries
+ *
+ * \param list Employee* Pointer to array of employees
+ * \param len int Array length
+ * \param float pAvg* Pointer to result of average
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
+int averageWages(Employee* list, int len, float* pAvg);
+
+int getSuperiorWages(Employee* list, int len, int* pSuperiorWagesEmployees);
 
 
 int main()
 {
+    float sumaSalarios;
+    float prom;
+    int empleadosChetos;
     Employee list[1000];
     initEmployees(list, 1000);
 
     addEmployee(list, 1000, "Pepe", "Argento", 45000.98, 3);
     addEmployee(list, 1000, "Jose", "Cayola", 55248.98, 1);
     addEmployee(list, 1000, "Jose", "Berutti", 55248.98, 2);
-    addEmployee(list, 1000, "Pepe", "Zarasa", 45000.98, 3);
-    addEmployee(list, 1000, "Jose", "Jiji", 55248.98, 1);
-    addEmployee(list, 1000, "Jose", "Walace", 55248.98, 2);
 
     printEmployees(list, 1000);
 
-    removeEmployee(list, 1000, 3);
+    //removeEmployee(list, 1000, 3);
 
-    printEmployees(list, 1000);
+    //printEmployees(list, 1000);
+
+    //sumar salarios
+    acumWages(list, 1000, &sumaSalarios);
+    printf("\n\n");
+    printf("La suma de los salarios: %.2f\n", sumaSalarios);
+
+    //obtener promedio
+    averageWages(list, 1000, &prom);
+    printf("\n\n");
+    printf("El promedio de los salarios: %.2f\n", prom);
+
+    //Obtener empleados que superan el salario promedio
+    getSuperiorWages(list, 1000, &empleadosChetos);
+    printf("\n\n");
+    printf("Cantidad de empleados que cobran más que el promedio: %d\n", empleadosChetos);
 
     return 0;
 }
@@ -199,7 +235,9 @@ int removeEmployee(Employee* list, int len, int id)
                 list[index].isEmpty = 1;
             }
             error = 0;
-        } else{
+        }
+        else
+        {
             printf("No hay personas con ese ID\n");
         }
     }
@@ -288,4 +326,71 @@ void showEmployee(Employee emp)
            emp.lastName,
            emp.salary,
            emp.sector);
+}
+
+int acumWages(Employee* list, int len, float* pSum)
+{
+    int error = -1;
+    float acumWage = 0;
+
+    if(list != NULL && len > 0 && len <= 1000 && pSum != NULL)
+    {
+        for(int i = 0; i < len; i++)
+        {
+            if(list[i].isEmpty == 0)
+            {
+                acumWage += list[i].salary;
+            }
+        }
+        *pSum = acumWage;
+        error = 0;
+    }
+
+    return error;
+}
+
+int averageWages(Employee* list, int len, float* pAvg)
+{
+    int error = -1;
+    int countEmployees = 0;
+    float acumWage;
+    if(list != NULL && len > 0 && len <= 1000 && pAvg != NULL)
+    {
+        for(int i = 0; i < len; i++)
+        {
+            if(list[i].isEmpty == 0)
+            {
+                countEmployees++;
+            }
+        }
+        acumWages(list, len, &acumWage);
+        *pAvg = (float) acumWage / countEmployees;
+        error = 0;
+    }
+    return error;
+}
+
+int getSuperiorWages(Employee* list, int len, int* pSuperiorWagesEmployees)
+{
+    int error = -1;
+    int sprWagesEmployees = 0;
+    float average;
+    if(list != NULL && len > 0 && len <= 1000 && pSuperiorWagesEmployees != NULL)
+    {
+        averageWages(list, len, &average);
+        if(average != -1)
+        {
+            for(int i = 0; i < len; i++)
+            {
+                if(list[i].isEmpty == 0 && list[i].salary > average)
+                {
+                    sprWagesEmployees++;
+                }
+            }
+            *pSuperiorWagesEmployees = sprWagesEmployees;
+            error = 0;
+        }
+
+    }
+    return error;
 }
