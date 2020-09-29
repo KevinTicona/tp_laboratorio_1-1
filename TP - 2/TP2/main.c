@@ -364,8 +364,11 @@ int averageWages(Employee* list, int len, float* pAvg)
             }
         }
         acumWages(list, len, &acumWage);
-        *pAvg = (float) acumWage / countEmployees;
-        error = 0;
+        if(acumWage != -1)
+        {
+            *pAvg = (float) acumWage / countEmployees;
+            error = 0;
+        }
     }
     return error;
 }
