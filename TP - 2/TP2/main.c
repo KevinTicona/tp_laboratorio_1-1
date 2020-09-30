@@ -23,6 +23,16 @@ struct
  */
 int initEmployees(Employee* list, int len);
 
+/** \brief Search and returns the first empty position
+ *
+ * \param list Employee* Pointer to array of employees
+ * \param len int Array length
+ * \return returns the first empty index or (-1) if there is no space
+ *
+ */
+
+int searchEmptyPlace(Employee* list, int len);
+
 /** \brief add in a existing list of employees the values received as parameters
  * in the first empty position
  * \param list employee*
@@ -109,6 +119,14 @@ int acumWages(Employee* list, int len, float* pSum);
  */
 int averageWages(Employee* list, int len, float* pAvg);
 
+/** \brief
+ *
+ * \param list Employee* Pointer to array of employees
+ * \param len int Array length
+ * \param float pSuperiorWagesEmployees* Pointer to result of average
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
 int getSuperiorWages(Employee* list, int len, int* pSuperiorWagesEmployees);
 
 
@@ -150,33 +168,74 @@ int main()
 
 int initEmployees(Employee* list, int len)
 {
+    int error = -1;
     if(list != NULL && len > 0 && len <= 1000)
     {
         for(int i = 0; i < len; i++)
         {
             list[i].isEmpty = 1;
         }
-        return 0;
+        error = 0;
     }
 
-    return -1;
+    return error;
+}
+
+int searchEmptyPlace(Employee* list, int len)
+{
+    int index = -1;
+    for(int i = 0; i < len; i++)
+    {
+        if(list[i].isEmpty == 1)
+        {
+            index = i;
+            break;
+        }
+    }
+    return index;
 }
 
 int addEmployee(Employee* list, int len, char name[],char lastName[],float salary,int sector)
 {
-    //falta: agregar un Employee auxiliar antes de copiar todos los datos
+    //falta: Agregar validación de sólo numeros, sólo letras
+    Employee newEmp;
     if(list != NULL && len > 0 && len <= 1000)
     {
         for(int i = 0; i < len; i++)
         {
             if(list[i].isEmpty == 1)
             {
-                list[i].id = i;
-                strcpy(list[i].name, name);
-                strcpy(list[i].lastName, lastName);
-                list[i].salary = salary;
-                list[i].sector = sector;
-                list[i].isEmpty = 0;
+                //ahora este campo esta cargado
+                newEmp.isEmpty = 0;
+                //ID
+                newEmp.id = i;
+                //Pedir nombre
+                printf("Ingrese nombre: ");
+                fflush(stdin);
+                gets(newEmp.name);
+                while(strlen(newEmp.name) >= 51)
+                {
+                    printf("Nombre demasiado largo. Reingrese nombre\n");
+                    fflush(stdin);
+                    gets(newEmp.name);
+                }
+                //pedir apellido
+                printf("\nIngrese apellido: ");
+                fflush(stdin);
+                gets(newEmp.lastName);
+                while(strlen(newEmp.lastName) >= 51)
+                {
+                    printf("Nombre demasiado largo. Reingrese nombre\n");
+                    fflush(stdin);
+                    gets(newEmp.lastName);
+                }
+                //Pedir salario
+                newEmp.salary = salary;
+                //pedir sector
+                newEmp.sector = sector;
+
+                list[i] = newEmp;
+
                 return 0;
             }
         }
@@ -301,6 +360,7 @@ int sortEmployees(Employee* list, int len, int order)
 
 int printEmployees(Employee* list, int len)
 {
+    int error = -1;
     if(list != NULL && len > 0 && len <= 1000)
     {
         //system("cls");
@@ -313,9 +373,9 @@ int printEmployees(Employee* list, int len)
             }
         }
         printf("\n\n");
-        return 0;
+        error = 0;
     }
-    return -1;
+    return error;
 }
 
 void showEmployee(Employee emp)
