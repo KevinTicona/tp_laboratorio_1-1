@@ -138,30 +138,8 @@ int main()
     Employee list[1000];
     initEmployees(list, 1000);
 
-    addEmployee(list, 1000, "Pepe", "Argento", 45000.98, 3);
-    addEmployee(list, 1000, "Jose", "Cayola", 55248.98, 1);
-    addEmployee(list, 1000, "Jose", "Berutti", 55248.98, 2);
 
-    printEmployees(list, 1000);
 
-    //removeEmployee(list, 1000, 3);
-
-    //printEmployees(list, 1000);
-
-    //sumar salarios
-    acumWages(list, 1000, &sumaSalarios);
-    printf("\n\n");
-    printf("La suma de los salarios: %.2f\n", sumaSalarios);
-
-    //obtener promedio
-    averageWages(list, 1000, &prom);
-    printf("\n\n");
-    printf("El promedio de los salarios: %.2f\n", prom);
-
-    //Obtener empleados que superan el salario promedio
-    getSuperiorWages(list, 1000, &empleadosChetos);
-    printf("\n\n");
-    printf("Cantidad de empleados que cobran más que el promedio: %d\n", empleadosChetos);
 
     return 0;
 }
@@ -194,6 +172,8 @@ int searchEmptyPlace(Employee* list, int len)
     }
     return index;
 }
+
+//ver de cambiar la formad epedir datos
 
 int addEmployee(Employee* list, int len, char name[],char lastName[],float salary,int sector)
 {
