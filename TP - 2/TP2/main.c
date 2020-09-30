@@ -23,30 +23,16 @@ struct
  */
 int initEmployees(Employee* list, int len);
 
-/** \brief Search and returns the first empty position
- *
- * \param list Employee* Pointer to array of employees
- * \param len int Array length
- * \return returns the first empty index or (-1) if there is no space
- *
- */
-
-int searchEmptyPlace(Employee* list, int len);
-
 /** \brief add in a existing list of employees the values received as parameters
  * in the first empty position
  * \param list employee*
  * \param len int
  * \param id int
- * \param name[] char
- * \param lastName[] char
- * \param salary float
- * \param sector int
  * \return int Return (-1) if Error [Invalid length or NULL pointer or without
 free space] - (0) if Ok
  *
  */
-int addEmployee(Employee* list, int len, char name[],char lastName[],float salary,int sector);
+int addEmployee(Employee* list, int len, int ID);
 
 /** \brief find an Employee by Id en returns the index position in array.
  *
@@ -121,101 +107,97 @@ int averageWages(Employee* list, int len, float* pAvg);
 
 /** \brief
  *
- * \param list Employee* Pointer to array of employees
- * \param len int Array length
- * \param float pSuperiorWagesEmployees* Pointer to result of average
- * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ * \param Employee* list
+ * \param int len, List lenght
+ * \return int* pSuperiorWagesEmployees pointer to result
  *
  */
+
 int getSuperiorWages(Employee* list, int len, int* pSuperiorWagesEmployees);
+
+// ++++++++++++++++++++++++++ validaciones +++++++++++++++++++++++++++++++++++++
+int charOnly(char str[]);
 
 
 int main()
 {
+    /*
     float sumaSalarios;
     float prom;
     int empleadosChetos;
     Employee list[1000];
     initEmployees(list, 1000);
 
+    addEmployee(list, 1000, "Pepe", "Argento", 45000.98, 3);
+    addEmployee(list, 1000, "Jose", "Cayola", 55248.98, 1);
+    addEmployee(list, 1000, "Jose", "Berutti", 55248.98, 2);
 
-
+    printEmployees(list, 1000);
+    */
 
     return 0;
 }
 
 int initEmployees(Employee* list, int len)
 {
-    int error = -1;
     if(list != NULL && len > 0 && len <= 1000)
     {
         for(int i = 0; i < len; i++)
         {
             list[i].isEmpty = 1;
         }
-        error = 0;
+        return 0;
     }
 
-    return error;
+    return -1;
 }
 
-int searchEmptyPlace(Employee* list, int len)
+int addEmployee(Employee* list, int len, int ID)
 {
-    int index = -1;
-    for(int i = 0; i < len; i++)
-    {
-        if(list[i].isEmpty == 1)
-        {
-            index = i;
-            break;
-        }
-    }
-    return index;
-}
-
-//ver de cambiar la formad epedir datos
-
-int addEmployee(Employee* list, int len, char name[],char lastName[],float salary,int sector)
-{
-    //falta: Agregar validación de sólo numeros, sólo letras
     Employee newEmp;
+    int validName;
     if(list != NULL && len > 0 && len <= 1000)
     {
         for(int i = 0; i < len; i++)
         {
             if(list[i].isEmpty == 1)
             {
-                //ahora este campo esta cargado
+                //Ahora este espacio esta lleno
                 newEmp.isEmpty = 0;
-                //ID
-                newEmp.id = i;
-                //Pedir nombre
-                printf("Ingrese nombre: ");
+                //id
+                newEmp.id = i + ID;
+                //Pedir nombre y validar nombre
+                printf("\nIngrese nombre/s: ");
                 fflush(stdin);
                 gets(newEmp.name);
-                while(strlen(newEmp.name) >= 51)
+                validName = charOnly(newEmp.name);
+                while(strlen(newEmp.name) > 51 || validName < 0)
                 {
-                    printf("Nombre demasiado largo. Reingrese nombre\n");
+                    printf("\nDato invalido. Ingrese nombre: ");
                     fflush(stdin);
                     gets(newEmp.name);
+                    validName = charOnly(newEmp.name);
                 }
-                //pedir apellido
-                printf("\nIngrese apellido: ");
+                //Pedir Apellido y validar
+                printf("\nIngrese apellido/s: ");
                 fflush(stdin);
                 gets(newEmp.lastName);
-                while(strlen(newEmp.lastName) >= 51)
+                validName = charOnly(newEmp.lastName);
+                while(strlen(newEmp.lastName) > 51 || validName < 0)
                 {
-                    printf("Nombre demasiado largo. Reingrese nombre\n");
+                    printf("\nDato invalido. Ingrese nombre: ");
                     fflush(stdin);
                     gets(newEmp.lastName);
+                    validName = charOnly(newEmp.lastName);
                 }
                 //Pedir salario
-                newEmp.salary = salary;
-                //pedir sector
-                newEmp.sector = sector;
+                printf("\nIngrese salario: ");
+                scanf("%f", &newEmp.salary);
+                //Pedir sector
+                printf("\nIngrese sector: ");
+                scanf("%d", &newEmp.sector);
 
                 list[i] = newEmp;
-
                 return 0;
             }
         }
@@ -224,6 +206,7 @@ int addEmployee(Employee* list, int len, char name[],char lastName[],float salar
 
     return -1;
 }
+
 
 int findEmployeeById(Employee* list, int len,int id)
 {
@@ -340,7 +323,6 @@ int sortEmployees(Employee* list, int len, int order)
 
 int printEmployees(Employee* list, int len)
 {
-    int error = -1;
     if(list != NULL && len > 0 && len <= 1000)
     {
         //system("cls");
@@ -353,9 +335,9 @@ int printEmployees(Employee* list, int len)
             }
         }
         printf("\n\n");
-        error = 0;
+        return 0;
     }
-    return error;
+    return -1;
 }
 
 void showEmployee(Employee emp)
@@ -436,4 +418,23 @@ int getSuperiorWages(Employee* list, int len, int* pSuperiorWagesEmployees)
 
     }
     return error;
+}
+
+
+// ++++++++++++++++++++++++++ validaciones +++++++++++++++++++++++++++++++++++++
+int charOnly(char str[])
+{
+
+    int i = 0;
+    while (str[i])
+    {
+        if (
+            !isalpha(str[i])
+            && str[i] != ' '
+        )
+            return -1;
+        i++;
+    }
+
+    return 0;
 }
