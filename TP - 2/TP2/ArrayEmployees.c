@@ -52,7 +52,7 @@ int addEmployee(Employee* list, int len, int ID)
                 validName = charOnly(newEmp.lastName);
                 while(strlen(newEmp.lastName) > 51 || validName < 0)
                 {
-                    printf("\nDato invalido. Ingrese nombre: ");
+                    printf("\nDato invalido. Ingrese apellido: ");
                     fflush(stdin);
                     gets(newEmp.lastName);
                     validName = charOnly(newEmp.lastName);
