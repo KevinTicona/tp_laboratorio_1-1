@@ -94,7 +94,6 @@ int findEmployeeById(Employee* list, int len,int id)
 
 //FALTA: MODIFICAR EMPLEADO
 
-
 int removeEmployee(Employee* list, int len, int id)
 {
     int error = -1;

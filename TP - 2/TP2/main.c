@@ -9,6 +9,7 @@
 void menu();
 int getOption(int* pResult, char* errorMsj, int min, int max);
 
+
 int main()
 {
     Employee list[TAM];
@@ -21,6 +22,10 @@ int main()
     int rst4;
     int rst41;
     int order;
+    //suma, promedio y cantidad de empleados que superan el promedio
+    float sum;
+    float average;
+    int supWageEmp;
     //flags
     int employeesExist = 0;
 
@@ -46,16 +51,30 @@ int main()
                 }
                 break;
             case 2:
-                if(!employeesExist){
+                if(!employeesExist)
+                {
                     printf("Primero Debes añadir un empleado.\n");
+                    break;
                 }
                 printf("Opcion en matenimiento\n");
                 break;
             case 3:
+                if(!employeesExist)
+                {
+                    printf("Primero Debes añadir un empleado.\n");
+                    break;
+                }
                 printf("Opcion en matenimiento\n");
                 break;
             case 4:
-                //hacer un getOption para char
+                if(!employeesExist)
+                {
+                    printf("Primero Debes añadir un empleado.\n");
+                    break;
+                }
+                printf("4. MOSTRAR:\n");
+                printf("1. Lista de empleados\n");
+                printf("2. Total y promedio de Salarios.\n");
                 rst4 = getOption(&opt4, "Opcion invalida. Intente nuevamente\n", 1, 2);
                 if(!rst4)
                 {
@@ -63,8 +82,8 @@ int main()
                     {
                     case 1:
                         printf("4. MOSTRAR:\n");
-                        printf("a. EN FORMA CRECIENTE: Ingrese 1\n");
-                        printf("b. EN FORMA DECRECIENTE: Ingrese 0\n");
+                        printf("1. EN FORMA CRECIENTE: Ingrese 1\n");
+                        printf("2. EN FORMA DECRECIENTE: Ingrese 0\n");
                         rst41 = getOption(&order, "Opcion invalida. Intente nuevamente\n", 0, 1);
                         if(!rst41)
                         {
@@ -80,7 +99,13 @@ int main()
                         printEmployees(list, TAM);
                         break;
                     case 2:
-                        printf("Opcion en mantenimiento");
+                        acumWages(list, TAM, &sum);
+                        averageWages(list, TAM, &average);
+                        getSuperiorWages(list, TAM, &supWageEmp);
+                        printf("4. MOSTRAR\n");
+                        printf("1. TOTAL SALARIOS: %.2f\n", sum);
+                        printf("2. PROMEDIO SALARIOS: %.2f\n", average);
+                        printf("3. EMPLEADOS QUE COBRAN MÁS QUE EL SALARIO PROMEDIO: %d\n", supWageEmp);
                         break;
                     }
                 }
@@ -135,8 +160,8 @@ void menu()
     printf("2. MODIFICACION: Modifique un empleado por ID.\n");
     printf("3. BAJA: Elimine un empleado por ID.\n");
     printf("4. MOSTRAR:\n");
-    printf("a. Lista de empleados\n");
-    printf("b. Total y promedio de Salarios.\n");
+    printf("4.1. Lista de empleados\n");
+    printf("4.2. Total y promedio de Salarios.\n");
     printf("5. SALIR\n");
 }
 
