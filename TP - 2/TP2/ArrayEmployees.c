@@ -94,40 +94,50 @@ int findEmployeeById(Employee* list, int len,int id)
 
 //FALTA: MODIFICAR EMPLEADO
 
-int removeEmployee(Employee* list, int len, int id)
+int removeEmployee(Employee* list, int len)
 {
     int error = -1;
+    int id;
     int index;
-    char confirmacion;
-    //No es necesario limpiar todos los campos
-    //Falta: Cambiar la identación cuando obtengo el index & La función podría devolver 3 enteros (0 - ok, -1 error, 2 ok pero no borró a nadie
+    char confirmation;
+    //La función podría devolver 3 enteros (0 - ok, -1 error, 1 ok pero no borró a nadie
     if(list != NULL && len > 0 && len <= 1000)
     {
+        printEmployees(list, len);
+        printf("\nIngrese ID del empleado a eliminar: ");
+        scanf("%d", &id);
         index = findEmployeeById(list, len, id);
-        if(index != -1)
-        {
-            printf("ID Nombre  Apellido  Salario  Sector \n");
-            showEmployee(list[index]);
-            printf("Confirmar baja? s - si; n - no\n");
-            fflush(stdin);
-            scanf("%c", &confirmacion);
-            while(confirmacion != 's' && confirmacion != 'n')
-            {
-                printf("Opción invalida. s - si; n - no\n");
-                fflush(stdin);
-                scanf("%c", &confirmacion);
-            }
-
-            if(confirmacion == 's')
-            {
-                list[index].isEmpty = 1;
-            }
-            error = 0;
-        }
-        else
+        if(index == -1)
         {
             printf("No hay personas con ese ID\n");
         }
+        else
+        {
+            printf("ID Nombre  Apellido  Salario  Sector \n");
+            printf("-------------------------------------\n");
+            showEmployee(list[index]);
+            printf("Confirmar baja? s - si; n - no\n");
+            fflush(stdin);
+            scanf("%c", &confirmation);
+            confirmation = tolower(confirmation);
+            while(confirmation != 's' && confirmation != 'n')
+            {
+                printf("Opción invalida. s - si; n - no\n");
+                fflush(stdin);
+                scanf("%c", &confirmation);
+                confirmation = tolower(confirmation);
+            }
+
+            if(confirmation == 's')
+            {
+                list[index].isEmpty = 1;
+                 error = 0;
+            }
+           else if(confirmation == 'n'){
+                error = 1;
+           }
+        }
+
     }
 
     return error;

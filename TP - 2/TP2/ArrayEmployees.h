@@ -53,7 +53,7 @@ int findEmployeeById(Employee* list, int len,int id);
 find a employee] - (0) if Ok
  *
  */
-int removeEmployee(Employee* list, int len, int id);
+int removeEmployee(Employee* list, int len);
 
 /** \brief Sort the elements in the array of employees, the argument order
 indicate UP or DOWN order

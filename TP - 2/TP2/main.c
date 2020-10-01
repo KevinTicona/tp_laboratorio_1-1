@@ -17,6 +17,8 @@ int main()
     int addEmp;
     int option;
     int rst;
+    // case 3 remover empleado
+    int remove;
     //subMenu case 4
     int opt4;
     int rst4;
@@ -64,7 +66,14 @@ int main()
                     printf("Primero Debes añadir un empleado.\n");
                     break;
                 }
-                printf("Opcion en matenimiento\n");
+                remove = removeEmployee(list, TAM);
+                if(!remove){
+                    printf("Baja exitosa.\n");
+                } else if(remove){
+                     printf("Baja cancelada por usuario.\n");
+                } else{
+                    printf("Problemas al realizar la baja. Intente nuevamente\n");
+                }
                 break;
             case 4:
                 if(!employeesExist)
