@@ -11,3 +11,22 @@
 	<ctype.h>
 	<string.h>
 
+1601517490 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp - 2\tp2\validations.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"validations.h"
+
+1601518327 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp - 2\tp2\validations.h
+
+1601517491 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp - 2\tp2\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"ArrayEmployees.h"
+	"validations.h"
+
+1601518327 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp - 2\tp2\arrayemployees.h
+
