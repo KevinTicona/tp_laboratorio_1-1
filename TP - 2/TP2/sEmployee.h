@@ -1,8 +1,0 @@
-#ifndef SEMPLOYEE_H_INCLUDED
-#define SEMPLOYEE_H_INCLUDED
-
-
-
-
-
-#endif // SEMPLOYEE_H_INCLUDED
