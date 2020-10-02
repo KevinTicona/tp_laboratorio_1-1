@@ -8,7 +8,6 @@
 #define INIT_ID 2000
 
 
-
 int main()
 {
     Employee list[TAM];

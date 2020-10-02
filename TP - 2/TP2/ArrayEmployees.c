@@ -114,10 +114,9 @@ int modifieEmployee(Employee* list, int len)
         }
         else
         {
-            printf("-------------------------------------\n");
-            printf("ID Nombre  Apellido  Salario  Sector \n");
-            printf("-------------------------------------\n");
-            printf("\n");
+            printf("****************************************************************************\n");
+            printf("  ID                Nombre             Apellido          Salario     Sector \n");
+            printf("****************************************************************************\n");
             showEmployee(list[index]);
             printf("4. MODIFICAR:\n");
             printf("1. Nombre\n");
@@ -198,7 +197,6 @@ int removeEmployee(Employee* list, int len)
             printf("****************************************************************************\n");
             printf("  ID                Nombre             Apellido          Salario     Sector \n");
             printf("****************************************************************************\n");
-            printf("\n");
             showEmployee(list[index]);
             printf("Confirmar baja? s - si; n - no\n");
             fflush(stdin);
