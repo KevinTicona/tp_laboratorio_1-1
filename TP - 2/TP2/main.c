@@ -18,6 +18,8 @@ int main()
     int addEmp;
     int option;
     int rst;
+    // case 2 modificar empleado
+    int modifie;
     // case 3 remover empleado
     int remove;
     //subMenu case 4
@@ -59,7 +61,19 @@ int main()
                     printf("Primero Debes añadir un empleado.\n");
                     break;
                 }
-                printf("Opcion en matenimiento\n");
+                modifie = modifieEmployee(list, TAM);
+                if(!modifie)
+                {
+                    printf("Modificacion exitosa.\n");
+                }
+                else if(modifie == 1)
+                {
+                    printf("Modificacion cancelada por usuario.\n");
+                }
+                else
+                {
+                    printf("Problemas al realizar la modificacion. Intente nuevamente\n");
+                }
                 break;
             case 3:
                 if(!employeesExist)
@@ -183,6 +197,8 @@ void menu()
 
 int modifieEmployee(Employee* list, int len)
 {
+    Employee newEmp;
+    int validName;
     int error = -1;
     int id;
     int index;
@@ -229,16 +245,42 @@ int modifieEmployee(Employee* list, int len)
                     switch(mOption)
                     {
                     case 1:
-                        printf("Opcion en mantenimiento\n");
+                        //Pedir nombre y validar nombre
+                        printf("\nIngrese nombre/s: ");
+                        fflush(stdin);
+                        gets(newEmp.name);
+                        validName = charOnly(newEmp.name);
+                        while(strlen(newEmp.name) > 51 || validName < 0)
+                        {
+                            printf("\nDato invalido. Ingrese nombre: ");
+                            fflush(stdin);
+                            gets(newEmp.name);
+                            validName = charOnly(newEmp.name);
+                        }
+                        strcpy(list[index].name, newEmp.name);
                         break;
                     case 2:
-                        printf("Opcion en mantenimiento\n");
+                        //Pedir nombre y validar nombre
+                        printf("\nIngrese apellido/s: ");
+                        fflush(stdin);
+                        gets(newEmp.lastName);
+                        validName = charOnly(newEmp.lastName);
+                        while(strlen(newEmp.lastName) > 51 || validName < 0)
+                        {
+                            printf("\nDato invalido. Ingrese apellido: ");
+                            fflush(stdin);
+                            gets(newEmp.lastName);
+                            validName = charOnly(newEmp.lastName);
+                        }
+                        strcpy(list[index].lastName,newEmp.lastName);
                         break;
                     case 3:
-                        printf("Opcion en mantenimiento\n");
+                        printf("\nIngrese nuevo salario: ");
+                        scanf("%f", &list[index].salary);
                         break;
                     case 4:
-                        printf("Opcion en mantenimiento\n");
+                        printf("\nIngrese nuevo sector: ");
+                        scanf("%d", &list[index].sector);
                         break;
                     }
                 }
