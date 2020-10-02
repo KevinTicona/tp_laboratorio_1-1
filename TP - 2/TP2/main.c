@@ -5,6 +5,7 @@
 #include "ArrayEmployees.h"
 #include "validations.h"
 #define TAM 1000
+#define INIT_ID 2000
 
 void menu();
 int getOption(int* pResult, char* errorMsj, int min, int max);
@@ -14,7 +15,7 @@ int modifieEmployee(Employee* list, int len);
 int main()
 {
     Employee list[TAM];
-    int ID = 20000;
+    int actualID = INIT_ID;
     int addEmp;
     int option;
     int rst;
@@ -44,7 +45,7 @@ int main()
             switch(option)
             {
             case 1:
-                addEmp = addEmployee(list, TAM, ID);
+                addEmp = addEmployee(list, TAM, actualID);
                 if(addEmp < 0)
                 {
                     printf("Ha ocurrido un problema. Intente nuevamente\n");
@@ -53,6 +54,7 @@ int main()
                 {
                     printf("Operación exitosa.\n");
                     employeesExist = 1;
+                    actualID++;
                 }
                 break;
             case 2:
@@ -65,10 +67,6 @@ int main()
                 if(!modifie)
                 {
                     printf("Modificacion exitosa.\n");
-                }
-                else if(modifie == 1)
-                {
-                    printf("Modificacion cancelada por usuario.\n");
                 }
                 else
                 {
@@ -160,9 +158,10 @@ int getOption(int* pResult, char* errorMsj, int min, int max)
         do
         {
             printf("\nIngrese opcion: ");
+            fflush(stdin);
             scanf("%d", &opcion);
             validate = isdigit(opcion);
-            if((opcion >= min && opcion <= max) || !validate)
+            if((opcion >= min && opcion <= max) && !validate)
             {
                 *pResult = opcion;
                 error = 0;
@@ -204,7 +203,6 @@ int modifieEmployee(Employee* list, int len)
     int index;
     int rst;
     int mOption;
-    char confirmation;
     if(list != NULL && len > 0 && len <= 1000)
     {
         printEmployees(list, len);
@@ -217,81 +215,63 @@ int modifieEmployee(Employee* list, int len)
         }
         else
         {
+            printf("-------------------------------------\n");
             printf("ID Nombre  Apellido  Salario  Sector \n");
             printf("-------------------------------------\n");
+            printf("\n");
             showEmployee(list[index]);
-            printf("Confirmar modificacion? s - si; n - no\n");
-            fflush(stdin);
-            scanf("%c", &confirmation);
-            confirmation = tolower(confirmation);
-            while(confirmation != 's' && confirmation != 'n')
+            printf("4. MODIFICAR:\n");
+            printf("1. Nombre\n");
+            printf("2. Apellido\n");
+            printf("3. Salario\n");
+            printf("4. Sector\n");
+            rst = getOption(&mOption, "\nOpcion invalida\n", 1, 4);
+            if(!rst)
             {
-                printf("Opción invalida. s - si; n - no\n");
-                fflush(stdin);
-                scanf("%c", &confirmation);
-                confirmation = tolower(confirmation);
-            }
-
-            if(confirmation == 's')
-            {
-                printf("4. MODIFICAR:\n");
-                printf("1. Nombre\n");
-                printf("2. Apellido\n");
-                printf("3. Salario\n");
-                printf("4. Sector\n");
-                rst = getOption(&mOption, "\nOpcion invaida\n", 1, 4);
-                if(!rst)
+                switch(mOption)
                 {
-                    switch(mOption)
+                case 1:
+                    //Pedir nombre y validar nombre
+                    printf("\nIngrese nombre/s: ");
+                    fflush(stdin);
+                    gets(newEmp.name);
+                    validName = charOnly(newEmp.name);
+                    while(strlen(newEmp.name) > 51 || validName < 0)
                     {
-                    case 1:
-                        //Pedir nombre y validar nombre
-                        printf("\nIngrese nombre/s: ");
+                        printf("\nDato invalido. Ingrese nombre: ");
                         fflush(stdin);
                         gets(newEmp.name);
                         validName = charOnly(newEmp.name);
-                        while(strlen(newEmp.name) > 51 || validName < 0)
-                        {
-                            printf("\nDato invalido. Ingrese nombre: ");
-                            fflush(stdin);
-                            gets(newEmp.name);
-                            validName = charOnly(newEmp.name);
-                        }
-                        strcpy(list[index].name, newEmp.name);
-                        break;
-                    case 2:
-                        //Pedir nombre y validar nombre
-                        printf("\nIngrese apellido/s: ");
+                    }
+                    strcpy(list[index].name, newEmp.name);
+                    break;
+                case 2:
+                    //Pedir nombre y validar nombre
+                    printf("\nIngrese apellido/s: ");
+                    fflush(stdin);
+                    gets(newEmp.lastName);
+                    validName = charOnly(newEmp.lastName);
+                    while(strlen(newEmp.lastName) > 51 || validName < 0)
+                    {
+                        printf("\nDato invalido. Ingrese apellido: ");
                         fflush(stdin);
                         gets(newEmp.lastName);
                         validName = charOnly(newEmp.lastName);
-                        while(strlen(newEmp.lastName) > 51 || validName < 0)
-                        {
-                            printf("\nDato invalido. Ingrese apellido: ");
-                            fflush(stdin);
-                            gets(newEmp.lastName);
-                            validName = charOnly(newEmp.lastName);
-                        }
-                        strcpy(list[index].lastName,newEmp.lastName);
-                        break;
-                    case 3:
-                        printf("\nIngrese nuevo salario: ");
-                        scanf("%f", &list[index].salary);
-                        break;
-                    case 4:
-                        printf("\nIngrese nuevo sector: ");
-                        scanf("%d", &list[index].sector);
-                        break;
                     }
+                    strcpy(list[index].lastName,newEmp.lastName);
+                    break;
+                case 3:
+                    printf("\nIngrese nuevo salario: ");
+                    scanf("%f", &list[index].salary);
+                    break;
+                case 4:
+                    printf("\nIngrese nuevo sector: ");
+                    scanf("%d", &list[index].sector);
+                    break;
                 }
-                error = 0;
             }
-            else if(confirmation == 'n')
-            {
-                error = 1;
-            }
+            error = 0;
         }
-
     }
 
     return error;

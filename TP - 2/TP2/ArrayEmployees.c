@@ -32,8 +32,7 @@ int addEmployee(Employee* list, int len, int ID)
                 //Ahora este espacio esta lleno
                 newEmp.isEmpty = 0;
                 //id
-                printf("i:%d  id:%d", i, ID);
-                newEmp.id = i + ID;
+                newEmp.id = ID;
                 //Pedir nombre y validar nombre
                 printf("\nIngrese nombre/s: ");
                 fflush(stdin);
@@ -114,8 +113,10 @@ int removeEmployee(Employee* list, int len)
         }
         else
         {
+            printf("-------------------------------------\n");
             printf("ID Nombre  Apellido  Salario  Sector \n");
             printf("-------------------------------------\n");
+            printf("\n");
             showEmployee(list[index]);
             printf("Confirmar baja? s - si; n - no\n");
             fflush(stdin);
@@ -132,11 +133,12 @@ int removeEmployee(Employee* list, int len)
             if(confirmation == 's')
             {
                 list[index].isEmpty = 1;
-                 error = 0;
+                error = 0;
             }
-           else if(confirmation == 'n'){
+            else if(confirmation == 'n')
+            {
                 error = 1;
-           }
+            }
         }
 
     }
@@ -203,7 +205,7 @@ int printEmployees(Employee* list, int len)
     if(list != NULL && len > 0 && len <= 1000)
     {
         //system("cls");
-        printf("ID Nombre  Apellido  Salario  Sector \n");
+        printf("   ID            Nombre       Apellido     Salario   Sector \n");
         for(int i = 0; i < len; i++)
         {
             if(list[i].isEmpty != 1)
@@ -219,13 +221,12 @@ int printEmployees(Employee* list, int len)
 
 void showEmployee(Employee emp)
 {
-    printf(" %d %s %s %4.2f %d %d\n",
+    printf("%6d %20s %20s %7.2f %4d\n",
            emp.id,
            emp.name,
            emp.lastName,
            emp.salary,
-           emp.sector,
-           emp.isEmpty);
+           emp.sector);
 
 }
 
