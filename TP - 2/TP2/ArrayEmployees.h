@@ -55,6 +55,15 @@ find a employee] - (0) if Ok
  */
 int removeEmployee(Employee* list, int len);
 
+/** \brief
+ *
+ * \param list Employee*
+ * \param len int
+ * \return
+ *
+ */
+int modifieEmployee(Employee* list, int len);
+
 /** \brief Sort the elements in the array of employees, the argument order
 indicate UP or DOWN order
  *
@@ -112,3 +121,10 @@ int averageWages(Employee* list, int len, float* pAvg);
  *
  */
 int getSuperiorWages(Employee* list, int len, int* pSuperiorWagesEmployees);
+
+/** \brief Prints the menu
+ *
+ */
+void menu();
+
+

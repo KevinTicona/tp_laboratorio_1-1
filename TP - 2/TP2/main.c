@@ -7,9 +7,6 @@
 #define TAM 1000
 #define INIT_ID 2000
 
-void menu();
-int getOption(int* pResult, char* errorMsj, int min, int max);
-int modifieEmployee(Employee* list, int len);
 
 
 int main()
@@ -19,16 +16,16 @@ int main()
     int addEmp;
     int option;
     int rst;
-    // case 2 modificar empleado
+    // case 2
     int modifie;
-    // case 3 remover empleado
+    // case 3
     int remove;
-    //subMenu case 4
+    // subMenu case 4
     int opt4;
     int rst4;
     int rst41;
     int order;
-    //suma, promedio y cantidad de empleados que superan el promedio
+    //sum, avg & number of employees exceeding average salary
     float sum;
     float average;
     int supWageEmp;
@@ -52,7 +49,7 @@ int main()
                 }
                 else
                 {
-                    printf("Operación exitosa.\n");
+                    printf("Operacion exitosa.\n");
                     employeesExist = 1;
                     actualID++;
                 }
@@ -60,7 +57,7 @@ int main()
             case 2:
                 if(!employeesExist)
                 {
-                    printf("Primero Debes añadir un empleado.\n");
+                    printf("Primero debes agregar un empleado.\n");
                     break;
                 }
                 modifie = modifieEmployee(list, TAM);
@@ -76,7 +73,7 @@ int main()
             case 3:
                 if(!employeesExist)
                 {
-                    printf("Primero Debes añadir un empleado.\n");
+                    printf("Primero debes agregar un empleado.\n");
                     break;
                 }
                 remove = removeEmployee(list, TAM);
@@ -96,7 +93,7 @@ int main()
             case 4:
                 if(!employeesExist)
                 {
-                    printf("Primero Debes añadir un empleado.\n");
+                    printf("Primero debes agregar un empleado.\n");
                     break;
                 }
                 printf("4. MOSTRAR:\n");
@@ -123,6 +120,7 @@ int main()
                                 sortEmployees(list, TAM, 0);
                             }
                         }
+                        system("cls");
                         printEmployees(list, TAM);
                         break;
                     case 2:
@@ -148,131 +146,5 @@ int main()
     return 0;
 }
 
-int getOption(int* pResult, char* errorMsj, int min, int max)
-{
-    int error = -1;
-    int opcion;
-    int validate;
-    if(pResult != NULL && errorMsj != NULL && min <= max)
-    {
-        do
-        {
-            printf("\nIngrese opcion: ");
-            fflush(stdin);
-            scanf("%d", &opcion);
-            validate = isdigit(opcion);
-            if((opcion >= min && opcion <= max) && !validate)
-            {
-                *pResult = opcion;
-                error = 0;
-            }
-            else
-            {
-                printf("%s\n", errorMsj);
-                system("pause");
-            }
-        }
-        while(error != 0);
-    }
-    return error;
-}
 
-void menu()
-{
-    system("cls");
-    printf("**********************************************\n");
-    printf("           Trabajo Practico nro. 2          \n");
-    printf("**********************************************\n");
-    printf("                    ABM                    \n");
-    printf("**********************************************\n");
-    printf("1. ALTA: Ingrese un empleado.\n");
-    printf("2. MODIFICACION: Modifique un empleado por ID.\n");
-    printf("3. BAJA: Elimine un empleado por ID.\n");
-    printf("4. MOSTRAR:\n");
-    printf("4.1. Lista de empleados\n");
-    printf("4.2. Total y promedio de Salarios.\n");
-    printf("5. SALIR\n");
-}
 
-int modifieEmployee(Employee* list, int len)
-{
-    Employee newEmp;
-    int validName;
-    int error = -1;
-    int id;
-    int index;
-    int rst;
-    int mOption;
-    if(list != NULL && len > 0 && len <= 1000)
-    {
-        printEmployees(list, len);
-        printf("\nIngrese ID del empleado a modificar: ");
-        scanf("%d", &id);
-        index = findEmployeeById(list, len, id);
-        if(index == -1)
-        {
-            printf("No hay personas con ese ID\n");
-        }
-        else
-        {
-            printf("-------------------------------------\n");
-            printf("ID Nombre  Apellido  Salario  Sector \n");
-            printf("-------------------------------------\n");
-            printf("\n");
-            showEmployee(list[index]);
-            printf("4. MODIFICAR:\n");
-            printf("1. Nombre\n");
-            printf("2. Apellido\n");
-            printf("3. Salario\n");
-            printf("4. Sector\n");
-            rst = getOption(&mOption, "\nOpcion invalida\n", 1, 4);
-            if(!rst)
-            {
-                switch(mOption)
-                {
-                case 1:
-                    //Pedir nombre y validar nombre
-                    printf("\nIngrese nombre/s: ");
-                    fflush(stdin);
-                    gets(newEmp.name);
-                    validName = charOnly(newEmp.name);
-                    while(strlen(newEmp.name) > 51 || validName < 0)
-                    {
-                        printf("\nDato invalido. Ingrese nombre: ");
-                        fflush(stdin);
-                        gets(newEmp.name);
-                        validName = charOnly(newEmp.name);
-                    }
-                    strcpy(list[index].name, newEmp.name);
-                    break;
-                case 2:
-                    //Pedir nombre y validar nombre
-                    printf("\nIngrese apellido/s: ");
-                    fflush(stdin);
-                    gets(newEmp.lastName);
-                    validName = charOnly(newEmp.lastName);
-                    while(strlen(newEmp.lastName) > 51 || validName < 0)
-                    {
-                        printf("\nDato invalido. Ingrese apellido: ");
-                        fflush(stdin);
-                        gets(newEmp.lastName);
-                        validName = charOnly(newEmp.lastName);
-                    }
-                    strcpy(list[index].lastName,newEmp.lastName);
-                    break;
-                case 3:
-                    printf("\nIngrese nuevo salario: ");
-                    scanf("%f", &list[index].salary);
-                    break;
-                case 4:
-                    printf("\nIngrese nuevo sector: ");
-                    scanf("%d", &list[index].sector);
-                    break;
-                }
-            }
-            error = 0;
-        }
-    }
-
-    return error;
-}
