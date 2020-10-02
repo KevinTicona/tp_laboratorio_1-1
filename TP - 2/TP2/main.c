@@ -8,6 +8,7 @@
 
 void menu();
 int getOption(int* pResult, char* errorMsj, int min, int max);
+int modifieEmployee(Employee* list, int len);
 
 
 int main()
@@ -67,11 +68,16 @@ int main()
                     break;
                 }
                 remove = removeEmployee(list, TAM);
-                if(!remove){
+                if(!remove)
+                {
                     printf("Baja exitosa.\n");
-                } else if(remove){
-                     printf("Baja cancelada por usuario.\n");
-                } else{
+                }
+                else if(remove == 1)
+                {
+                    printf("Baja cancelada por usuario.\n");
+                }
+                else
+                {
                     printf("Problemas al realizar la baja. Intente nuevamente\n");
                 }
                 break;
@@ -134,13 +140,14 @@ int getOption(int* pResult, char* errorMsj, int min, int max)
 {
     int error = -1;
     int opcion;
+    int validate;
     if(pResult != NULL && errorMsj != NULL && min <= max)
     {
         do
         {
             printf("\nIngrese opcion: ");
             scanf("%d", &opcion);
-            int validate = isdigit(opcion);
+            validate = isdigit(opcion);
             if((opcion >= min && opcion <= max) || !validate)
             {
                 *pResult = opcion;
@@ -174,3 +181,76 @@ void menu()
     printf("5. SALIR\n");
 }
 
+int modifieEmployee(Employee* list, int len)
+{
+    int error = -1;
+    int id;
+    int index;
+    int rst;
+    int mOption;
+    char confirmation;
+    if(list != NULL && len > 0 && len <= 1000)
+    {
+        printEmployees(list, len);
+        printf("\nIngrese ID del empleado a modificar: ");
+        scanf("%d", &id);
+        index = findEmployeeById(list, len, id);
+        if(index == -1)
+        {
+            printf("No hay personas con ese ID\n");
+        }
+        else
+        {
+            printf("ID Nombre  Apellido  Salario  Sector \n");
+            printf("-------------------------------------\n");
+            showEmployee(list[index]);
+            printf("Confirmar modificacion? s - si; n - no\n");
+            fflush(stdin);
+            scanf("%c", &confirmation);
+            confirmation = tolower(confirmation);
+            while(confirmation != 's' && confirmation != 'n')
+            {
+                printf("Opción invalida. s - si; n - no\n");
+                fflush(stdin);
+                scanf("%c", &confirmation);
+                confirmation = tolower(confirmation);
+            }
+
+            if(confirmation == 's')
+            {
+                printf("4. MODIFICAR:\n");
+                printf("1. Nombre\n");
+                printf("2. Apellido\n");
+                printf("3. Salario\n");
+                printf("4. Sector\n");
+                rst = getOption(&mOption, "\nOpcion invaida\n", 1, 4);
+                if(!rst)
+                {
+                    switch(mOption)
+                    {
+                    case 1:
+                        printf("Opcion en mantenimiento\n");
+                        break;
+                    case 2:
+                        printf("Opcion en mantenimiento\n");
+                        break;
+                    case 3:
+                        printf("Opcion en mantenimiento\n");
+                        break;
+                    case 4:
+                        printf("Opcion en mantenimiento\n");
+                        break;
+                    }
+                }
+                error = 0;
+            }
+            else if(confirmation == 'n')
+            {
+                error = 1;
+            }
+        }
+
+    }
+
+    return error;
+}

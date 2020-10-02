@@ -32,6 +32,7 @@ int addEmployee(Employee* list, int len, int ID)
                 //Ahora este espacio esta lleno
                 newEmp.isEmpty = 0;
                 //id
+                printf("i:%d  id:%d", i, ID);
                 newEmp.id = i + ID;
                 //Pedir nombre y validar nombre
                 printf("\nIngrese nombre/s: ");
@@ -218,12 +219,14 @@ int printEmployees(Employee* list, int len)
 
 void showEmployee(Employee emp)
 {
-    printf(" %d %s %s %4.2f %d \n",
+    printf(" %d %s %s %4.2f %d %d\n",
            emp.id,
            emp.name,
            emp.lastName,
            emp.salary,
-           emp.sector);
+           emp.sector,
+           emp.isEmpty);
+
 }
 
 int acumWages(Employee* list, int len, float* pSum)

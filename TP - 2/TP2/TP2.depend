@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1601569321 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp - 2\tp2\main.c
+1601596382 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp - 2\tp2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -22,7 +22,7 @@
 
 1601518327 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp - 2\tp2\validations.h
 
-1601569164 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp - 2\tp2\arrayemployees.c
+1601597554 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp - 2\tp2\arrayemployees.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
