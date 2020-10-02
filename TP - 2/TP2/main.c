@@ -18,7 +18,7 @@ int main()
     // case 2
     int modifie;
     // case 3
-    int remove;
+    int removes;
     // subMenu case 4
     int opt4;
     int rst4;
@@ -75,12 +75,12 @@ int main()
                     printf("Primero debes agregar un empleado.\n");
                     break;
                 }
-                remove = removeEmployee(list, TAM);
-                if(!remove)
+                removes = removeEmployee(list, TAM);
+                if(!removes)
                 {
                     printf("Baja exitosa.\n");
                 }
-                else if(remove == 1)
+                else if(removes == 1)
                 {
                     printf("Baja cancelada por usuario.\n");
                 }
