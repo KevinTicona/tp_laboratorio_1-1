@@ -47,6 +47,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="LinkedList.h" />
+		<Unit filename="Menu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Menu.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -54,6 +58,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="parser.h" />
+		<Unit filename="validations.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="validations.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
