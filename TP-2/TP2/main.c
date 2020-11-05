@@ -129,7 +129,7 @@ int main()
                         printf("4. MOSTRAR\n");
                         printf("1. TOTAL SALARIOS: %.2f\n", sum);
                         printf("2. PROMEDIO SALARIOS: %.2f\n", average);
-                        printf("3. EMPLEADOS QUE COBRAN MÁS QUE EL SALARIO PROMEDIO: %d\n", supWageEmp);
+                        printf("3. EMPLEADOS QUE COBRAN MAS QUE EL SALARIO PROMEDIO: %d\n", supWageEmp);
                         break;
                     }
                 }
