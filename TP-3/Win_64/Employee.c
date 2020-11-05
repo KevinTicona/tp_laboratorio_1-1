@@ -149,3 +149,67 @@ int employee_getSueldo(Employee* this,int* sueldo)
     return error;
 }
 
+int employee_SortByName(void* empleadoA, void* empleadoB)
+{
+    int retorno = 0;
+    Employee* empA;
+    Employee* empB;
+
+    if(empleadoA != NULL && empleadoB != NULL)
+    {
+        empA = empleadoA;
+        empB = empleadoB;
+
+        retorno = strcmp(empA->nombre, empB->nombre);
+    }
+
+    return retorno;
+}
+
+int employee_SortById(void* empleadoA, void* empleadoB)
+{
+    int retorno = 0;
+    int sueldoA;
+    int sueldoB;
+
+    if(empleadoA != NULL && empleadoB != NULL)
+    {
+        employee_getSueldo((Employee*)empleadoA, &sueldoA);
+        employee_getSueldo((Employee*)empleadoB, &sueldoB);
+        retorno = sueldoA -sueldoB;
+    }
+
+    return retorno;
+}
+
+int employee_SortByWorkHours(void* empleadoA, void* empleadoB)
+{
+    int retorno = 0;
+    int horasA;
+    int horasB;
+
+    if(empleadoA != NULL && empleadoB != NULL)
+    {
+        employee_getHorasTrabajadas((Employee*)empleadoA, &horasA);
+        employee_getHorasTrabajadas((Employee*)empleadoB, &horasB);
+        retorno = horasA - horasB;
+    }
+
+    return retorno;
+}
+
+int employee_SortBySalary(void* empleadoA, void* empleadoB)
+{
+    int retorno = 0;
+    int sueldoA;
+    int sueldoB;
+
+    if(empleadoA != NULL && empleadoB != NULL)
+    {
+        employee_getSueldo((Employee*)empleadoA, &sueldoA);
+        employee_getSueldo((Employee*)empleadoB, &sueldoB);
+        retorno = sueldoA-sueldoB;
+    }
+
+    return retorno;
+}
