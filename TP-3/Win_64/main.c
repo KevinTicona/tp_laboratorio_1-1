@@ -5,6 +5,7 @@
 #include "Controller.h"
 #include "Employee.h"
 #include "validations.h"
+#include "Menu.h"
 
 /****************************************************
     Menu:
@@ -20,17 +21,17 @@
     10. Salir
 *****************************************************/
 
-void menu();
-
 int main()
 {
     int option = 0;
     int select = 0;
+    int optionSort = 0;
+    int selectSort = 0;
 
     LinkedList* listaEmpleados = ll_newLinkedList();
     do
     {
-        menu();
+        menu_main();
         select = validations_getOption(
                      &option,
                      "\nOpcion invalida. Intente nuevamente.\n",
@@ -61,7 +62,39 @@ int main()
                 printf("\nOpcion en mantenimiento.\n");
                 break;
             case 7:
-                printf("\nOpcion en mantenimiento.\n");
+                do
+                {
+                    menu_submenu_order();
+                    selectSort = validations_getOption(
+                                     &optionSort,
+                                     "\nOpcion invalida\n",
+                                     1,
+                                     5);
+                    if(!selectSort)
+                    {
+                        switch(optionSort)
+                        {
+                        case 1:
+                            printf("Opcion en mantenimiento.\n");
+                            break;
+                        case 2:
+                            printf("Opcion en mantenimiento.\n");
+                            break;
+                        case 3:
+                            printf("Opcion en mantenimiento.\n");
+                            break;
+                        case 4:
+                            printf("Opcion en mantenimiento.\n");
+                            break;
+                        case 5:
+                            printf("volviendo al menu principal...\n");
+                            break;
+                        }
+                        system("pause");
+                    }
+                }
+                while(optionSort != 5);
+
                 break;
             case 8:
                 printf("\nOpcion en mantenimiento.\n");
@@ -82,22 +115,3 @@ int main()
 }
 
 
-void menu()
-{
-    system("cls");
-    printf("__________________________________________________________________________________\n");
-    printf("                             Trabajo Practico nro. 3          \n");
-    printf("__________________________________________________________________________________\n");
-    printf("                                       ABM                    \n");
-    printf("__________________________________________________________________________________\n");
-    printf("1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).\n");
-    printf("2. Cargar los datos de los empleados desde el archivo data.csv (modo binario).\n");
-    printf("3. Alta de empleado.\n");
-    printf("4. Modificar datos de empleado.\n");
-    printf("5. Baja de empleado.\n");
-    printf("6. Listar empleados.\n");
-    printf("7. Ordenar empleados.\n");
-    printf("8. Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
-    printf("9. Guardar los datos de los empleados en el archivo data.csv (modo binario)..\n");
-    printf("10. Salir.\n");
-}

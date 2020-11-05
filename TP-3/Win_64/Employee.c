@@ -10,7 +10,8 @@ Employee* employee_new()
     Employee* nuevo = NULL;
     nuevo = (Employee*) malloc(sizeof(Employee));
 
-    if(nuevo != NULL){
+    if(nuevo != NULL)
+    {
         nuevo->id = 0;
         nuevo->horasTrabajadas = 0;
         strcpy(nuevo->nombre, "");
@@ -18,6 +19,32 @@ Employee* employee_new()
     }
 
     return nuevo;
+}
+
+/*
+Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr)  recibe string pero los set son int??
+{
+    Employee* nuevo = employee_new();
+
+    if(nuevo != NULL)
+    {
+        if(
+            !(!employee_setId(nuevo,idStr) &&
+              !employee_setNombre(nuevo, nombreStr) &&
+              !employee_setHorasTrabajadas(nuevo,horasTrabajadasStr))
+        )
+        {
+            nuevo = NULL;
+        }
+    }
+
+    return nuevo;
+}
+*/
+
+void employee_delete(Employee* this)
+{
+    free(this);
 }
 
 int employee_setId(Employee* this,int id) //revisar
