@@ -21,26 +21,36 @@ Employee* employee_new()
     return nuevo;
 }
 
-/*
-Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr)  recibe string pero los set son int??
+Employee* employee_newParametros(char* id, char* nombre,char* horasTrabajadas, char* sueldo)
 {
     Employee* nuevo = employee_new();
 
     if(nuevo != NULL)
     {
+        /*
         if(
-            !(!employee_setId(nuevo,idStr) &&
-              !employee_setNombre(nuevo, nombreStr) &&
-              !employee_setHorasTrabajadas(nuevo,horasTrabajadasStr))
+            !(!employee_setId(nuevo,id) &&
+              !employee_setNombre(nuevo, nombre) &&
+              !employee_setHorasTrabajadas(nuevo,horasTrabajadas) &&
+              !employee_setSueldo(nuevo, sueldo))
         )
         {
+            nuevo = NULL;
+        }
+        */
+
+        if(
+            !(!employee_setNombre(nuevo, nombre))
+        )
+        {
+            printf("Something was wrong while setting the employees fields");
             nuevo = NULL;
         }
     }
 
     return nuevo;
 }
-*/
+
 
 void employee_delete(Employee* this)
 {
@@ -76,7 +86,7 @@ int employee_setNombre(Employee* this,char* nombre)
 {
     int error = -1;
 
-    if(this != NULL && nombre != NULL && validations_nombre(nombre))
+    if(this != NULL && nombre != NULL/* && validations_nombre(nombre)*/) // por ahora borramos esta validacion
     {
         strcpy(this->nombre, nombre);
         error = 0;

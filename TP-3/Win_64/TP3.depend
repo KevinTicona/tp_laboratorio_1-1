@@ -290,3 +290,67 @@
 
 1604591008 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-3\win_64\menu.h
 
+1604615072 source:d:\backup reddington pc\br1 code\micarla\tp3 directory\tp_laboratorio_1\tp-3\win_64\controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+
+1604613971 d:\backup reddington pc\br1 code\micarla\tp3 directory\tp_laboratorio_1\tp-3\win_64\linkedlist.h
+
+1604617699 d:\backup reddington pc\br1 code\micarla\tp3 directory\tp_laboratorio_1\tp-3\win_64\employee.h
+
+1604620092 source:d:\backup reddington pc\br1 code\micarla\tp3 directory\tp_laboratorio_1\tp-3\win_64\employee.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"Employee.h"
+	"validations.h"
+
+1604613971 d:\backup reddington pc\br1 code\micarla\tp3 directory\tp_laboratorio_1\tp-3\win_64\validations.h
+
+1604613971 source:d:\backup reddington pc\br1 code\micarla\tp3 directory\tp_laboratorio_1\tp-3\win_64\linkedlist.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+
+1604615232 source:d:\backup reddington pc\br1 code\micarla\tp3 directory\tp_laboratorio_1\tp-3\win_64\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"validations.h"
+	"Menu.h"
+
+1604613971 d:\backup reddington pc\br1 code\micarla\tp3 directory\tp_laboratorio_1\tp-3\win_64\controller.h
+	"LinkedList.h"
+
+1604613971 d:\backup reddington pc\br1 code\micarla\tp3 directory\tp_laboratorio_1\tp-3\win_64\menu.h
+
+1604618088 source:d:\backup reddington pc\br1 code\micarla\tp3 directory\tp_laboratorio_1\tp-3\win_64\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"parser.h"
+	"LinkedList.h"
+	"Employee.h"
+
+1604613971 d:\backup reddington pc\br1 code\micarla\tp3 directory\tp_laboratorio_1\tp-3\win_64\parser.h
+	"LinkedList.h"
+
+1604620031 source:d:\backup reddington pc\br1 code\micarla\tp3 directory\tp_laboratorio_1\tp-3\win_64\validations.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"validations.h"
+
+1604613971 source:d:\backup reddington pc\br1 code\micarla\tp3 directory\tp_laboratorio_1\tp-3\win_64\menu.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"Menu.h"
+

@@ -45,6 +45,7 @@ int main()
             {
             case 1:
                 controller_loadFromText("data.csv",listaEmpleados);
+                printf("Linked List size: %d", ll_len(listaEmpleados));
                 break;
             case 2:
                 printf("\nOpcion en mantenimiento.\n");
@@ -60,6 +61,7 @@ int main()
                 break;
             case 6:
                 printf("\nOpcion en mantenimiento.\n");
+
                 break;
             case 7:
                 do
