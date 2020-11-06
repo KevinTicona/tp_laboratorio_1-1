@@ -260,16 +260,28 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
             switch(optionSort)
             {
             case 1:
-                printf("Opcion en mantenimiento.\n");
+                ll_sort(pArrayListEmployee,employee_SortByName,1);
+                printf("\nEmpleados ordenados por nombre exitosamente.\n");
+                system("pause");
+                controller_ListEmployee(pArrayListEmployee);
                 break;
             case 2:
-                printf("Opcion en mantenimiento.\n");
+                ll_sort(pArrayListEmployee,employee_SortById,1);
+                printf("\nEmpleados ordenados por ID exitosamente.\n");
+                system("pause");
+                controller_ListEmployee(pArrayListEmployee);
                 break;
             case 3:
-                printf("Opcion en mantenimiento.\n");
+                ll_sort(pArrayListEmployee,employee_SortByWorkHours,0);
+                printf("\nEmpleados ordenados por horas trabajadas exitosamente.\n");
+                system("pause");
+                controller_ListEmployee(pArrayListEmployee);
                 break;
             case 4:
-                printf("Opcion en mantenimiento.\n");
+                ll_sort(pArrayListEmployee,employee_SortBySalary,1);
+                printf("\nEmpleados ordenados por salario exitosamente.\n");
+                system("pause");
+                controller_ListEmployee(pArrayListEmployee);
                 break;
             case 5:
                 printf("volviendo al menu principal...\n");

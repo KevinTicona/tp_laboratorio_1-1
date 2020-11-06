@@ -204,9 +204,19 @@ int employee_SortById(void* empleadoA, void* empleadoB)
 
     if(empleadoA != NULL && empleadoB != NULL)
     {
-        employee_getSueldo((Employee*)empleadoA, &sueldoA);
-        employee_getSueldo((Employee*)empleadoB, &sueldoB);
-        retorno = sueldoA -sueldoB;
+        if(employee_getSueldo((Employee*)empleadoA, &sueldoA)==0 &&
+                employee_getSueldo((Employee*)empleadoB, &sueldoB)==0)
+        {
+            if(sueldoA > sueldoB)
+            {
+                retorno =1;
+            }
+            else
+            {
+                retorno = -1;
+            }
+        }
+
     }
 
     return retorno;
