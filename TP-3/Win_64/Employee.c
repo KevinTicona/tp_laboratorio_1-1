@@ -22,43 +22,53 @@ Employee* employee_new()
     return nuevo;
 }
 
-Employee* employee_newParametros(char* id, char* nombre,char* horasTrabajadas, char* sueldo)
+Employee* employee_newParametros(char* id, char* nombre, char* horasTrabajadas, char* sueldo)
 {
-    Employee* nuevo = employee_new();
-    int idValido = validations_numeroValido(id);
-    int horasValidas = validations_numeroValido(horasTrabajadas);
-    int salarioValido = validations_numeroValido(sueldo);
-    int idEntero;
-    int horasEntero;
-    int sueldoEntero;
+    int idIsvalid = validations_isValidNumber(id);
+    int horasIsValid = validations_isValidNumber(horasTrabajadas);
+    int sueldoIsValid = validations_isValidNumber(sueldo);
 
-    if(nuevo != NULL)
+    if(!idIsvalid || !horasIsValid || !sueldoIsValid)
     {
-        if(!idValido || !horasValidas || !salarioValido)
+        if (!idIsvalid)
         {
-            printf("\nUn empleado no pudo cargarse por tener un dato invalido.\n");
-            return NULL;
+            printf("\nEl Id del nuevo Empleado es invalido. Valor recibido: %s\n", id);
+        }
+        else if (!horasIsValid)
+        {
+            printf("\nLas horas del nuevo Empleado son invalidas. Valor recibido: %s\n", horasTrabajadas);
+        }
+        else if (!sueldoIsValid)
+        {
+            printf("\nEl sueldo del nuevo Empleado es invalido. Valor recibido: %s\n", sueldo);
         }
 
-        idEntero = atoi(id);
-        horasEntero = atoi(horasTrabajadas);
-        sueldoEntero = atoi(sueldo);
+        return NULL;
+    }
 
+    int idValue = atoi(id);
+    int horasValue = atoi(horasTrabajadas);
+    int sueldoValue = atoi(sueldo);
+
+    Employee* newEmployee = employee_new();
+
+    if(newEmployee != NULL)
+    {
         if(
-            !(!employee_setId(nuevo,idEntero) &&
-              !employee_setNombre(nuevo, nombre) &&
-              !employee_setHorasTrabajadas(nuevo,horasEntero) &&
-              !employee_setSueldo(nuevo, sueldoEntero)
+            !(!employee_setId(newEmployee,idValue) &&
+              !employee_setNombre(newEmployee, nombre) &&
+              !employee_setHorasTrabajadas(newEmployee,horasValue) &&
+              !employee_setSueldo(newEmployee, sueldoValue)
              )
         )
         {
-            printf("\nSomething was wrong while setting the employees fields\n");
-            nuevo = NULL;
+            printf("\nOcurrio un problema al inicializar las propiedades del nuevo Empleado. El mismo no sera creado.\n");
+            newEmployee = NULL;
         }
 
     }
 
-    return nuevo;
+    return newEmployee;
 }
 
 

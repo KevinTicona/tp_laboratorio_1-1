@@ -50,6 +50,6 @@ int validations_sueldo(int sueldo);
  * \return int Return (0 false) if Error [if the name is not valid] - (1 true) if Ok
  *
  */
-int validations_numeroValido(char* str);
+int validations_isValidNumber(char* str);
 
 #endif // VALIDATIONS_H_INCLUDED

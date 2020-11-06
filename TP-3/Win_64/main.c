@@ -29,12 +29,6 @@ int main()
     int select = 0;
     int optionSort = 0;
     int selectSort = 0;
-    int idActual = 0;
-
-    char idConvert[30];
-    char nombre[30]; //validar nombre p/ volver a intentarlo
-    char sueldo[30];
-    char horas[30];
 
     LinkedList* listaEmpleados = ll_newLinkedList();
     do
@@ -53,66 +47,28 @@ int main()
             {
             case 1:
                 controller_loadFromText("data.csv",listaEmpleados);
-                printf("Linked List size: %d", ll_len(listaEmpleados));
                 break;
             case 2:
                 printf("\nOpcion en mantenimiento.\n");
                 break;
             case 3:
             {
-                Employee* newEmployee = NULL;
-                do
-                {
-                    printf("\nIngrese nombre:");
-                    fflush(stdin);
-                    gets(nombre);
-
-                    printf("\nIngrese sueldo:");
-                    fflush(stdin);
-                    gets(sueldo);
-
-                    printf("\nIngrese horas trabajadas:");
-                    fflush(stdin);
-                    gets(horas);
-
-                    idActual = ll_len(listaEmpleados);
-                    itoa(idActual, idConvert, 10);
-                    newEmployee = employee_newParametros(
-                                      idConvert,
-                                      nombre,
-                                      horas,
-                                      sueldo);
-                    if(newEmployee != NULL)
-                    {
-                        ll_add(listaEmpleados, newEmployee);
-                    }
-                    else
-                    {
-                        printf("\nLo sentimos, algo salió mal...\n");
-                    }
-
-                }
-                while(newEmployee == NULL);
-                printf("Tam lista: %d\n", ll_len(listaEmpleados));
+                controller_addEmployee(listaEmpleados);
                 break;
             }
             case 4:
-                /*
-                Pedir id para modificar
-                recorrer la lista y buscar el item con ese ID + break;
-                */
-                printf("\nOpcion en mantenimiento.\n");
+                controller_editEmployee(listaEmpleados);
                 break;
             case 5:
-                /*
-                Pedir id para eliminar
-                */
-                printf("\nOpcion en mantenimiento.\n");
+                controller_removeEmployee(listaEmpleados);
                 break;
             case 6:
-                printf("\nOpcion en mantenimiento.\n");
+                controller_ListEmployee(listaEmpleados);
                 break;
             case 7:
+            {
+                // TODO: meter toda la logica de aca abajo en la funcion controller_sortEmployee
+
                 do
                 {
                     menu_submenu_order();
@@ -147,13 +103,15 @@ int main()
                 while(optionSort != 5);
 
                 break;
+            }
             case 8:
-                printf("\nOpcion en mantenimiento.\n");
+                controller_saveAsText("data.csv",listaEmpleados);
                 break;
             case 9:
                 printf("\nOpcion en mantenimiento.\n");
                 break;
             case 10:
+                controller_freeResources(listaEmpleados);
                 printf("\nSaliendo...\n");
                 break;
             }
