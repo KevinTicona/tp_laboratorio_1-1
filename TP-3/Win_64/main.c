@@ -95,9 +95,14 @@ int main()
                 break;
             }
             case 4:
+                /*
+                Pedir id para modificar
+                */
                 printf("\nOpcion en mantenimiento.\n");
                 break;
             case 5:
+                /*
+                Pedir id para eliminar
                 printf("\nOpcion en mantenimiento.\n");
                 break;
             case 6:
