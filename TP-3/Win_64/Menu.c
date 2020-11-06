@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "Menu.h"
+#include "Employee.h"
+#include "LinkedList.h"
 
 void menu_main()
 {
@@ -36,4 +37,45 @@ void menu_submenu_order()
     printf("3. Ordenar empleados por horas trabajadas.\n");
     printf("4. Ordenar empleados por salario.\n");
     printf("5. Volver al menu principal.\n");
+}
+
+void menu_imprimirEmpleado(Employee* currentEmployee)
+{
+    printf("\n%4d  %20s                    %4d            %4d\n",
+           currentEmployee->id,
+           currentEmployee->nombre,
+           currentEmployee->horasTrabajadas,
+           currentEmployee->sueldo);
+}
+
+int menu_imprimirEmpleados(LinkedList* pArrayListEmployee)
+{
+    int currentNodeIndex = 0;
+    int linkedListSize = ll_len(pArrayListEmployee);
+
+    Employee* currentEmployee;
+    Node* currentNode = pArrayListEmployee->pFirstNode;
+
+    // Recorremos la Linked List con un índice (un número)
+    // Aunque también podríamos recorrer la lista hasta llegar al final verificando si el pNextNode del Nodo actual no sea NULL
+
+    system("cls");
+    printf("______________________________________________________________________\n");
+    printf("                          NOMINA DE EMPLEADOS \n");
+    printf("______________________________________________________________________\n");
+    printf("  ID                Nombre               Horas Trabajadas    Salario \n");
+    printf("______________________________________________________________________\n");
+
+    while (currentNodeIndex < linkedListSize)
+    {
+        // Uso requerido de función ll_get según especificaciones dadas
+        currentEmployee = (Employee*)ll_get(pArrayListEmployee, currentNodeIndex);
+
+        menu_imprimirEmpleado(currentEmployee);
+
+        currentNode = currentNode->pNextNode;
+        currentNodeIndex++;
+    }
+
+    return 1;
 }

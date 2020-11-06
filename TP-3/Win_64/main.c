@@ -27,8 +27,6 @@ int main()
 {
     int option = 0;
     int select = 0;
-    int optionSort = 0;
-    int selectSort = 0;
 
     LinkedList* listaEmpleados = ll_newLinkedList();
     do
@@ -66,44 +64,8 @@ int main()
                 controller_ListEmployee(listaEmpleados);
                 break;
             case 7:
-            {
-                // TODO: meter toda la logica de aca abajo en la funcion controller_sortEmployee
-
-                do
-                {
-                    menu_submenu_order();
-                    selectSort = validations_getOption(
-                                     &optionSort,
-                                     "\nOpcion invalida\n",
-                                     1,
-                                     5);
-                    if(!selectSort)
-                    {
-                        switch(optionSort)
-                        {
-                        case 1:
-                            printf("Opcion en mantenimiento.\n");
-                            break;
-                        case 2:
-                            printf("Opcion en mantenimiento.\n");
-                            break;
-                        case 3:
-                            printf("Opcion en mantenimiento.\n");
-                            break;
-                        case 4:
-                            printf("Opcion en mantenimiento.\n");
-                            break;
-                        case 5:
-                            printf("volviendo al menu principal...\n");
-                            break;
-                        }
-                        system("pause");
-                    }
-                }
-                while(optionSort != 5);
-
+                controller_sortEmployee(listaEmpleados);
                 break;
-            }
             case 8:
                 controller_saveAsText("data.csv",listaEmpleados);
                 break;
@@ -123,22 +85,3 @@ int main()
     return 0;
 }
 
-//revisar -> No compila \240 no autocompleta pElement->id
-/*
-void employee_buscarId(LinkedList* listaEmpleados, int id)
-{
-    Node* current = listaEmpleados->pFirstNode;
-    // recorrer hasta encontrar el ultimo nodo
-     while (current->pNextNode != NULL)
-    {
-         if (current->pElement->id == id)
-        {
-            // actualizar current->pElement
-            printf("\nHola\n");
-            break;
-        }
-                current = current->pNextNode;
-           
-    }
-}
-*/

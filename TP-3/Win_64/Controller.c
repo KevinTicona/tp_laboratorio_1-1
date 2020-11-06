@@ -5,6 +5,7 @@
 #include "Employee.h"
 #include "parser.h"
 #include "validations.h"
+#include "Menu.h"
 
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
@@ -56,6 +57,15 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
+    /*Cuando se añade un empleado, se crea con id 1. En el archivo ya hay 1000 empleados,
+    por lo que, si cargamos empleado antes de cargar la lista, daría como resultado dos
+    empleados con el mismo id. Por eso validamos que primero se carguen los datos.*/
+    if(ll_isEmpty(pArrayListEmployee) != 0)
+    {
+        printf("\nSe deben cargar los datos antes de agregar un empleado a la lista.\n");
+        return 1;
+    }
+
     Employee* newEmployee = NULL;
 
     do
@@ -119,7 +129,18 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
+    /*Cuando se añade un empleado, se crea con id 1. En el archivo ya hay 1000 empleados,
+    por lo que, si cargamos empleado antes de cargar la lista, daría como resultado dos
+    empleados con el mismo id. Por eso validamos que primero se carguen los datos.*/
+    if(ll_isEmpty(pArrayListEmployee) != 0)
+    {
+        printf("\nSe deben cargar los datos antes de agregar un empleado a la lista.\n");
+        return 1;
+    }
+
+    // imprimir la lista de empleados
     // pedir el id a modificar
+    // mostrar empleado
     // convertir el id a int
     // recorrer la linked list con un while (por ejemplo usando un indice, ver ejemplo de listar empleados)
     // al encontrar un Employee con el mismo id, pedir datos a cambiar (definir cómo quiero hacer esto)
@@ -175,7 +196,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
     // Aunque también podríamos recorrer la lista hasta llegar al final verificando si el pNextNode del Nodo actual no sea NULL
     while (currentNodeIndex < linkedListSize)
     {
-        // FYI: Uso requerido de función ll_get según especificaciones dadas
+        // Uso requerido de función ll_get según especificaciones dadas
         currentEmployee = (Employee*)ll_get(pArrayListEmployee, currentNodeIndex);
 
         if (currentEmployee->id == employeeIdToRemove)
@@ -209,29 +230,7 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
         return 0;
     }
 
-    int currentNodeIndex = 0;
-    int linkedListSize = ll_len(pArrayListEmployee);
-
-    Employee* currentEmployee;
-    Node* currentNode = pArrayListEmployee->pFirstNode;
-
-    // Recorremos la Linked List con un índice (un número)
-    // Aunque también podríamos recorrer la lista hasta llegar al final verificando si el pNextNode del Nodo actual no sea NULL
-    while (currentNodeIndex < linkedListSize)
-    {
-        // FYI: Uso requerido de función ll_get según especificaciones dadas
-        currentEmployee = (Employee*)ll_get(pArrayListEmployee, currentNodeIndex);
-
-        // TODO: quizas podria meter este printf en una funcion dentro de la bibloteca menu, y hacer que se vea mas linda tambien
-        printf("\nId: %d - Nombre: %s - Horas Trabajadas: %d - Sueldo: %d\n",
-               currentEmployee->id,
-               currentEmployee->nombre,
-               currentEmployee->horasTrabajadas,
-               currentEmployee->sueldo);
-
-        currentNode = currentNode->pNextNode;
-        currentNodeIndex++;
-    }
+    menu_imprimirEmpleados(pArrayListEmployee);
 
     return 1;
 }
@@ -245,6 +244,42 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
+    int optionSort = 0;
+    int selectSort = 0;
+
+    do
+    {
+        menu_submenu_order();
+        selectSort = validations_getOption(
+                         &optionSort,
+                         "\nOpcion invalida\n",
+                         1,
+                         5);
+        if(!selectSort)
+        {
+            switch(optionSort)
+            {
+            case 1:
+                printf("Opcion en mantenimiento.\n");
+                break;
+            case 2:
+                printf("Opcion en mantenimiento.\n");
+                break;
+            case 3:
+                printf("Opcion en mantenimiento.\n");
+                break;
+            case 4:
+                printf("Opcion en mantenimiento.\n");
+                break;
+            case 5:
+                printf("volviendo al menu principal...\n");
+                break;
+            }
+            system("pause");
+        }
+    }
+    while(optionSort != 5);
+
     return 1;
 }
 
@@ -263,7 +298,7 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 
     if (pFile == NULL)
     {
-        printf("El archivo no existe");
+        printf("\nEl archivo no existe\n");
         exit(EXIT_FAILURE);
     }
 
@@ -280,7 +315,7 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
     // Aunque también podríamos recorrer la lista hasta llegar al final verificando si el pNextNode del Nodo actual no sea NULL
     while (currentNodeIndex < linkedListSize)
     {
-        // FYI: Uso requerido de función ll_get según especificaciones dadas
+        // Uso requerido de función ll_get según especificaciones dadas
         currentEmployee = (Employee*)ll_get(pArrayListEmployee, currentNodeIndex);
 
         fprintf(pFile, "%d,%s,%d,%d\n",
@@ -312,7 +347,12 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
     return 1;
 }
 
-// TODO: AGREGAR DOXYGEN
+/** \brief Libera los espacios de memoria ocupados y borra un LinkedList
+ *
+ * \param LinkedList* pArrayListEmployee
+ * \return 1
+ *
+ */
 int controller_freeResources(LinkedList* pArrayListEmployee)
 {
     Node* currentNode = pArrayListEmployee->pFirstNode;

@@ -13,4 +13,14 @@ void menu_main();
  */
 void menu_submenu_order();
 
+/** \brief Imprime un empleado
+ *
+ * \param Employee* currentEmployee
+ * \return
+ *
+ */
+void menu_imprimirEmpleado(Employee* currentEmployee);
+
+int menu_imprimirEmpleados(LinkedList* pArrayListEmployee);
+
 #endif // MENU_H_INCLUDED
