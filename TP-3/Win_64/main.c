@@ -7,6 +7,8 @@
 #include "validations.h"
 #include "Menu.h"
 
+void employee_buscarId(LinkedList* listaEmpleados, int id);
+
 /****************************************************
     Menu:
      1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).
@@ -97,12 +99,14 @@ int main()
             case 4:
                 /*
                 Pedir id para modificar
+                recorrer la lista y buscar el item con ese ID + break;
                 */
                 printf("\nOpcion en mantenimiento.\n");
                 break;
             case 5:
                 /*
                 Pedir id para eliminar
+                */
                 printf("\nOpcion en mantenimiento.\n");
                 break;
             case 6:
@@ -161,4 +165,22 @@ int main()
     return 0;
 }
 
-
+//revisar -> No compila \240 no autocompleta pElement->id
+/*
+void employee_buscarId(LinkedList* listaEmpleados, int id)
+{
+    Node* current = listaEmpleados->pFirstNode;
+    // recorrer hasta encontrar el ultimo nodo
+     while (current->pNextNode != NULL)
+    {
+         if (current->pElement->id == id)
+        {
+            // actualizar current->pElement
+            printf("\nHola\n");
+            break;
+        }
+                current = current->pNextNode;
+           
+    }
+}
+*/
