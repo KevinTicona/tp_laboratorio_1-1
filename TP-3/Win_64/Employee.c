@@ -24,28 +24,37 @@ Employee* employee_new()
 Employee* employee_newParametros(char* id, char* nombre,char* horasTrabajadas, char* sueldo)
 {
     Employee* nuevo = employee_new();
+    int idValido = validations_numeroValido(id);
+    int horasValidas = validations_numeroValido(horasTrabajadas);
+    int salarioValido = validations_numeroValido(sueldo);
+    int idEntero;
+    int horasEntero;
+    int sueldoEntero;
 
     if(nuevo != NULL)
     {
-        /*
-        if(
-            !(!employee_setId(nuevo,id) &&
-              !employee_setNombre(nuevo, nombre) &&
-              !employee_setHorasTrabajadas(nuevo,horasTrabajadas) &&
-              !employee_setSueldo(nuevo, sueldo))
-        )
+        if(!idValido || !horasValidas || !salarioValido)
         {
-            nuevo = NULL;
+            printf("\nUn empleado no pudo cargarse por tener un dato invalido.\n");
+            return NULL;
         }
-        */
+
+        idEntero = atoi(id);
+        horasEntero = atoi(horasTrabajadas);
+        sueldoEntero = atoi(sueldo);
 
         if(
-            !(!employee_setNombre(nuevo, nombre))
+            !(!employee_setId(nuevo,idEntero) &&
+              !employee_setNombre(nuevo, nombre) &&
+              !employee_setHorasTrabajadas(nuevo,horasEntero) &&
+              !employee_setSueldo(nuevo, sueldoEntero)
+             )
         )
         {
-            printf("Something was wrong while setting the employees fields");
+            printf("\nSomething was wrong while setting the employees fields\n");
             nuevo = NULL;
         }
+
     }
 
     return nuevo;
@@ -223,3 +232,5 @@ int employee_SortBySalary(void* empleadoA, void* empleadoB)
 
     return retorno;
 }
+
+

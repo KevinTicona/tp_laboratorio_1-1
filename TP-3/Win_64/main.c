@@ -27,6 +27,12 @@ int main()
     int select = 0;
     int optionSort = 0;
     int selectSort = 0;
+    int idActual = 0;
+
+    char idConvert[30];
+    char nombre[30]; //validar nombre p/ volver a intentarlo
+    char sueldo[30];
+    char horas[30];
 
     LinkedList* listaEmpleados = ll_newLinkedList();
     do
@@ -51,8 +57,43 @@ int main()
                 printf("\nOpcion en mantenimiento.\n");
                 break;
             case 3:
-                printf("\nOpcion en mantenimiento.\n");
+            {
+                Employee* newEmployee = NULL;
+                do
+                {
+                    printf("\nIngrese nombre:");
+                    fflush(stdin);
+                    gets(nombre);
+
+                    printf("\nIngrese sueldo:");
+                    fflush(stdin);
+                    gets(sueldo);
+
+                    printf("\nIngrese horas trabajadas:");
+                    fflush(stdin);
+                    gets(horas);
+
+                    idActual = ll_len(listaEmpleados);
+                    itoa(idActual, idConvert, 10);
+                    newEmployee = employee_newParametros(
+                                      idConvert,
+                                      nombre,
+                                      horas,
+                                      sueldo);
+                    if(newEmployee != NULL)
+                    {
+                        ll_add(listaEmpleados, newEmployee);
+                    }
+                    else
+                    {
+                        printf("\nLo sentimos, algo salió mal...\n");
+                    }
+
+                }
+                while(newEmployee == NULL);
+                printf("Tam lista: %d\n", ll_len(listaEmpleados));
                 break;
+            }
             case 4:
                 printf("\nOpcion en mantenimiento.\n");
                 break;
@@ -61,7 +102,6 @@ int main()
                 break;
             case 6:
                 printf("\nOpcion en mantenimiento.\n");
-
                 break;
             case 7:
                 do

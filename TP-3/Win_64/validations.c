@@ -59,13 +59,12 @@ int validations_nombre(char* nombre)
     {
         return 1;
     }
-    printf("Not valid: %s\n", nombre);
     return 0;
 }
 
 int validations_horasTrabajadas(int horasTrabajadas)
 {
-    if(horasTrabajadas < 0 || horasTrabajadas > 180)
+    if(horasTrabajadas < 0)
     {
         return 0;
     }
@@ -79,4 +78,21 @@ int validations_sueldo(int sueldo)
         return 1;
     }
     return 0;
+}
+
+int validations_numeroValido(char* str)
+{
+    int retorno = 1;
+    int len = strlen(str);
+
+    for(int i = 0; i < len-1; i++)
+    {
+        if(str[i] < '0' || str[i] > '9')
+        {
+            //printf("El valor: %c es invalido\n", str[i]);
+            retorno = 0;
+            break;
+        }
+    }
+    return retorno;
 }

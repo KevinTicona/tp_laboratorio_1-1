@@ -44,4 +44,12 @@ int validations_horasTrabajadas(int horasTrabajadas);
  */
 int validations_sueldo(int sueldo);
 
+/** \brief Valida que un literal de cadena sea un entero.
+ *
+ * \param Char str
+ * \return int Return (0 false) if Error [if the name is not valid] - (1 true) if Ok
+ *
+ */
+int validations_numeroValido(char* str);
+
 #endif // VALIDATIONS_H_INCLUDED
