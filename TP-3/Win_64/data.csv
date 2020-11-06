@@ -989,7 +989,6 @@ id,nombre,horasTrabajadas,sueldo
 989,Wandie,60,25000
 990,Chiarra,325,18000
 991,Zaccaria,88,33000
-992,Trenna,90,10000
 993,Angelia,60,50000
 994,Raquela,180,12000
 995,Maxi,325,18000
@@ -1001,3 +1000,5 @@ id,nombre,horasTrabajadas,sueldo
 1001,Bruno,50,10000
 1002,Micaela,500,50000
 1003,Maxi,3,10
+1004,Luciano,3,90000
+1005,Cachito,15,1500

@@ -21,6 +21,19 @@ void menu_submenu_order();
  */
 void menu_imprimirEmpleado(Employee* currentEmployee);
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 int menu_imprimirEmpleados(LinkedList* pArrayListEmployee);
+
+/** \brief Imprime un menu de modificaciones
+ *
+ *
+ */
+void menu_menuModificaciones();
 
 #endif // MENU_H_INCLUDED

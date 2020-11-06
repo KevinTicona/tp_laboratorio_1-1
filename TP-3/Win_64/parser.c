@@ -13,17 +13,22 @@
  */
 int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 {
-    int numberOfReadValues;
+    int cantidadDatosLeidos;
     char id[50], nombre[50], horasTrabajadas[50], sueldo[50];
 
-    // skip first line from CSV file with headers TODO: hay una mejor forma?
+    if (pFile == NULL || pArrayListEmployee == NULL)
+    {
+        return -1;
+    }
+
+    // Forzamos lectura de la primer linea del archivo ya que esta contiene los encabezados
     fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",id,nombre,horasTrabajadas,sueldo);
 
     do
     {
-        numberOfReadValues = fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",id,nombre,horasTrabajadas,sueldo);
+        cantidadDatosLeidos = fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", id, nombre, horasTrabajadas, sueldo);
 
-        if (numberOfReadValues == 4)
+        if (cantidadDatosLeidos == 4)
         {
             Employee* newEmployee = employee_newParametros(id,nombre,horasTrabajadas,sueldo);
 
@@ -32,11 +37,15 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
                 ll_add(pArrayListEmployee, newEmployee);
             }
         }
+        else
+        {
+            printf("\nHubo un problema al leer los datos de una linea del archivo. La misma sera ignorada\n");
+        }
 
     }
     while (!feof(pFile));
 
-    return 1;
+    return 0;
 }
 
 /** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo binario).
@@ -48,6 +57,22 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
  */
 int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
 {
+    if (pFile == NULL || pArrayListEmployee == NULL)
+    {
+        return -1;
+    }
 
-    return 1;
+    Employee* empleadoTemporal;
+
+    while (!feof(pFile))
+    {
+        empleadoTemporal = (Employee*)malloc(sizeof(Employee));
+
+        if (fread(empleadoTemporal, sizeof(Employee), 1, pFile) == 1)
+        {
+            ll_add(pArrayListEmployee, empleadoTemporal);
+        }
+    }
+
+    return 0;
 }

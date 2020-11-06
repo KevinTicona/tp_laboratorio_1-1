@@ -7,7 +7,8 @@
 #include "validations.h"
 #include "Menu.h"
 
-void employee_buscarId(LinkedList* listaEmpleados, int id);
+#define PATH_TXT "data.csv"
+#define PATH_BIN "data.bin"
 
 /****************************************************
     Menu:
@@ -44,21 +45,39 @@ int main()
             switch(option)
             {
             case 1:
-                controller_loadFromText("data.csv",listaEmpleados);
+                if (controller_loadFromText(PATH_TXT, listaEmpleados) == 0)
+                {
+                    printf("\nSe han cargado %d empleados desde el archivo %s\n", listaEmpleados->size, PATH_TXT);
+                }
+                else
+                {
+                    printf("\nHa ocurrido un problema al cargar empleados desde el archivo %s. Compruebe la ruta y el formato del archivo.\n", PATH_TXT);
+                }
                 break;
             case 2:
-                printf("\nOpcion en mantenimiento.\n");
+                if (controller_loadFromBinary(PATH_BIN, listaEmpleados) == 0)
+                {
+                    printf("\nSe han cargado %d empleados desde el archivo %s\n", listaEmpleados->size, PATH_BIN);
+                }
+                else
+                {
+                    printf("\nHa ocurrido un problema al cargar empleados desde el archivo %s. Compruebe la ruta y el formato del archivo.\n", PATH_BIN);
+                }
                 break;
             case 3:
-            {
-                controller_addEmployee(listaEmpleados);
+                if (controller_addEmployee(listaEmpleados) != 0)
+                {
+                    printf("\nHa ocurrido un problema al intentar crear un empleado.\n");
+                }
                 break;
-            }
             case 4:
                 controller_editEmployee(listaEmpleados);
                 break;
             case 5:
-                controller_removeEmployee(listaEmpleados);
+                if (controller_removeEmployee(listaEmpleados) != 0)
+                {
+                    printf("\nHa ocurrido un problema al intentar eliminar un empleado.\n");
+                }
                 break;
             case 6:
                 controller_ListEmployee(listaEmpleados);
@@ -67,10 +86,24 @@ int main()
                 controller_sortEmployee(listaEmpleados);
                 break;
             case 8:
-                controller_saveAsText("data.csv",listaEmpleados);
+                if (controller_saveAsText(PATH_TXT, listaEmpleados) == 0)
+                {
+                    printf("\nSe han guardado %d empleados en el archivo %s.\n", listaEmpleados->size, PATH_TXT);
+                }
+                else
+                {
+                    printf("\nHa ocurrido un problema al guardar empleados en el archivo %s. Compruebe la ruta del archivo.\n", PATH_TXT);
+                }
                 break;
             case 9:
-                printf("\nOpcion en mantenimiento.\n");
+                if (controller_saveAsBinary(PATH_BIN, listaEmpleados) == 0)
+                {
+                    printf("\nSe han guardado %d empleados en el archivo %s.\n", listaEmpleados->size, PATH_BIN);
+                }
+                else
+                {
+                    printf("\nHa ocurrido un problema al guardar empleados en el archivo %s. Compruebe la ruta del archivo.\n", PATH_BIN);
+                }
                 break;
             case 10:
                 controller_freeResources(listaEmpleados);
@@ -84,4 +117,3 @@ int main()
 
     return 0;
 }
-
