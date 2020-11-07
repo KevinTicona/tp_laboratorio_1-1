@@ -64,6 +64,7 @@ Employee* employee_newParametros(char* id, char* nombre, char* horasTrabajadas, 
         {
             printf("\nOcurrio un problema al inicializar las propiedades del nuevo Empleado. El mismo no sera creado.\n");
             newEmployee = NULL;
+            free(newEmployee);
         }
 
     }
