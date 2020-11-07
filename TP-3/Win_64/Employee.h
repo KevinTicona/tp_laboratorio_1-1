@@ -147,5 +147,4 @@ int employee_SortByWorkHours(void* empleadoA, void* empleadoB);
 int employee_SortBySalary(void* empleadoA, void* empleadoB);
 
 
-
 #endif // employee_H_INCLUDED

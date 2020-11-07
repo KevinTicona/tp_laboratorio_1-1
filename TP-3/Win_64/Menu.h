@@ -16,16 +16,14 @@ void menu_submenu_order();
 /** \brief Imprime un empleado
  *
  * \param Employee* currentEmployee
- * \return
  *
  */
 void menu_imprimirEmpleado(Employee* currentEmployee);
 
-/** \brief
+/** \brief Imprime una lista de empleados
  *
- * \param
- * \param
- * \return
+ * \param LinkedList* pArrayListEmployee
+ * \return [0]
  *
  */
 int menu_imprimirEmpleados(LinkedList* pArrayListEmployee);

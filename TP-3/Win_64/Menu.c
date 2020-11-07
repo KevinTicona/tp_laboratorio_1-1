@@ -77,7 +77,7 @@ int menu_imprimirEmpleados(LinkedList* pArrayListEmployee)
         currentNodeIndex++;
     }
 
-    return 1;
+    return 0;
 }
 
 void menu_menuModificaciones()
@@ -86,7 +86,7 @@ void menu_menuModificaciones()
     printf("1. Modificar nombre\n");
     printf("2. Modificar horas trabajadas\n");
     printf("3. Modificar sueldo\n");
-    printf("4. Volver atrás\n");
+    printf("4. Volver atras\n");
 }
 
 void menu_encabezadoEmpleado()

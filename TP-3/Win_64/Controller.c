@@ -188,20 +188,20 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
                     printf("\nIngrese cantidad de horas: ");
                     fflush(stdin);
                     rstScanf = scanf("%d",&horas);
-                    while(!rstScanf)
+                    while(!rstScanf || horas < 0)
                     {
                         printf("\nInvalido. Ingrese cantidad de horas: ");
                         fflush(stdin);
                         rstScanf = scanf("%d",&horas);
                     }
                     employee_setHorasTrabajadas(currentEmployee,horas);
-                    printf("\nHoas trabajadas modificadas con exito!\n");
+                    printf("\nHoras trabajadas modificadas con exito!\n");
                     break;
                 case 3:
                     printf("\nIngrese nuevo sueldo: ");
                     fflush(stdin);
                     rstScanf = scanf("%d",&sueldo);
-                    while(!rstScanf)
+                    while(!rstScanf || sueldo < 0)
                     {
                         printf("\nInvalido. Ingrese nuevo sueldo: ");
                         fflush(stdin);
