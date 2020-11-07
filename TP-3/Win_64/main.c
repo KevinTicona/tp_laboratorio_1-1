@@ -71,7 +71,10 @@ int main()
                 }
                 break;
             case 4:
-                controller_editEmployee(listaEmpleados);
+                if (controller_editEmployee(listaEmpleados) != 0)
+                {
+                    printf("\nHa ocurrido un problema al intentar modificar un empleado.\n");
+                }
                 break;
             case 5:
                 if (controller_removeEmployee(listaEmpleados) != 0)

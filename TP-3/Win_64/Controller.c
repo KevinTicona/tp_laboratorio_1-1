@@ -7,14 +7,6 @@
 #include "validations.h"
 #include "Menu.h"
 
-
-/** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 {
     int status = -1;
@@ -35,13 +27,6 @@ int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
     return status;
 }
 
-/** \brief Carga los datos de los empleados desde el archivo data.csv (modo binario).
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 {
     int status = -1;
@@ -62,13 +47,6 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
     return status;
 }
 
-/** \brief Alta de empleados
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
     /*Cuando se añade un empleado, se crea con id 1. En el archivo ya hay 1000 empleados,
@@ -134,35 +112,37 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
     return 0;
 }
 
-/** \brief Modificar datos de empleado
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
-    /*Cuando se añade un empleado, se crea con id 1. En el archivo ya hay 1000 empleados,
-    por lo que, si cargamos empleado antes de cargar la lista, daría como resultado dos
-    empleados con el mismo id. Por eso validamos que primero se carguen los datos.*/
+    char employeeIdToModifieAsChar[50];
+    char nombre[50];
+
+    int employeeIdToModifie;
+    int isValidId;
+    int currentNodeIndex;
+    int linkedListSize;
+    int option;
+    int reply;
+    int horas;
+    int sueldo;
+    int rstScanf;
+
+    Employee* currentEmployee;
+    Node* currentNode;
+
     if(ll_isEmpty(pArrayListEmployee) != 0)
     {
         printf("\nSe deben cargar los datos antes de agregar un empleado a la lista.\n");
-        return 1;
+        return -1;
     }
-
-    // pedir el id a modificar
-    int isValidId;
-    char employeeIdToRemoveAsChar[50];
-
+    //Obtenemos el ID, esto repite hasta recibir un ID valido
     do
     {
-        printf("\nIngrese el Id del Empleado a remover: ");
+        printf("\nIngrese el Id del Empleado a modificar: ");
         fflush(stdin);
-        gets(employeeIdToRemoveAsChar);
+        gets(employeeIdToModifieAsChar);
 
-        isValidId = validations_isValidNumber(employeeIdToRemoveAsChar);
+        isValidId = validations_isValidNumber(employeeIdToModifieAsChar);
 
         if (!isValidId)
         {
@@ -171,50 +151,83 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 
     }
     while(!isValidId);
+    //Convertimos el ID recibido como string a entero
+    employeeIdToModifie = atoi(employeeIdToModifieAsChar);
 
-    int employeeIdToRemove = atoi(employeeIdToRemoveAsChar);
-
-    // mostrar empleado
-    int currentNodeIndex = 0;
-    int linkedListSize = ll_len(pArrayListEmployee);
-
-    Employee* currentEmployee;
-    Node* currentNode = pArrayListEmployee->pFirstNode;
+    // busca y muestra el empleado
+    currentNodeIndex = 0;
+    linkedListSize = ll_len(pArrayListEmployee);
+    currentNode = pArrayListEmployee->pFirstNode;
 
     // Recorremos la Linked List con un índice (un número)
-    // Aunque también podríamos recorrer la lista hasta llegar al final verificando si el pNextNode del Nodo actual no sea NULL
     while (currentNodeIndex < linkedListSize)
     {
         // Uso requerido de función ll_get según especificaciones dadas
         currentEmployee = (Employee*)ll_get(pArrayListEmployee, currentNodeIndex);
 
-        if (currentEmployee->id == employeeIdToRemove)
+        if (currentEmployee->id == employeeIdToModifie)
         {
             // mostrar datos empleado
-            menu_mostrarEmpleado(currentEmployee);
+            menu_encabezadoEmpleado();
+            menu_imprimirEmpleado(currentEmployee);
             // pedir que dato quiere cambiar
-            char nombre[50] = "asdsad";
-            // setear nuevos datos
-            employee_setNombre(currentEmployee, nombre);
-            return 1;
+            menu_menuModificaciones();
+            reply = validations_getOption(&option,"\nOpcion invalida, intente nuevamente\n", 1,4);
+            if(!reply)
+            {
+                switch(option)
+                {
+                case 1:
+                    printf("\nIngrese nuevo nombre: ");
+                    fflush(stdin);
+                    gets(nombre);
+                    employee_setNombre(currentEmployee,nombre);
+                    printf("\nNombre modificado con exito!\n");
+                    break;
+                case 2:
+                    printf("\nIngrese cantidad de horas: ");
+                    fflush(stdin);
+                    rstScanf = scanf("%d",&horas);
+                    while(!rstScanf)
+                    {
+                        printf("\nInvalido. Ingrese cantidad de horas: ");
+                        fflush(stdin);
+                        rstScanf = scanf("%d",&horas);
+                    }
+                    employee_setHorasTrabajadas(currentEmployee,horas);
+                    printf("\nHoas trabajadas modificadas con exito!\n");
+                    break;
+                case 3:
+                    printf("\nIngrese nuevo sueldo: ");
+                    fflush(stdin);
+                    rstScanf = scanf("%d",&sueldo);
+                    while(!rstScanf)
+                    {
+                        printf("\nInvalido. Ingrese nuevo sueldo: ");
+                        fflush(stdin);
+                        rstScanf = scanf("%d",&sueldo);
+                    }
+                    employee_setSueldo(currentEmployee,sueldo);
+                    printf("\nSueldo modificado con exito!\n");
+                    break;
+                case 4:
+                    printf("\nVolviendo atras...\n");
+                    break;
+                }
+            }
+
+            return 0;
         }
 
         currentNode = currentNode->pNextNode;
         currentNodeIndex++;
     }
 
-    printf("No encontré un empleado con id");
+    printf("\nNo se encontro un empleado con ese id\n");
 
     return -1;
 }
 
-/** \brief Baja de empleado
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
     if (ll_isEmpty(pArrayListEmployee) == 1)
@@ -271,13 +284,6 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
     return -1;
 }
 
-/** \brief Listar empleados
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
     if (ll_isEmpty(pArrayListEmployee) == 1)
@@ -291,13 +297,6 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
     return 1;
 }
 
-/** \brief Ordenar empleados
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
     if (ll_isEmpty(pArrayListEmployee) == 1)
@@ -361,13 +360,6 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
     return 1;
 }
 
-/** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 {
     FILE *pFile;
@@ -411,13 +403,6 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
     return 0;
 }
 
-/** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 {
     FILE* pFile= fopen(path, "wb");
@@ -448,12 +433,6 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
     return 0;
 }
 
-/** \brief Libera los espacios de memoria ocupados y borra un LinkedList
- *
- * \param LinkedList* pArrayListEmployee
- * \return 1
- *
- */
 int controller_freeResources(LinkedList* pArrayListEmployee)
 {
     Node* currentNode = pArrayListEmployee->pFirstNode;

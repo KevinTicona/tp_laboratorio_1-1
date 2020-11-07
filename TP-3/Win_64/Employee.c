@@ -106,7 +106,7 @@ int employee_setNombre(Employee* this,char* nombre)
 {
     int error = -1;
 
-    if(this != NULL && nombre != NULL/* && validations_nombre(nombre)*/) // por ahora borramos esta validacion
+    if(this != NULL && nombre != NULL && validations_nombre(nombre))
     {
         strcpy(this->nombre, nombre);
         error = 0;

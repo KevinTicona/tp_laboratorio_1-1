@@ -36,4 +36,10 @@ int menu_imprimirEmpleados(LinkedList* pArrayListEmployee);
  */
 void menu_menuModificaciones();
 
+/** \brief Imprime un menu encabezado para empleado
+ *
+ *
+ */
+void menu_encabezadoEmpleado();
+
 #endif // MENU_H_INCLUDED

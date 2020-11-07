@@ -38,13 +38,10 @@ int validations_charOnly(char* str)
     int i = 0;
     while (str[i])
     {
-        printf("Validating: %s\n", &str[i]);
-        if (!isalpha(str[i]) && str[i] != ' ')
+        if (!isalpha(str[i]) && str[i] != ' ' && str[i] != '-'&& str[i] != '_')
         {
             return -1;
         }
-
-        printf("Valid: %s\n", &str[i]);
         i++;
     }
 
@@ -55,7 +52,7 @@ int validations_nombre(char* nombre)
 {
     int len = strlen(nombre);
     int valid = validations_charOnly(nombre);
-    if(len >= 2 && len < 129 && !valid)
+    if(len > 0 && len < 129 && !valid)
     {
         return 1;
     }

@@ -79,3 +79,20 @@ int menu_imprimirEmpleados(LinkedList* pArrayListEmployee)
 
     return 1;
 }
+
+void menu_menuModificaciones()
+{
+    printf("\n\n");
+    printf("1. Modificar nombre\n");
+    printf("2. Modificar horas trabajadas\n");
+    printf("3. Modificar sueldo\n");
+    printf("4. Volver atrás\n");
+}
+
+void menu_encabezadoEmpleado()
+{
+    system("cls");
+    printf("______________________________________________________________________\n");
+    printf("  ID                Nombre               Horas Trabajadas    Salario \n");
+    printf("______________________________________________________________________\n");
+}
