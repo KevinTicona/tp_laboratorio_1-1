@@ -17,7 +17,8 @@ LinkedList* ll_newLinkedList(void)
 {
     LinkedList* this = (LinkedList*) malloc(sizeof(LinkedList));
 
-    if(this != NULL){
+    if(this != NULL)
+    {
         this->pFirstNode = NULL;
         this->size = 0;
     }
@@ -35,7 +36,8 @@ int ll_len(LinkedList* this)
 {
     int returnAux = -1;
 
-    if(this != NULL){
+    if(this != NULL)
+    {
         returnAux = this->size;
     }
 
@@ -53,7 +55,27 @@ int ll_len(LinkedList* this)
  */
 static Node* getNode(LinkedList* this, int nodeIndex)
 {
-    return NULL;
+    Node* pNode = NULL;
+    //validar los ingresos
+    if(this != NULL && nodeIndex >= 0 &&nodeIndex < ll_len(this))
+    {
+        //obtener la dirección de memoria de un nodo
+        pNode = this->pFirstNode;
+
+        while(nodeIndex > 0)
+        {
+            pNode = pNode->pNextNode;
+            nodeIndex--;
+        }
+
+        /*for(int index < nodeIndex; index++)
+        {
+            pNode = pNode->pNextNode;
+        }*/
+
+    }
+
+    return pNode;
 }
 
 /** \brief  Permite realizar el test de la funcion getNode la cual es privada
@@ -82,6 +104,29 @@ Node* test_getNode(LinkedList* this, int nodeIndex)
 static int addNode(LinkedList* this, int nodeIndex,void* pElement)
 {
     int returnAux = -1;
+    Node* newNode = NULL;
+    //validar datos
+    if(this != NULL && nodeIndex >= 0 && nodeIndex <= ll_len(this))
+    {
+        newNode = (Node*) malloc(sizeof(Node));
+        if(newNode != NULL)
+        {
+            newNode->pElement = pElement;
+            if(nodeIndex == 0)
+            {
+                newNode->pNextNode = this->pFirstNode;
+                this->pFirstNode = newNode;
+            }
+            else
+            {
+                newNode->pNextNode = getNode(this,nodeIndex);
+                getNode(this, nodeIndex-1)->pNextNode = newNode;
+            }
+            this->size++;
+            returnAux = 0;
+        }
+    }
+
     return returnAux;
 }
 
@@ -326,7 +371,7 @@ LinkedList* ll_clone(LinkedList* this)
  * \return int Retorna  (-1) Error: si el puntero a la listas es NULL
                                 ( 0) Si ok
  */
-int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
+int ll_sort(LinkedList* this, int (*pFunc)(void*,void*), int order)
 {
     int returnAux =-1;
 
