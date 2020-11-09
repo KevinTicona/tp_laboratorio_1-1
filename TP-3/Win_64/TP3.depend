@@ -227,7 +227,7 @@
 1604538795 c:\users\micae\downloads\win_64-20201103t195953z-001\win_64-20201103t195953z-001\win_64\parser.h
 	"LinkedList.h"
 
-1604710625 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-3\win_64\controller.c
+1604880287 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-3\win_64\controller.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -241,7 +241,7 @@
 
 1604709910 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-3\win_64\employee.h
 
-1604708878 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-3\win_64\employee.c
+1604878777 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-3\win_64\employee.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -254,7 +254,7 @@
 	<stdlib.h>
 	"LinkedList.h"
 
-1604706364 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-3\win_64\main.c
+1604879514 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-3\win_64\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -286,7 +286,7 @@
 	<string.h>
 	"validations.h"
 
-1604709916 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-3\win_64\menu.c
+1604710854 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-3\win_64\menu.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>

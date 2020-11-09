@@ -132,7 +132,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 
     if(ll_isEmpty(pArrayListEmployee) != 0)
     {
-        printf("\nSe deben cargar los datos antes de agregar un empleado a la lista.\n");
+        printf("\nSe deben cargar los datos antes de modificar un empleado a la lista.\n");
         return -1;
     }
     //Obtenemos el ID, esto repite hasta recibir un ID valido
@@ -181,8 +181,15 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
                     printf("\nIngrese nuevo nombre: ");
                     fflush(stdin);
                     gets(nombre);
-                    employee_setNombre(currentEmployee,nombre);
-                    printf("\nNombre modificado con exito!\n");
+                    if(!employee_setNombre(currentEmployee,nombre))
+                    {
+                        printf("\nNombre modificado con exito!\n");
+                    }
+                    else
+                    {
+                        printf("\nNombre invalido, intente nuevamente.\n");
+                    }
+
                     break;
                 case 2:
                     printf("\nIngrese cantidad de horas: ");
@@ -230,14 +237,19 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
+    int isValidId;
+    int currentNodeIndex = 0;
+    int linkedListSize;
+    int employeeIdToRemove;
+    char employeeIdToRemoveAsChar[50];
+    Employee* currentEmployee;
+    Node* currentNode;
+
     if (ll_isEmpty(pArrayListEmployee) == 1)
     {
         printf("\nNo existen empleados en el sistema. Intente cargar uno para poder eliminar un empleado.\n");
         return -1;
     }
-
-    int isValidId;
-    char employeeIdToRemoveAsChar[50];
 
     do
     {
@@ -255,12 +267,9 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
     }
     while(!isValidId);
 
-    int currentNodeIndex = 0;
-    int linkedListSize = ll_len(pArrayListEmployee);
-    int employeeIdToRemove = atoi(employeeIdToRemoveAsChar);
-
-    Employee* currentEmployee;
-    Node* currentNode = pArrayListEmployee->pFirstNode;
+    linkedListSize = ll_len(pArrayListEmployee);
+    employeeIdToRemove = atoi(employeeIdToRemoveAsChar);
+    currentNode = pArrayListEmployee->pFirstNode;
 
     // Recorremos la Linked List con un índice (un número)
     // Aunque también podríamos recorrer la lista hasta llegar al final verificando si el pNextNode del Nodo actual no sea NULL
@@ -270,6 +279,9 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
 
         if (currentEmployee->id == employeeIdToRemove)
         {
+            // mostrar datos empleado
+            menu_encabezadoEmpleado();
+            menu_imprimirEmpleado(currentEmployee);
             ll_remove(pArrayListEmployee, currentNodeIndex);
             printf("\nEl Empleado con Id %d ha sido eliminado del sistema.\n", employeeIdToRemove);
             return 0;
@@ -321,35 +333,35 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
             switch(optionSort)
             {
             case 1:
-                printf("Ordenando por Nombre ...");
+                printf("Aguarde, esto podria tardar un momento. Ordenando por Nombre ...");
                 ll_sort(pArrayListEmployee, employee_SortByName, 1);
                 printf("\nEmpleados ordenados por nombre exitosamente.\n");
                 system("pause");
                 controller_ListEmployee(pArrayListEmployee);
                 break;
             case 2:
-                printf("Ordenando por Id ...");
+                printf("Aguarde, esto podria tardar un momento. Ordenando por Id ...");
                 ll_sort(pArrayListEmployee, employee_SortById, 1);
                 printf("\nEmpleados ordenados por ID exitosamente.\n");
                 system("pause");
                 controller_ListEmployee(pArrayListEmployee);
                 break;
             case 3:
-                printf("Ordenando por Horas Trabajadas ...");
+                printf("Aguarde, esto podria tardar un momento. Ordenando por Horas Trabajadas ...");
                 ll_sort(pArrayListEmployee, employee_SortByWorkHours, 1);
                 printf("\nEmpleados ordenados por horas trabajadas exitosamente.\n");
                 system("pause");
                 controller_ListEmployee(pArrayListEmployee);
                 break;
             case 4:
-                printf("Ordenando por Sueldo ...");
+                printf("Aguarde, esto podria tardar un momento. Ordenando por Sueldo ...");
                 ll_sort(pArrayListEmployee, employee_SortBySalary, 1);
                 printf("\nEmpleados ordenados por sueldo exitosamente.\n");
                 system("pause");
                 controller_ListEmployee(pArrayListEmployee);
                 break;
             case 5:
-                printf("volviendo al menu principal...\n");
+                printf("Volviendo al menu principal...\n");
                 break;
             }
             system("pause");
