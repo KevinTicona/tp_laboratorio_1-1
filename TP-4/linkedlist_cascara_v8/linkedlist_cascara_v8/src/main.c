@@ -31,17 +31,17 @@ int main(void)
     startTesting(3);  // getNode - test_getNode
     startTesting(4);  // addNode - test_addNode
     startTesting(5);  // ll_add
-    startTesting(6);  // ll_get -> No la muestra el tester
-    startTesting(7);  // ll_set -> Tira dos errores que no puedo identificar.
+    startTesting(6);  // ll_get
+    startTesting(7);  // ll_set
     startTesting(8);  // ll_remove
     startTesting(9);  // ll_clear
-    /*
-
     startTesting(10); // ll_deleteLinkedList
-    startTesting(11); // ll_indexOf
     startTesting(12); // ll_isEmpty
+
     startTesting(13); // ll_push
     startTesting(14); // ll_pop
+    /*
+    startTesting(11); // ll_indexOf -> Preguntar si tiene que devolver el indice del primer elemento que encuentra de x tipo
     startTesting(15); // ll_contains
     startTesting(16); // ll_containsAll
     startTesting(17); // ll_subList

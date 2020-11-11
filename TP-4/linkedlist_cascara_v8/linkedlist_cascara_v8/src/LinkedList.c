@@ -282,7 +282,6 @@ int ll_clear(LinkedList* this)
 
         returnAux = 0;
     }
-
     return returnAux;
 }
 
@@ -298,6 +297,18 @@ int ll_deleteLinkedList(LinkedList* this)
 {
     int returnAux = -1;
 
+    if(this != NULL)
+    {
+        if(ll_isEmpty(this) == 1)
+        {
+            returnAux = 1;
+        }
+        else if(ll_isEmpty(this) == 0)
+        {
+            ll_clear(this);
+            returnAux = 0;
+        }
+    }
     return returnAux;
 }
 
@@ -328,6 +339,18 @@ int ll_isEmpty(LinkedList* this)
 {
     int returnAux = -1;
 
+    if(this != NULL)
+    {
+        if(this->pFirstNode == NULL) //Si esta vacio retorna 1
+        {
+            returnAux = 1;
+        }
+        else         //Si esta lleno retorna cero
+        {
+            returnAux = 0;
+        }
+    }
+
     return returnAux;
 }
 
@@ -343,6 +366,12 @@ int ll_isEmpty(LinkedList* this)
 int ll_push(LinkedList* this, int index, void* pElement)
 {
     int returnAux = -1;
+
+    if(this != NULL && index >= 0 && index <= ll_len(this))
+    {
+        addNode(this,index,pElement);
+        returnAux = 0;
+    }
 
     return returnAux;
 }
@@ -360,10 +389,14 @@ void* ll_pop(LinkedList* this,int index)
 {
     void* returnAux = NULL;
 
+    if(this != NULL && index <= ll_len(this) && index >= 0)
+    {
+        returnAux = ll_get(this, index); //puntero al elemento guardado en el indice eliminado
+        ll_remove(this, index);
+    }
+
     return returnAux;
 }
-
-
 /** \brief  Determina si la lista contiene o no el elemento pasado como parametro
  *
  * \param this LinkedList* Puntero a la lista
@@ -375,6 +408,10 @@ void* ll_pop(LinkedList* this,int index)
 int ll_contains(LinkedList* this, void* pElement)
 {
     int returnAux = -1;
+
+    if(this != NULL && pElement != NULL){
+
+    }
 
     return returnAux;
 }
