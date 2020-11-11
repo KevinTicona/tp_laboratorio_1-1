@@ -37,16 +37,15 @@ int main(void)
     startTesting(9);  // ll_clear
     startTesting(10); // ll_deleteLinkedList
     startTesting(12); // ll_isEmpty
-
-    startTesting(13); // ll_push
-    startTesting(14); // ll_pop
-    /*
-    startTesting(11); // ll_indexOf -> Preguntar si tiene que devolver el indice del primer elemento que encuentra de x tipo
-    startTesting(15); // ll_contains
-    startTesting(16); // ll_containsAll
-    startTesting(17); // ll_subList
-    startTesting(18); // ll_clone
-    startTesting(19); // ll_sort */
+//
+//    startTesting(13); // ll_push
+//    startTesting(14); // ll_pop
+//    startTesting(11); // ll_indexOf -> //recorrer los vagones del primero al ultimo viendo si el pelement (la estructura) coincide // buscar libre o buscar persona
+//    startTesting(15); // ll_contains
+//    startTesting(16); // ll_containsAll
+//    startTesting(17); // ll_subList
+//    startTesting(18); // ll_clone
+//    startTesting(19); // ll_sort
 
     return 0;
 }

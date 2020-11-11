@@ -171,15 +171,15 @@ int ll_add(LinkedList* this, void* pElement)
 void* ll_get(LinkedList* this, int index)
 {
     void* returnAux = NULL;
-    Node* nodeAux;
+    Node* auxNode = NULL;
 
     if(this != NULL && index >= 0 && index <= ll_len(this))
     {
-        nodeAux = getNode(this,index);
+        auxNode = getNode(this, index);
 
-        if(nodeAux != NULL)
+        if(auxNode != NULL)
         {
-            returnAux = nodeAux->pElement;
+            returnAux = auxNode->pElement;
         }
     }
 
@@ -234,19 +234,20 @@ int ll_remove(LinkedList* this,int index)
     {
         // buscamos el indice con el get
         nodeToRemove = getNode(this,index);
-
         // verificamos que no sea null
         if(nodeToRemove != NULL)
         {
             if(index == 0)
             {
-                //Si el indice es cero, cambiamos el pfirstNode a NULL;
-                this->pFirstNode = NULL;
+                //Si el indice es cero, cambiamos el pfirstNode al nodo siguiente;
+                nodeToRemove = this->pFirstNode;
+                this->pFirstNode = nodeToRemove->pNextNode;
             }
             else
             {
                 // Enganchar el nodo-1 con el nodo+1
                 prevNode = getNode(this,index-1);
+                nodeToRemove = prevNode->pNextNode;
                 prevNode->pNextNode = nodeToRemove->pNextNode;
             }
             // hacemos un free() del espacio de memoria del elemento
@@ -271,7 +272,6 @@ int ll_clear(LinkedList* this)
 {
     int returnAux = -1;
     int size = ll_len(this);
-    //Node* currentNode = NULL;
 
     if(this != NULL)
     {
@@ -409,7 +409,8 @@ int ll_contains(LinkedList* this, void* pElement)
 {
     int returnAux = -1;
 
-    if(this != NULL && pElement != NULL){
+    if(this != NULL && pElement != NULL)
+    {
 
     }
 
