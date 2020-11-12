@@ -476,20 +476,22 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
 LinkedList* ll_subList(LinkedList* this,int from,int to)
 {
     LinkedList* cloneArray = NULL;
+    /* Node* nodeAux;
 
-    if(this != NULL)
-    {
-        if(from >= 0 && from <= to && to >= from && to < ll_len(this))
-        {
-            cloneArray = ll_newLinkedList();
+     if(this != NULL)
+     {
+         if(from >= 0 && from <= to && to >= from && to < ll_len(this))
+         {
+             cloneArray = ll_newLinkedList();
 
-                for(int i = from; i <= to; i++)
-                {
-                    ll_add(cloneArray,ll_get(this,i));
-                }
-        }
-    }
-
+             for(int i = from; i <= to; i++)
+             {
+                 nodeAux = getNode(this,i);
+                 ll_add(cloneArray,ll_get(this,i));
+             }
+         }
+     }
+    */
     return cloneArray;
 }
 
@@ -521,41 +523,30 @@ int ll_sort(LinkedList* this, int (*pFunc)(void*,void*), int order)
     int returnAux =-1;
     Node* nodeI = NULL;
     Node* nodeJ = NULL;
-    Node* nodeAux = NULL;
+    void* pAuxElement = NULL;
 
     if(this != NULL && pFunc != NULL && (order == 1 || order == 0))
     {
         for(int i = 0; i < ll_len(this)-1; i++)
         {
-            nodeI = getNode(this, i);
+            nodeI = getNode(this,i);
 
-            for(int j = i + 1; j < ll_len(this); j++)
+            for(int j = i+1; j < ll_len(this); j++)
             {
-                nodeJ = getNode(this, j);
-                if(order == 1)
+                nodeJ = getNode(this,j);
+
+                if(
+                    (order == 1 && pFunc(nodeI->pElement, nodeJ->pElement) > 0) ||
+                    (order == 0 && pFunc(nodeI->pElement, nodeJ->pElement) < 0)
+                )
                 {
-                    if(pFunc(nodeI->pElement,nodeJ->pElement) > 0)
-                    {
-                        nodeAux = nodeI;
-                        nodeI = nodeJ;
-                        nodeJ = nodeAux;
-                    }
-                }
-                else if (order == 0)
-                {
-                    if(pFunc(nodeI->pElement,nodeJ->pElement) < 0)
-                    {
-                        nodeAux = nodeI;
-                        nodeI = nodeJ;
-                        nodeJ = nodeAux;
-                    }
+                    pAuxElement = nodeI->pElement;
+                    nodeI->pElement = nodeJ->pElement;
+                    nodeJ->pElement = pAuxElement;
                 }
             }
         }
         returnAux = 0;
     }
-
     return returnAux;
-
 }
-
