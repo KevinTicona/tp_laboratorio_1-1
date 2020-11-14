@@ -4839,18 +4839,46 @@
 	<stdlib.h>
 	<string.h>
 
-1605378185 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\linkedlist.c
+1605380663 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\linkedlist.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"../inc/LinkedList.h"
 
-1605376394 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\main.c
+1605386494 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"../testing/inc/main_test.h"
 	"../inc/LinkedList.h"
+	"../inc/Controller.h"
+	"../inc/Duenos.h"
+	"../inc/Mascotas.h"
 
 1560475730 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\testing\inc\main_test.h
+
+1605386604 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\controller.c
+	"../inc/Controller.h"
+	"../inc/LinkedList.h"
+	"../inc/Parser.h"
+	"../inc/Duenos.h"
+	"../inc/Mascotas.h"
+
+1605386420 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\parser.c
+	"../inc/Parser.h"
+
+1605386210 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\duenos.c
+	"../inc/Duenos.h"
+
+1605385975 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\duenos.h
+
+1605386247 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\mascotas.c
+	"../inc/Duenos.h"
+	"../inc/Mascotas.h"
+
+1605385976 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\mascotas.h
+
+1605384396 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\controller.h
+
+1605384395 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\parser.h
 

@@ -16,12 +16,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "../testing/inc/main_test.h"
 #include "../inc/LinkedList.h"
+#include "../inc/Controller.h"
+#include "../inc/Duenos.h"
+#include "../inc/Mascotas.h"
 
 
 int main(void)
@@ -45,6 +47,8 @@ int main(void)
     startTesting(17); // ll_subList
     startTesting(18); // ll_clone
     startTesting(19); // ll_sort
+
+
 
     return 0;
 }
