@@ -476,22 +476,23 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
 LinkedList* ll_subList(LinkedList* this,int from,int to)
 {
     LinkedList* cloneArray = NULL;
-    /* Node* nodeAux;
 
-     if(this != NULL)
-     {
-         if(from >= 0 && from <= to && to >= from && to < ll_len(this))
-         {
-             cloneArray = ll_newLinkedList();
-
-             for(int i = from; i <= to; i++)
-             {
-                 nodeAux = getNode(this,i);
-                 ll_add(cloneArray,ll_get(this,i));
-             }
-         }
-     }
-    */
+    if(this != NULL && from >= 0 && from < to && to > from && to < ll_len(this))
+    {
+        printf("A\n");
+        cloneArray = ll_newLinkedList();
+        printf("B\n");
+        if(cloneArray != NULL)
+        {
+                    printf("C\n");
+            for(int i = from; i <= to; i++)
+            {        printf("D\n");
+                ll_add(cloneArray, ll_get(this,i));
+            }
+                    printf("E\n");
+        }
+    }
+printf("F\n");
     return cloneArray;
 }
 
