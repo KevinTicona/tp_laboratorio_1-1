@@ -8,4 +8,11 @@ typedef struct
     char telefono[35];
 }Dueno;
 
+Dueno* dueno_new();
+Dueno* dueno_newParams(char* id, char* nombre, char* telefono);
+void duenos_deleteOne(Dueno* this);
+int duenos_setId(Dueno* this,int id);
+int duenos_setNombre(Dueno* this,char* nombre);
+int duenos_setTelefono(Dueno* this, char* telefono);
+
 #endif // DUENOS_H_INCLUDED

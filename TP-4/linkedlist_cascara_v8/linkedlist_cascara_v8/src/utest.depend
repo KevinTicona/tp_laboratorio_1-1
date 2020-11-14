@@ -4878,9 +4878,9 @@
 1605386210 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\duenos.c
 	"../inc/Duenos.h"
 
-1605385975 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\duenos.h
+1605397708 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\duenos.h
 
-1605390719 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\mascotas.c
+1605395769 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\mascotas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -4888,15 +4888,16 @@
 	"../inc/Mascotas.h"
 	"../inc/Validations.h"
 
-1605392628 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\mascotas.h
+1605395768 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\mascotas.h
 
 1605384396 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\controller.h
 
 1605384395 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\parser.h
 
-1605390644 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\validations.c
+1605396480 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\validations.c
 	<stdio.h>
 	<stdlib.h>
+	<ctype.h>
 	<string.h>
 	"../inc/Validations.h"
 	"../testing/inc/main_test.h"

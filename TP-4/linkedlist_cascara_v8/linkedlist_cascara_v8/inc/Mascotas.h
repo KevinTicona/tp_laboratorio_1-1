@@ -11,6 +11,9 @@ typedef struct
     int ID_Duenio;
 }Mascota;
 
+Mascota* mascota_new();
+Mascota* mascota_newParams(char* id, char* nombre, char* tipo,char sexo, char* edad, char* ID_duenio);
+void mascotas_deleteOne(Mascota* this);
 int mascotas_setId(Mascota* this,int id);
 int mascotas_setNombre(Mascota* this,char* nombre);
 int mascotas_setTipo(Mascota* this,char* tipo);

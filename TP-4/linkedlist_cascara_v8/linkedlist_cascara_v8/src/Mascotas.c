@@ -5,6 +5,87 @@
 #include "../inc/Mascotas.h"
 #include "../inc/Validations.h"
 
+Mascota* mascota_new()
+{
+    Mascota* nueva = (Mascota*) malloc(sizeof(Mascota));
+
+    if(nueva != NULL)
+    {
+        nueva->ID = 0;
+        nueva->edad = 0;
+        nueva->ID_Duenio = 0;
+        nueva->sexo = ' ';
+        strcpy(nueva->nombre, "");
+        strcpy(nueva->tipo, "");
+    }
+
+    return nueva;
+}
+
+Mascota* mascota_newParams(
+    char* id,
+    char* nombre,
+    char* tipo,
+    char sexo,
+    char* edad,
+    char* ID_duenio
+)
+{
+    int validIdResult = validations_isValidNumber(id);
+    int validEdadResult = validations_isValidNumber(edad);
+    int validIdResultDueno = validations_isValidNumber(ID_duenio);
+    int validId;
+    int validEdad;
+    int validIdDueno;
+
+    if(!validIdResult || !validEdadResult || !validIdResultDueno)
+    {
+        if(!validIdResult)
+        {
+            printf("\nEl Id de la nueva Mascota es invalido. Valor recibido: %s\n", id);
+        }
+        else if(!validEdadResult)
+        {
+            printf("\nLa edad de la nueva Mascota es invalida. Valor recibido: %s\n", edad);
+        }
+        else if(!validIdResultDueno)
+        {
+            printf("\nEl Id del duenio de la nueva Mascota es invalido. Valor recibido: %s\n", ID_duenio);
+        }
+
+        return NULL;
+    }
+
+    validId = atoi(id);
+    validEdad = atoi(edad);
+    validIdDueno = atoi(ID_duenio);
+
+    Mascota* newMascota = mascota_new();
+
+    if(newMascota != NULL)
+    {
+        if(!(!mascotas_setId(newMascota,validId) &&
+                !mascotas_setNombre(newMascota,nombre) &&
+                !mascotas_setTipo(newMascota,tipo) &&
+                !mascotas_setSexo(newMascota,sexo) &&
+                !mascotas_setEdad(newMascota,validEdad) &&
+                !mascotas_setIdDuenio(newMascota,validIdDueno)
+            ))
+        {
+            printf("\nOcurrio un problema al inicializar las propiedades de la nueva Mascota. La mismo no sera creada.\n");
+            newMascota = NULL;
+            free(newMascota);
+        }
+
+    }
+    return newMascota;
+}
+
+void mascotas_deleteOne(Mascota* this)
+{
+    free(this);
+}
+
 int mascotas_setId(Mascota* this,int id)
 {
     int error = -1;
