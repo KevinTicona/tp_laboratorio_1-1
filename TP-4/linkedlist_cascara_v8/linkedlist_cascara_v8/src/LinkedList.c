@@ -484,15 +484,16 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
         printf("B\n");
         if(cloneArray != NULL)
         {
-                    printf("C\n");
+            printf("C\n");
             for(int i = from; i <= to; i++)
-            {        printf("D\n");
+            {
+                printf("D\n");
                 ll_add(cloneArray, ll_get(this,i));
             }
-                    printf("E\n");
+            printf("E\n");
         }
     }
-printf("F\n");
+    printf("F\n");
     return cloneArray;
 }
 
@@ -507,6 +508,19 @@ printf("F\n");
 LinkedList* ll_clone(LinkedList* this)
 {
     LinkedList* cloneArray = NULL;
+
+    if(this != NULL)
+    {
+        cloneArray = ll_newLinkedList();
+
+        if(cloneArray != NULL)
+        {
+            for(int i = 0; i < ll_len(this); i++)
+            {
+                ll_add(cloneArray,ll_get(this, i));
+            }
+        }
+    }
 
     return cloneArray;
 }
