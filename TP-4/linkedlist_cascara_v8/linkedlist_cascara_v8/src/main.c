@@ -26,6 +26,8 @@
 #include "../inc/Mascotas.h"
 #include "../inc/Validations.h"
 #include "../inc/Menu.h"
+#define PATH_MASCOTAS_TXT "animales.csv"
+#define PATH_DUENOS_TXT "duenios.csv"
 
 int main(void)
 {
@@ -33,8 +35,8 @@ int main(void)
     int option;
     int selection;
 
-    //LinkedList* petList = ll_newLinkedList();
-    //LinkedList* ownersList = ll_newLinkedList();
+    LinkedList* petList = ll_newLinkedList();
+    LinkedList* ownersList = ll_newLinkedList();
 
     do
     {
@@ -50,7 +52,11 @@ int main(void)
             switch(option)
             {
             case 1:
-                printf("\nOpcion en mantenimiento...\n");
+                if(controller_loadFromText(PATH_MASCOTAS_TXT,PATH_DUENOS_TXT,petList,ownersList) == 0)
+                {
+                    printf("\nSe han cargado %d mascotas desde el archivo %s\n", ll_len(petList), PATH_MASCOTAS_TXT);
+                    printf("\nSe han cargado %d Duenios desde el archivo %s\n", ll_len(ownersList), PATH_DUENOS_TXT);
+                }
                 break;
             case 2:
                 printf("\nOpcion en mantenimiento...\n");

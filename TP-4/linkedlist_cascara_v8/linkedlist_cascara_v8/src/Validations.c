@@ -77,12 +77,11 @@ int validations_isValidNumber(char* str)
 
 void formatStr(char* str)
 {
-
-    int len;
+    //int len;
     strlwr(str);
     str[0] = toupper(str[0]);
-    len = strlen(str);
-    for(int i = 0; i < len; i++)
+    //len = strlen(str);
+    /*for(int i = 0; i < len; i++)
     {
         if(str[i] == ' ')
         {
@@ -92,7 +91,7 @@ void formatStr(char* str)
                 str[i] = toupper(str[i]);
             }
         }
-    }
+    }*/
 }
 
 int validations_isValidName(char* nombre)
@@ -109,6 +108,7 @@ int validations_isValidName(char* nombre)
 
 int validations_isValidType(char* type)
 {
+    printf("\nTIPO!!!!! %s\n",type);
     int len = strlen(type);
     int valid = validations_charOnly(type);
 
@@ -129,10 +129,10 @@ int validations_isValidType(char* type)
     return 0;
 }
 
-int validations_isValidSex(char sex)
+int validations_isValidSex(char* sex)
 {
-    sex = tolower(sex);
-    if(sex == 'm' || sex == 'f')
+    strlwr(sex);
+    if(strcmp(sex,"m") == 0 || strcmp(sex,"f") == 0)
     {
         return 1;
     }

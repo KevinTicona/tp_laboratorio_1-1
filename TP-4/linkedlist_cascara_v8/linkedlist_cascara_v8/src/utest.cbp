@@ -33,7 +33,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../inc/Controller.h" />
+		<Unit filename="../inc/Duenos.h" />
 		<Unit filename="../inc/LinkedList.h" />
+		<Unit filename="../inc/Mascotas.h" />
+		<Unit filename="../inc/Menu.h" />
+		<Unit filename="../inc/Parser.h" />
+		<Unit filename="../inc/Validations.h" />
 		<Unit filename="../testing/inc/Employee.h" />
 		<Unit filename="../testing/inc/addNodeTest.h" />
 		<Unit filename="../testing/inc/addTest.h" />
@@ -122,16 +128,30 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../testing/utest.h" />
+		<Unit filename="Controller.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Duenos.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="LinkedList.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Mascotas.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Menu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Validations.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Extensions>
-			<code_completion />
-			<debugger />
-			<envvars />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

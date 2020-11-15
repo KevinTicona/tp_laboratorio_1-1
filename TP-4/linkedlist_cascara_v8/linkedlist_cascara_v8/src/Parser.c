@@ -6,11 +6,10 @@
 #include "../inc/Duenos.h"
 #include "../inc/Mascotas.h"
 
-/*
 int parser_MascotaFromText(FILE* pFile, LinkedList* pLinkedListMascotas)
 {
     int amountOfDataRead;
-    char id[50], nombre[50], tipo[50], sexo, edad[50], ID_duenio[50];
+    char id[50], nombre[50], tipo[50], sexo[1], edad[50], ID_duenio[50];
 
     if (pFile == NULL || pLinkedListMascotas == NULL)
     {
@@ -22,7 +21,7 @@ int parser_MascotaFromText(FILE* pFile, LinkedList* pLinkedListMascotas)
 
     do
     {
-        cantidadDatosLeidos = fscanf(
+        amountOfDataRead = fscanf(
                                   pFile,
                                   "%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",
                                   id,
@@ -33,13 +32,13 @@ int parser_MascotaFromText(FILE* pFile, LinkedList* pLinkedListMascotas)
                                   ID_duenio
                               );
 
-        if (cantidadDatosLeidos == 6)
+        if (amountOfDataRead == 6)
         {
-            Employee* newEmployee = employee_newParametros(id,nombre,horasTrabajadas,sueldo);
+            Mascota* newMascota = mascota_newParams(id,nombre,tipo,sexo,edad,ID_duenio);
 
-            if (newEmployee != NULL)
+            if (newMascota != NULL)
             {
-                ll_add(pArrayListEmployee, newEmployee);
+                ll_add(pLinkedListMascotas, newMascota);
             }
         }
         else
@@ -52,7 +51,43 @@ int parser_MascotaFromText(FILE* pFile, LinkedList* pLinkedListMascotas)
 
     return 0;
 }
-*/
+
+int parser_duenoFromText(FILE* pFile, LinkedList* pLinkedListDuenos)
+{
+    int amountOfDataRead;
+    char id[50], nombre[50], telefono[50];
+
+    if (pFile == NULL || pLinkedListDuenos == NULL)
+    {
+        return -1;
+    }
+
+    fscanf(pFile,"%[^,],%[^,],%[^\n]\n",id,nombre,telefono);
+
+    do
+    {
+        amountOfDataRead = fscanf(pFile,"%[^,],%[^,],%[^\n]\n",id,nombre,telefono);
+
+        if (amountOfDataRead == 3)
+        {
+            Dueno* newDueno = dueno_newParams(id,nombre,telefono);
+
+            if (newDueno != NULL)
+            {
+                ll_add(pLinkedListDuenos, newDueno);
+            }
+        }
+        else
+        {
+            printf("\nHubo un problema al leer los datos de una linea del archivo. La misma sera ignorada\n");
+        }
+
+    }
+    while (!feof(pFile));
+
+    return 0;
+}
+
 /*
 int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
 {
