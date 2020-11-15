@@ -116,7 +116,7 @@ int mascotas_setTipo(Mascota* this,char* tipo)
 {
     int error = -1;
 
-    if(this != NULL && tipo != NULL && validations_isValidType(tipo))
+    if(this != NULL && tipo != NULL /*&& validations_isValidType(tipo)*/)
     {
         strcpy(this->tipo, tipo);
         error = 0;

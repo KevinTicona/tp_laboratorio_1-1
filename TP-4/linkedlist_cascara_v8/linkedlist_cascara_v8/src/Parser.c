@@ -34,6 +34,7 @@ int parser_MascotaFromText(FILE* pFile, LinkedList* pLinkedListMascotas)
 
         if (amountOfDataRead == 6)
         {
+            printf("Lei: %s %s %s %s %s %s\n",id,nombre,tipo,sexo,edad,ID_duenio);
             Mascota* newMascota = mascota_newParams(id,nombre,tipo,sexo,edad,ID_duenio);
 
             if (newMascota != NULL)
