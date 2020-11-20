@@ -108,7 +108,6 @@ int validations_isValidName(char* nombre)
 
 int validations_isValidType(char* type)
 {
-    printf("\nTIPO!!!!! %s\n",type);
     int len = strlen(type);
     int valid = validations_charOnly(type);
 
@@ -141,7 +140,7 @@ int validations_isValidSex(char* sex)
 
 int validations_isValidEdad(int edad)
 {
-    if(edad > 0 && edad <= 15)
+    if(edad >= 0 && edad <= 15)
     {
         return 1;
     }

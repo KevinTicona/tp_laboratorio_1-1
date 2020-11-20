@@ -31,7 +31,8 @@
 
 int main(void)
 {
-    //validations_testLL(19); //Esto corre todos los test del LinkedList
+    //validations_testLL(20); //Esto corre todos los test del LinkedList
+
     int option;
     int selection;
 
@@ -90,7 +91,6 @@ int main(void)
         }
     }
     while(option!=10);
-
 
     return 0;
 }

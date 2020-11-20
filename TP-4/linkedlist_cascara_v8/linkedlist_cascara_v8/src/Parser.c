@@ -9,7 +9,7 @@
 int parser_MascotaFromText(FILE* pFile, LinkedList* pLinkedListMascotas)
 {
     int amountOfDataRead;
-    char id[50], nombre[50], tipo[50], sexo[1], edad[50], ID_duenio[50];
+    char id[50], nombre[50], tipo[50], sexo[50], edad[50], ID_duenio[50];
 
     if (pFile == NULL || pLinkedListMascotas == NULL)
     {
@@ -34,7 +34,6 @@ int parser_MascotaFromText(FILE* pFile, LinkedList* pLinkedListMascotas)
 
         if (amountOfDataRead == 6)
         {
-            printf("Lei: %s %s %s %s %s %s\n",id,nombre,tipo,sexo,edad,ID_duenio);
             Mascota* newMascota = mascota_newParams(id,nombre,tipo,sexo,edad,ID_duenio);
 
             if (newMascota != NULL)

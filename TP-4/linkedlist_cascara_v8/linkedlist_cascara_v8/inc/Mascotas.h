@@ -15,11 +15,17 @@ Mascota* mascota_new();
 Mascota* mascota_newParams(char* id, char* nombre, char* tipo,char* sexo, char* edad, char* ID_duenio);
 void mascotas_deleteOne(Mascota* this);
 int mascotas_setId(Mascota* this,int id);
+int mascotas_getId(Mascota* this,int* id);
 int mascotas_setNombre(Mascota* this,char* nombre);
+int mascotas_getNombre(Mascota* this,char* nombre);
 int mascotas_setTipo(Mascota* this,char* tipo);
+int mascotas_getTipo(Mascota* this,char* tipo);
 int mascotas_setSexo(Mascota* this,char* sexo);
+int mascotas_getSexo(Mascota* this,char* sexo);
 int mascotas_setEdad(Mascota* this,int edad);
+int mascotas_getEdad(Mascota* this,int *edad);
 int mascotas_setIdDuenio(Mascota* this,int ID_Duenio);
+int mascotas_getIdDuenio(Mascota* this,int* ID_Duenio);
 
 
 

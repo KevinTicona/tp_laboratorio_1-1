@@ -95,7 +95,18 @@ int mascotas_setId(Mascota* this,int id)
         this->ID = id;
         error = 0;
     }
-    printf("\nSetID value: %d -> error; %d\n", id, error);
+    return error;
+}
+
+int mascotas_getId(Mascota* this,int* id)
+{
+    int error = -1;
+
+    if(this != NULL && id != NULL)
+    {
+        *id = this->ID;
+        error = 0;
+    }
     return error;
 }
 
@@ -108,7 +119,18 @@ int mascotas_setNombre(Mascota* this,char* nombre)
         strcpy(this->nombre, nombre);
         error = 0;
     }
-    printf("\nSetNombre value: %s -> error; %d\n", nombre, error);
+    return error;
+}
+
+int mascotas_getNombre(Mascota* this,char* nombre)
+{
+    int error = -1;
+
+    if(this != NULL && nombre != NULL)
+    {
+        strcpy(nombre, this->nombre);
+        error = 0;
+    }
     return error;
 }
 
@@ -116,12 +138,23 @@ int mascotas_setTipo(Mascota* this,char* tipo)
 {
     int error = -1;
 
-    if(this != NULL && tipo != NULL /*&& validations_isValidType(tipo)*/)
+    if(this != NULL && tipo != NULL && validations_isValidType(tipo))
     {
         strcpy(this->tipo, tipo);
         error = 0;
     }
-    printf("\nSetTipo value: %s -> error; %d\n", tipo, error);
+    return error;
+}
+
+int mascotas_getTipo(Mascota* this,char* tipo)
+{
+    int error = -1;
+
+    if(this != NULL && tipo != NULL)
+    {
+        strcpy(tipo, this->tipo);
+        error = 0;
+    }
     return error;
 }
 
@@ -135,7 +168,18 @@ int mascotas_setSexo(Mascota* this,char* sexo)
         error = 0;
     }
 
-    printf("\nSetSexo value: %s -> error; %d\n", sexo, error);
+    return error;
+}
+
+int mascotas_getSexo(Mascota* this,char* sexo)
+{
+    int error = -1;
+
+    if(this != NULL && sexo != NULL)
+    {
+        strcpy(sexo, this->sexo);
+        error = 0;
+    }
     return error;
 }
 
@@ -148,7 +192,18 @@ int mascotas_setIdDuenio(Mascota* this,int ID_Duenio)
         this->ID_Duenio = ID_Duenio;
         error = 0;
     }
-        printf("\nSetDuenio value: %d -> error; %d\n", ID_Duenio, error);
+    return error;
+}
+
+int mascotas_getIdDuenio(Mascota* this,int* ID_Duenio)
+{
+    int error = -1;
+
+    if(this != NULL && ID_Duenio != NULL)
+    {
+        *ID_Duenio = this->ID_Duenio;
+        error = 0;
+    }
     return error;
 }
 
@@ -161,6 +216,17 @@ int mascotas_setEdad(Mascota* this,int edad)
         this->edad = edad;
         error = 0;
     }
-    printf("\nSetEdad value: %d -> error; %d\n", edad, error);
+    return error;
+}
+
+int mascotas_getEdad(Mascota* this,int* edad)
+{
+    int error = -1;
+
+    if(this != NULL && edad != NULL)
+    {
+        *edad = this->edad;
+        error = 0;
+    }
     return error;
 }

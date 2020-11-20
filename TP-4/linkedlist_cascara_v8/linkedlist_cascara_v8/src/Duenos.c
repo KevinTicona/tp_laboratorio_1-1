@@ -65,6 +65,18 @@ int duenos_setId(Dueno* this,int id)
     return error;
 }
 
+int duenos_getId(Dueno* this,int* id)
+{
+    int error = -1;
+
+    if(this != NULL && id != NULL)
+    {
+        *id = this->ID;
+        error = 0;
+    }
+    return error;
+}
+
 int duenos_setNombre(Dueno* this,char* nombre)
 {
     int error = -1;
@@ -78,7 +90,19 @@ int duenos_setNombre(Dueno* this,char* nombre)
     return error;
 }
 
-int duenos_setTelefono(Dueno* this, char* telefono) //revisar
+int duenos_getNombre(Dueno* this,char* nombre)
+{
+    int error = -1;
+
+    if(this != NULL && nombre != NULL)
+    {
+        strcpy(nombre, this->nombre);
+        error = 0;
+    }
+    return error;
+}
+
+int duenos_setTelefono(Dueno* this, char* telefono)
 {
     int error = -1;
     int len = strlen(telefono);
@@ -89,5 +113,17 @@ int duenos_setTelefono(Dueno* this, char* telefono) //revisar
         error = 0;
     }
 
+    return error;
+}
+
+int duenos_getTelefono(Dueno* this, char* telefono)
+{
+    int error = -1;
+
+    if(this != NULL && telefono != NULL)
+    {
+        strcpy(telefono, this->telefono);
+        error = 0;
+    }
     return error;
 }

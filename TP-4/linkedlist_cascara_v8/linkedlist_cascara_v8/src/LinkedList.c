@@ -530,32 +530,70 @@ LinkedList* ll_clone(LinkedList* this)
 int ll_sort(LinkedList* this, int (*pFunc)(void*,void*), int order)
 {
     int returnAux =-1;
-    Node* nodeI = NULL;
-    Node* nodeJ = NULL;
+    void* elementoI = NULL;
+    void* elementoJ = NULL;
     void* pAuxElement = NULL;
 
     if(this != NULL && pFunc != NULL && (order == 1 || order == 0))
     {
-        for(int i = 0; i < ll_len(this)-1; i++)
-        {
-            nodeI = getNode(this,i);
+        int len = ll_len(this);
 
-            for(int j = i+1; j < ll_len(this); j++)
+        for(int i = 0; i < len-1; i++)
+        {
+            for(int j = i+1; j < len; j++)
             {
-                nodeJ = getNode(this,j);
+                elementoI = ll_get(this,i);
+                elementoJ = ll_get(this,j);
 
                 if(
-                    (order == 1 && pFunc(nodeI->pElement, nodeJ->pElement) > 0) ||
-                    (order == 0 && pFunc(nodeI->pElement, nodeJ->pElement) < 0)
+                    (order == 1 && pFunc(elementoI, elementoJ) > 0) ||
+                    (order == 0 && pFunc(elementoI, elementoJ) < 0)
                 )
                 {
-                    pAuxElement = nodeI->pElement;
-                    nodeI->pElement = nodeJ->pElement;
-                    nodeJ->pElement = pAuxElement;
+                    pAuxElement = elementoI;
+                    ll_set(this,i,elementoJ);
+                    ll_set(this,j,pAuxElement);
                 }
             }
         }
+
         returnAux = 0;
     }
+
     return returnAux;
+}
+
+/** \brief Filtra los elementos de la lista
+ *
+ * \param lista a filtrar
+ * \param funcion parametro que devuelve 1 si se cumple con el parametro, 0 si no
+ * \return Un nuevo Linledlist que cumpla con los elementos de la funcion parametro
+ *
+ */
+
+LinkedList* ll_filter(LinkedList* this, int (*pFunc)(void*))
+{
+    LinkedList* filteredArray = NULL;
+    void* pElement = NULL;
+    int len = ll_len(this);
+
+    if(this != NULL && pFunc != NULL)
+    {
+        filteredArray = ll_newLinkedList();
+
+        if(filteredArray != NULL)
+        {
+            for(int i = 0; i < len; i++)
+            {
+                pElement = ll_get(this,i);
+
+                if(pFunc(pElement))
+                {
+                    ll_add(filteredArray,pElement);
+                }
+            }
+        }
+    }
+
+    return filteredArray;
 }
