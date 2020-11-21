@@ -8,6 +8,8 @@ int controller_addMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
 
 int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
 
+int controller_removeMascota(LinkedList* pLLMascotas,LinkedList* pLLDuenos);
+
 int controller_ListMascotas(LinkedList* pLLMascotas, LinkedList* duenos);
 int controller_ListDuenos(LinkedList* pLLDuenos);
 

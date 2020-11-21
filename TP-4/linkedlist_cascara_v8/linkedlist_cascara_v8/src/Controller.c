@@ -178,6 +178,58 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
     return 0;
 }
 
+int controller_removeMascota(LinkedList* pLLMascotas,LinkedList* pLLDuenos)
+{
+    if(ll_isEmpty(pLLMascotas) != 0)
+    {
+        printf("\nSe deben cargar los datos antes de eliminar una mascota a la lista.\n");
+        return -1;
+    }
+
+    int validarEntero, id;
+    char idChar[50];
+
+    //Validar ingreso de datos
+    printf("\nIngrese el ID de la mascota que desea eliminar\n");
+    fflush(stdin);
+    gets(idChar);
+    validarEntero = validations_isValidID(idChar);
+    while(validarEntero != 1)
+    {
+        printf("\nNumeracion invalida. Ingrese el ID de la mascota que desea eliminar\n");
+        fflush(stdin);
+        gets(idChar);
+        validarEntero = validations_isValidID(idChar);
+    }
+    id = atoi(idChar);
+
+    //Recorrer la lista, si existe la mascota, la muestro y la borro
+    int currentNodeIndex = 0;
+    int linkedListSize = ll_len(pLLMascotas);
+    Mascota* currentMascota = NULL;
+    Node* currentNode = pLLMascotas->pFirstNode;
+
+    while (currentNodeIndex < linkedListSize)
+    {
+        currentMascota = (Mascota*)ll_get(pLLMascotas, currentNodeIndex);
+
+        if (currentMascota->ID == id)
+        {
+            currentMascota = ll_pop(pLLMascotas,currentNodeIndex);
+            menu_encabezadoMascota();
+            menu_imprimirMascota(pLLDuenos,currentMascota);
+            printf("\nSe ha eliminado esta mascota.\n");
+            return 0;
+        }
+
+        currentNode = currentNode->pNextNode;
+        currentNodeIndex++;
+    }
+
+    printf("\nNo se encontro una mascota con ese ID.\n");
+    return -1;
+}
+
 int controller_ListMascotas(LinkedList* pLLMascotas, LinkedList* duenos)
 {
     if (ll_isEmpty(pLLMascotas) == 1)

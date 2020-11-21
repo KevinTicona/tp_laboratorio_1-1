@@ -83,7 +83,7 @@ int main(void)
                 }
                 break;
             case 5:
-                printf("\nOpcion en mantenimiento...\n");
+                controller_removeMascota(petList,ownersList);
                 break;
             case 6:
                 controller_ListMascotas(petList,ownersList);
