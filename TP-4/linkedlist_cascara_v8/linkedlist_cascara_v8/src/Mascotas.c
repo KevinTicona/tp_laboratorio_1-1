@@ -317,7 +317,7 @@ void mascotas_enterIdDueno(char* idDuenoValidado, LinkedList* pLLduenos)
     int idDuenoValido;
 
     system("cls");
-    menu_imprimirDuenos(pLLduenos);
+//    menu_imprimirDuenos(pLLduenos);
 
     printf("\n\nIngrese ID Dueno: ");
     fflush(stdin);
@@ -331,4 +331,29 @@ void mascotas_enterIdDueno(char* idDuenoValidado, LinkedList* pLLduenos)
         idDuenoValido = validations_isValid_IDDueno(idDueno);
     }
     strcpy(idDuenoValidado,idDueno);
+}
+
+
+Mascota* mascotas_searchByID(LinkedList* this,int id)
+{
+    Mascota* mascota;
+    int len = ll_len(this);
+    int index = 0;
+    Node* currentNode = this->pFirstNode;
+
+    if(this != NULL)
+    {
+        while (index < len)
+        {
+            mascota = (Mascota*)ll_get(this,index);
+
+            if(mascota->ID == id)
+            {
+                break;
+            }
+            currentNode = currentNode->pNextNode;
+            index++;
+        }
+    }
+    return mascota;
 }

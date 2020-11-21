@@ -63,11 +63,18 @@ int main(void)
                 printf("\nOpcion en mantenimiento...\n");
                 break;
             case 3:
-                controller_addMascota(petList, ownersList);
-                //printf("\nOpcion en mantenimiento...\n");
+                if(!controller_addMascota(petList, ownersList))
+                {
+                    printf("\nMascota agregada con exito, total de mascotas: %d\n", ll_len(petList));
+                }
+                else
+                {
+                    printf("\nOcurrio un problema al intentar agregar la mascota, vuelva a intentarlo mas tarde.\n");
+                }
                 break;
             case 4:
-                printf("\nOpcion en mantenimiento...\n");
+                controller_editMascota(petList,ownersList);
+                //printf("\nOpcion en mantenimiento...\n");
                 break;
             case 5:
                 printf("\nOpcion en mantenimiento...\n");
@@ -88,6 +95,8 @@ int main(void)
                 printf("\nOpcion en mantenimiento...\n");
                 break;
             case 11:
+                //controller_freeResources(petList);
+                //controller_freeResources(ownersList);
                 printf("\nSaliendo...\n");
                 break;
             }

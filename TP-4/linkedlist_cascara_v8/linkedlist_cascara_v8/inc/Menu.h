@@ -7,4 +7,7 @@ int menu_imprimirMascotas(LinkedList* pLLMascotas,LinkedList* duenos);
 
 void menu_imprimirDueno(Dueno* currentDueno);
 int menu_imprimirDuenos(LinkedList* this);
+
+void menu_encabezadoMascota();
+void menu_modificaciones();
 #endif // MENU_H_INCLUDED

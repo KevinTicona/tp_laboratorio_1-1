@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../inc/LinkedList.h"
 #include "../inc/Duenos.h"
 #include "../inc/Validations.h"
 

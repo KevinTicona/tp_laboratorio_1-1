@@ -52,9 +52,11 @@ int validations_getOption(int* pResult, char* errorMsj, int min, int max);
  */
  void formatStr(char* str);
 
+ int validations_isValidID(char* id);
  int validations_isValidType(char* type);
  int validations_isValidSex(char* sex);
  int validations_isValidEdad(char* edad);
  int validations_isValid_IDDueno(char* edad);
+
 
 #endif // VALIDATIONS_H_INCLUDED

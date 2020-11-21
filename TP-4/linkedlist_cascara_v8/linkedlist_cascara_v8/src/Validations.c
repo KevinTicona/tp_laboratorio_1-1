@@ -172,3 +172,20 @@ int validations_isValid_IDDueno(char* idDueno)
     return 0;
 }
 
+int validations_isValidID(char* id)
+{
+    int resultadoValido = validations_isValidNumber(id);
+    int intID;
+
+    if(resultadoValido == 1)
+    {
+        intID = atoi(id);
+        if(intID >= 0)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+

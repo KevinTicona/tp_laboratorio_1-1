@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../inc/Controller.h"
-#include "../inc/LinkedList.h"
 #include "../inc/Parser.h"
 #include "../inc/Duenos.h"
 #include "../inc/Mascotas.h"
 #include "../inc/Menu.h"
+#include "../inc/Validations.h"
 
 int controller_loadFromText(char* path1, char* path2, LinkedList* pLListMascotas, LinkedList* pLListDuenos)
 {
@@ -67,6 +67,7 @@ int controller_addMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
     mascotas_enterSex(sexo);
     mascotas_enterAge(edad);
     mascotas_enterIdDueno(idDueno,pLLDuenos);
+
     // Id autoincremental
     Node* currentNode = pLLMascotas->pFirstNode;
 
@@ -76,21 +77,110 @@ int controller_addMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
     }
 
     // Al terminar el while, currentNode será el último Nodo en nuestra Linked List
-    Mascota* ultimaMascota = (Mascota*)currentNode->pElement;
     // Luego de encontrar la ultima mascota en la Linked List, utilizamos su Id y le agregamos 1.
+    Mascota* ultimaMascota = (Mascota*)currentNode->pElement;
     id = ultimaMascota->ID + 1;
     itoa(id, idAsChar, 10);
 
+    //Creamos la mascota con los datos recibidos
     newMascota = mascota_newParams(idAsChar,nombre,tipo,sexo,edad,idDueno);
 
     if(newMascota != NULL)
     {
         ll_add(pLLMascotas,newMascota);
-        printf("\nMascota agregada con exito. Cantidad total %d\n",ll_len(pLLMascotas));
-    } else
-    {
-        printf("\nLo sentimos, error al crear mascota\n");
     }
+
+    return 0;
+}
+
+int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
+{
+    if(ll_isEmpty(pLLMascotas) != 0)
+    {
+        printf("\nSe deben cargar los datos antes de agregar una mascota a la lista.\n");
+        return -1;
+    }
+
+    Mascota* mascotaAModificar = NULL;
+    int validarEntero, id, selection, option, integerAge;
+    char idChar[50], newName[100], newType[30], newAge[30];
+
+    //Validar ingreso de datos
+    printf("\nIngrese el ID de la mascota que desea modificar\n");
+    fflush(stdin);
+    gets(idChar);
+    validarEntero = validations_isValidID(idChar);
+    while(validarEntero != 1)
+    {
+        printf("\nNumeracion invalida. Ingrese el ID de la mascota que desea modificar\n");
+        fflush(stdin);
+        gets(idChar);
+        validarEntero = validations_isValidID(idChar);
+    }
+
+    // Si la numeracion ingresada es valida, verificamos que sea existente
+    id = atoi(idChar);
+    if(id < 0 && id > ll_len(pLLMascotas))
+    {
+        printf("No hay mascotas con ese ID");
+        return -1;
+    }
+
+    //Buscamos por ID
+    if(id > 0 && id <= ll_len(pLLMascotas))
+    {
+        mascotaAModificar = mascotas_searchByID(pLLMascotas, id);
+        do
+        {
+            system("cls");
+            menu_encabezadoMascota();
+            menu_imprimirMascota(pLLDuenos,mascotaAModificar);
+            menu_modificaciones();
+            selection = validations_getOption(
+                            &option,
+                            "\nOpcion invalida. Ingrese una opcion corrcta\n",
+                            1,
+                            4);
+            if(!selection)
+            {
+                switch(option)
+                {
+                case 1:
+                    mascotas_enterName(newName);
+                    if(!mascotas_setNombre(mascotaAModificar,newName))
+                    {
+                        printf("\nNombre modificado con exito.\n");
+                    }
+                    break;
+                case 2:
+                    mascotas_enterType(newType);
+                    if(!mascotas_setTipo(mascotaAModificar,newType))
+                    {
+                        printf("\nTipo modificado con exito.\n");
+                    }
+                    break;
+                case 3:
+                    mascotas_enterAge(newAge);
+                    integerAge = atoi(newAge);
+                    if(!mascotas_setEdad(mascotaAModificar,integerAge))
+                    {
+                        printf("\nEdad modificada con exito.\n");
+                    }
+                    break;
+                case 4:
+                    printf("\nVolviendo al menu principal...\n");
+                    break;
+                }
+                system("pause");
+            }
+        }
+        while(option != 4);
+    }
+    else
+    {
+        printf("\nNo hay mascotas con ese ID\n");
+    }
+
 
     return 0;
 }

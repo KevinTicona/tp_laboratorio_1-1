@@ -105,3 +105,23 @@ int menu_imprimirDuenos(LinkedList* this)
 
     return 0;
 }
+
+void menu_encabezadoMascota()
+{
+    system("cls");
+    printf("_____________________________________________________________________________________________\n");
+    printf("                                            MASCOTAS \n");
+    printf("_____________________________________________________________________________________________\n");
+    printf("  ID           Nombre               Tipo          Sexo     Edad                 Dueno\n");
+    printf("_____________________________________________________________________________________________\n");
+}
+
+void menu_modificaciones()
+{
+    printf("\n\n");
+    printf("1. Modificar nombre\n");
+    printf("2. Modificar tipo.\n");
+    printf("3. Modificar edad.\n");
+    printf("4. Volver atras.\n");
+    printf("\n\n");
+}

@@ -34,5 +34,7 @@ void mascotas_enterSex(char* sexoValidado);
 void mascotas_enterAge(char* edadValidada);
 void mascotas_enterIdDueno(char* idDuenoValidado, LinkedList* pLLduenos);
 
+Mascota* mascotas_searchByID(LinkedList* this,int id);
+
 
 #endif // MASCOTAS_H_INCLUDED
