@@ -118,15 +118,8 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
         validarEntero = validations_isValidID(idChar);
     }
 
-    // Si la numeracion ingresada es valida, verificamos que sea existente
+    //Buscamos por ID verificando que exista esa mascota
     id = atoi(idChar);
-    if(id < 0 && id > ll_len(pLLMascotas))
-    {
-        printf("No hay mascotas con ese ID");
-        return -1;
-    }
-
-    //Buscamos por ID
     if(id > 0 && id <= ll_len(pLLMascotas))
     {
         mascotaAModificar = mascotas_searchByID(pLLMascotas, id);
@@ -179,8 +172,8 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
     else
     {
         printf("\nNo hay mascotas con ese ID\n");
+        return -1;
     }
-
 
     return 0;
 }

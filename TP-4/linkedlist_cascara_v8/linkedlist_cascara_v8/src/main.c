@@ -73,8 +73,14 @@ int main(void)
                 }
                 break;
             case 4:
-                controller_editMascota(petList,ownersList);
-                //printf("\nOpcion en mantenimiento...\n");
+                if(!controller_editMascota(petList,ownersList))
+                {
+                    printf("\nMascota modificada con exito.\n");
+                }
+                else
+                {
+                    printf("\nOcurrio un problema al intentar modificar la mascota, vuelva a intentarlo mas tarde.\n");
+                }
                 break;
             case 5:
                 printf("\nOpcion en mantenimiento...\n");
