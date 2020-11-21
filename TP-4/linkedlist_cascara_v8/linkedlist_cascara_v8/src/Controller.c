@@ -51,30 +51,46 @@ int controller_loadFromText(char* path1, char* path2, LinkedList* pLListMascotas
 
 int controller_addMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
 {
-    /*Cuando se añade una mascota, se crea con id 1. En el archivo ya hay 100 mascotass,
-    por lo que, si cargamos una antes de cargar la lista, daría como resultado dos
-    mascotass con el mismo id. Por eso validamos que primero se carguen los datos.*/
     if(ll_isEmpty(pLLMascotas) != 0)
     {
         printf("\nSe deben cargar los datos antes de agregar una mascota a la lista.\n");
         return -1;
     }
 
-    //Mascota* newMascota = NULL;
-    char nombre[100], tipo[50], sexo[50], edad[50], idDueno[50];
+    Mascota* newMascota = NULL;
+    int id;
+    char idAsChar[50], nombre[100], tipo[50], sexo[50], edad[50], idDueno[50];
 
-    // nombre
+    // Ingresar y validar datos
     mascotas_enterName(nombre);
-    // tipo
     mascotas_enterType(tipo);
-    // sexo
     mascotas_enterSex(sexo);
-    // edad
     mascotas_enterAge(edad);
-    // idDuenio
     mascotas_enterIdDueno(idDueno,pLLDuenos);
-    printf("DATO VALIDO: %s\n", idDueno);
+    // Id autoincremental
+    Node* currentNode = pLLMascotas->pFirstNode;
 
+    while (currentNode->pNextNode != NULL)
+    {
+        currentNode = currentNode->pNextNode;
+    }
+
+    // Al terminar el while, currentNode será el último Nodo en nuestra Linked List
+    Mascota* ultimaMascota = (Mascota*)currentNode->pElement;
+    // Luego de encontrar la ultima mascota en la Linked List, utilizamos su Id y le agregamos 1.
+    id = ultimaMascota->ID + 1;
+    itoa(id, idAsChar, 10);
+
+    newMascota = mascota_newParams(idAsChar,nombre,tipo,sexo,edad,idDueno);
+
+    if(newMascota != NULL)
+    {
+        ll_add(pLLMascotas,newMascota);
+        printf("\nMascota agregada con exito. Cantidad total %d\n",ll_len(pLLMascotas));
+    } else
+    {
+        printf("\nLo sentimos, error al crear mascota\n");
+    }
 
     return 0;
 }
