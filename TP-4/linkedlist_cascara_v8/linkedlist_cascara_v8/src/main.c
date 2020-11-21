@@ -72,7 +72,7 @@ int main(void)
                 printf("\nOpcion en mantenimiento...\n");
                 break;
             case 6:
-                printf("\nOpcion en mantenimiento...\n");
+                controller_ListMascotas(petList,ownersList);
                 break;
             case 7:
                 printf("\nOpcion en mantenimiento...\n");

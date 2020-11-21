@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../inc/LinkedList.h"
 #include "../inc/Duenos.h"
 #include "../inc/Validations.h"
 
@@ -126,4 +127,29 @@ int duenos_getTelefono(Dueno* this, char* telefono)
         error = 0;
     }
     return error;
+}
+
+Dueno* duenos_searchByID(LinkedList* this,int id)
+{
+    Dueno* dueno;
+    int len = ll_len(this);
+    int index = 0;
+    Node* currentNode = this->pFirstNode;
+
+    if(this != NULL)
+    {
+        while (index < len)
+        {
+            dueno = (Dueno*)ll_get(this,index);
+
+            if(dueno->ID == id)
+            {
+                break;
+            }
+
+            currentNode = currentNode->pNextNode;
+            index++;
+        }
+    }
+    return dueno;
 }

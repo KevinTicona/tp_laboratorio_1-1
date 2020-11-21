@@ -3,6 +3,7 @@
 #include "../inc/Parser.h"
 #include "../inc/Duenos.h"
 #include "../inc/Mascotas.h"
+#include "../inc/Menu.h"
 
 int controller_loadFromText(char* path1, char* path2, LinkedList* pLListMascotas, LinkedList* pLListDuenos)
 {
@@ -43,4 +44,17 @@ int controller_loadFromText(char* path1, char* path2, LinkedList* pLListMascotas
     }
 
     return 0;
+}
+
+int controller_ListMascotas(LinkedList* pLLMascotas, LinkedList* duenos)
+{
+    if (ll_isEmpty(pLLMascotas) == 1)
+    {
+        printf("\nNo existen mascotas en el sistema. Intente cargarlas desde el menu para poder visualizarlas.\n");
+        return 0;
+    }
+
+    menu_imprimirMascotas(pLLMascotas,duenos);
+
+    return 1;
 }

@@ -1,3 +1,4 @@
+#include "../inc/LinkedList.h"
 #ifndef DUENOS_H_INCLUDED
 #define DUENOS_H_INCLUDED
 
@@ -17,5 +18,7 @@ int duenos_setNombre(Dueno* this,char* nombre);
 int duenos_getNombre(Dueno* this,char* nombre);
 int duenos_setTelefono(Dueno* this, char* telefono);
 int duenos_getTelefono(Dueno* this, char* telefono);
+
+Dueno* duenos_searchByID(LinkedList* this,int id);
 
 #endif // DUENOS_H_INCLUDED
