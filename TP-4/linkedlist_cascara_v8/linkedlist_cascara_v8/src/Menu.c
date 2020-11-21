@@ -20,10 +20,11 @@ void menu_main()
     printf("4. Modificar datos de mascota.\n");
     printf("5. Baja de mascota.\n");
     printf("6. Listar mascotas.\n");
-    printf("7. Ordenar mascotas.\n");
-    printf("8. Guardar los datos de las mascotas en el archivo data.csv (modo texto).\n");
-    printf("9. Guardar los datos de las mascotas en el archivo data.bin (modo binario)..\n");
-    printf("10. Salir.\n");
+    printf("7. Listar duenos.\n");
+    printf("8. Ordenar mascotas.\n");
+    printf("9. Guardar los datos de las mascotas en el archivo data.csv (modo texto).\n");
+    printf("10. Guardar los datos de las mascotas en el archivo data.bin (modo binario)..\n");
+    printf("11. Salir.\n");
 }
 
 void menu_imprimirMascota(LinkedList* duenos,Mascota* currentMascota)
@@ -70,3 +71,37 @@ int menu_imprimirMascotas(LinkedList* pLLMascotas,LinkedList* duenos)
     return 0;
 }
 
+void menu_imprimirDueno(Dueno* currentDueno)
+{
+    printf("\n%4d  %20s           %15s\n",
+           currentDueno->ID,
+           currentDueno->nombre,
+           currentDueno->telefono);
+}
+
+int menu_imprimirDuenos(LinkedList* this)
+{
+    int currentNodeIndex = 0;
+    int linkedListSize = ll_len(this);
+    Dueno* currentDueno;
+    Node* currentNode = this->pFirstNode;
+
+    system("cls");
+    printf("____________________________________________________\n");
+    printf("                    DUENOS \n");
+    printf("____________________________________________________\n");
+    printf("  ID           Nombre                    Telefono   \n");
+    printf("____________________________________________________\n");
+
+    while (currentNodeIndex < linkedListSize)
+    {
+        currentDueno = (Dueno*)ll_get(this, currentNodeIndex);
+
+        menu_imprimirDueno(currentDueno);
+
+        currentNode = currentNode->pNextNode;
+        currentNodeIndex++;
+    }
+
+    return 0;
+}

@@ -186,8 +186,10 @@ int mascotas_getSexo(Mascota* this,char* sexo)
 int mascotas_setIdDuenio(Mascota* this,int ID_Duenio)
 {
     int error = -1;
+    char IDToChar[50];
+    itoa(ID_Duenio,IDToChar,10);
 
-    if(this != NULL && ID_Duenio > 0 && ID_Duenio <= 95)
+    if(this != NULL && validations_isValid_IDDueno(IDToChar))
     {
         this->ID_Duenio = ID_Duenio;
         error = 0;
@@ -210,8 +212,10 @@ int mascotas_getIdDuenio(Mascota* this,int* ID_Duenio)
 int mascotas_setEdad(Mascota* this,int edad)
 {
     int error = -1;
+    char edadToChar[50];
+    itoa(edad,edadToChar,10);
 
-    if(this != NULL && validations_isValidEdad(edad))
+    if(this != NULL && validations_isValidEdad(edadToChar))
     {
         this->edad = edad;
         error = 0;
@@ -229,4 +233,102 @@ int mascotas_getEdad(Mascota* this,int* edad)
         error = 0;
     }
     return error;
+}
+
+void mascotas_enterName(char* nombreValidado)
+{
+    char nombre[100];
+    int nombreValido;
+
+    printf("\nIngrese nombre: ");
+    fflush(stdin);
+    gets(nombre);
+    nombreValido = validations_isValidName(nombre);
+    while(nombreValido != 1)
+    {
+        printf("\nDato invalido. Ingrese nombre: ");
+        fflush(stdin);
+        gets(nombre);
+        nombreValido = validations_isValidName(nombre);
+    }
+    strcpy(nombreValidado,nombre);
+}
+
+void mascotas_enterType(char* tipoValidado)
+{
+    char tipo[100];
+    int tipoValido;
+
+    printf("\nIngrese tipo: ");
+    fflush(stdin);
+    gets(tipo);
+    tipoValido = validations_isValidType(tipo);
+    while(tipoValido != 1)
+    {
+        printf("\nDato invalido. Ingrese tipo: ");
+        fflush(stdin);
+        gets(tipo);
+        tipoValido = validations_isValidType(tipo);
+    }
+    strcpy(tipoValidado,tipo);
+}
+
+void mascotas_enterSex(char* sexoValidado)
+{
+    char sexo[100];
+    int sexoValido;
+
+    printf("\nIngrese sexo: ");
+    fflush(stdin);
+    gets(sexo);
+    sexoValido = validations_isValidSex(sexo);
+    while(sexoValido != 1)
+    {
+        printf("\nDato invalido. Ingrese sexo: ");
+        fflush(stdin);
+        gets(sexo);
+        sexoValido = validations_isValidSex(sexo);
+    }
+    strcpy(sexoValidado,sexo);
+}
+
+void mascotas_enterAge(char* edadValidada)
+{
+    char edad[50];
+    int edadValida;
+
+    printf("\nIngrese edad: ");
+    fflush(stdin);
+    gets(edad);
+    edadValida = validations_isValidEdad(edad);
+    while(edadValida != 1)
+    {
+        printf("\nDato invalido. Ingrese edad: ");
+        fflush(stdin);
+        gets(edad);
+        edadValida = validations_isValidEdad(edad);
+    }
+    strcpy(edadValidada,edad);
+}
+
+void mascotas_enterIdDueno(char* idDuenoValidado, LinkedList* pLLduenos)
+{
+    char idDueno[50];
+    int idDuenoValido;
+
+    system("cls");
+    menu_imprimirDuenos(pLLduenos);
+
+    printf("\n\nIngrese ID Dueno: ");
+    fflush(stdin);
+    gets(idDueno);
+    idDuenoValido = validations_isValid_IDDueno(idDueno);
+    while(idDuenoValido != 1)
+    {
+        printf("\nDato invalido. Ingrese ID Dueno: ");
+        fflush(stdin);
+        gets(idDueno);
+        idDuenoValido = validations_isValid_IDDueno(idDueno);
+    }
+    strcpy(idDuenoValidado,idDueno);
 }

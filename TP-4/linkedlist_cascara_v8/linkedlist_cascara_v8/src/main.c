@@ -46,7 +46,7 @@ int main(void)
                         &option,
                         "\nOpcion invalida, vuelva a intentar.\n",
                         1,
-                        10
+                        11
                     );
         if(!selection)
         {
@@ -63,7 +63,8 @@ int main(void)
                 printf("\nOpcion en mantenimiento...\n");
                 break;
             case 3:
-                printf("\nOpcion en mantenimiento...\n");
+                controller_addMascota(petList, ownersList);
+                //printf("\nOpcion en mantenimiento...\n");
                 break;
             case 4:
                 printf("\nOpcion en mantenimiento...\n");
@@ -75,7 +76,7 @@ int main(void)
                 controller_ListMascotas(petList,ownersList);
                 break;
             case 7:
-                printf("\nOpcion en mantenimiento...\n");
+                controller_ListDuenos(ownersList);
                 break;
             case 8:
                 printf("\nOpcion en mantenimiento...\n");
@@ -84,13 +85,16 @@ int main(void)
                 printf("\nOpcion en mantenimiento...\n");
                 break;
             case 10:
+                printf("\nOpcion en mantenimiento...\n");
+                break;
+            case 11:
                 printf("\nSaliendo...\n");
                 break;
             }
             system("pause");
         }
     }
-    while(option!=10);
+    while(option!=11);
 
     return 0;
 }

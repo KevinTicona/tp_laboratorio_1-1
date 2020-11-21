@@ -138,11 +138,35 @@ int validations_isValidSex(char* sex)
     return 0;
 }
 
-int validations_isValidEdad(int edad)
+int validations_isValidEdad(char* edad)
 {
-    if(edad >= 0 && edad <= 15)
+    int resultadoValido = validations_isValidNumber(edad);
+    int intEdad;
+
+    if(resultadoValido == 1)
     {
-        return 1;
+        intEdad = atoi(edad);
+        if(intEdad >= 0 && intEdad <= 15)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+int validations_isValid_IDDueno(char* idDueno)
+{
+    int resultadoValido = validations_isValidNumber(idDueno);
+    int intID;
+
+    if(resultadoValido == 1)
+    {
+        intID = atoi(idDueno);
+        if(intID >= 1 && intID <= 95)
+        {
+            return 1;
+        }
     }
 
     return 0;

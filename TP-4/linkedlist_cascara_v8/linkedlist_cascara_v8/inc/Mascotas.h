@@ -27,6 +27,12 @@ int mascotas_getEdad(Mascota* this,int *edad);
 int mascotas_setIdDuenio(Mascota* this,int ID_Duenio);
 int mascotas_getIdDuenio(Mascota* this,int* ID_Duenio);
 
+//Ingreso de datos
+void mascotas_enterName(char* name);
+void mascotas_enterType(char* tipoValidado);
+void mascotas_enterSex(char* sexoValidado);
+void mascotas_enterAge(char* edadValidada);
+void mascotas_enterIdDueno(char* idDuenoValidado, LinkedList* pLLduenos);
 
 
 #endif // MASCOTAS_H_INCLUDED
