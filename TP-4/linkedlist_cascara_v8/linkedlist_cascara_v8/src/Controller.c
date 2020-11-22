@@ -8,45 +8,85 @@
 #include "../inc/Menu.h"
 #include "../inc/Validations.h"
 
-int controller_loadFromText(char* path1, char* path2, LinkedList* pLListMascotas, LinkedList* pLListDuenos)
+
+int controller_loadMascotasFromText(char* path, LinkedList* pLLMascotas)
 {
-    int statusDuenos;
-    int statusMascotas;
+    int status = -1;
+    FILE *pFile = fopen(path, "r");
 
-    FILE *pFile1 = fopen(path1, "r");
-
-    if (pFile1 == NULL)
+    if (pFile == NULL)
     {
-        printf("\nEl archivo en la ruta %s no existe.\n", path1);
-        return -1;
+        printf("\nEl archivo en la ruta %s no existe.\n", path);
+        return status;
     }
 
-    ll_clear(pLListMascotas);
+    ll_clear(pLLMascotas);
 
-    statusMascotas = parser_MascotaFromText(pFile1,pLListMascotas);
+    status = parser_MascotaFromText(pFile, pLLMascotas);
 
-    fclose(pFile1);
+    fclose(pFile);
 
-    //Segundo archivo
-    FILE *pFile2 = fopen(path2,"r");
+    return status;
+}
 
-    if (pFile2 == NULL)
+int controller_loadDuenosFromText(char* path, LinkedList* pLLDuenos)
+{
+    int status = -1;
+    FILE *pFile = fopen(path, "r");
+
+    if (pFile == NULL)
     {
-        printf("\nEl archivo en la ruta %s no existe.\n", path2);
-        return -1;
+        printf("\nEl archivo en la ruta %s no existe.\n", path);
+        return status;
     }
 
-    ll_clear(pLListDuenos);
-    statusDuenos  = parser_duenoFromText(pFile2,pLListDuenos);
+    ll_clear(pLLDuenos);
 
-    fclose(pFile2);
+    status = parser_duenoFromText(pFile, pLLDuenos);
 
-    if(statusMascotas == -1 || statusDuenos == -1)
+    fclose(pFile);
+
+    return status;
+}
+
+int controller_loadMascotasFromBinary(char* path, LinkedList* pLLMascotas)
+{
+    int status = -1;
+    FILE *pFile = fopen(path, "rb");
+
+    if (pFile == NULL)
     {
-        return -1;
+        printf("\nEl archivo en la ruta %s no existe.\n", path);
+        return status;
     }
 
-    return 0;
+    ll_clear(pLLMascotas);
+
+    status = parser_MascotaFromBinary(pFile,pLLMascotas);
+
+    fclose(pFile);
+
+    return status;
+}
+
+int controller_loadDuenosFromBinary(char* path, LinkedList* pLLDuenos)
+{
+    int status = -1;
+    FILE *pFile = fopen(path, "rb");
+
+    if (pFile == NULL)
+    {
+        printf("\nEl archivo en la ruta %s no existe.\n", path);
+        return status;
+    }
+
+    ll_clear(pLLDuenos);
+
+    status = parser_DuenoFromBinary(pFile, pLLDuenos);
+
+    fclose(pFile);
+
+    return status;
 }
 
 int controller_addMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
@@ -254,6 +294,151 @@ int controller_ListDuenos(LinkedList* pLLDuenos)
     menu_imprimirDuenos(pLLDuenos);
 
     return 1;
+}
+
+int controller_saveMascotasAsText(char* path, LinkedList* pLLMascotas)
+{
+    FILE *pFile;
+
+    pFile = fopen(path, "w");
+
+    if (pFile == NULL || pLLMascotas == NULL)
+    {
+        return -1;
+    }
+
+    int currentNodeIndex = 0;
+    int linkedListSize = ll_len(pLLMascotas);
+
+    Mascota* currentMascota;
+    Node* currentNode = pLLMascotas->pFirstNode;
+
+    // Escribimos los headers del CSV
+    fprintf(pFile, "ID,NOMBRE,TIPO,SEXO,EDAD,ID_DUENO\n");
+
+    // Recorremos la Linked List con un índice (un número)
+    while (currentNodeIndex < linkedListSize)
+    {
+        currentMascota = (Mascota*)ll_get(pLLMascotas, currentNodeIndex);
+
+        fprintf(pFile, "%d,%s,%s,%s,%d,%d\n",
+                currentMascota->ID,
+                currentMascota->nombre,
+                currentMascota->tipo,
+                currentMascota->sexo,
+                currentMascota->edad,
+                currentMascota->ID_Duenio);
+
+        currentNode = currentNode->pNextNode;
+        currentNodeIndex++;
+    }
+
+    fclose(pFile);
+
+    printf("\nLos cambios para la lista de mascotas, han sido guardados correctamente.\n");
+
+    return 0;
+}
+
+int controller_saveDuenosAsText(char* path, LinkedList* pLLDuenos)
+{
+    FILE *pFile;
+
+    pFile = fopen(path, "w");
+
+    if (pFile == NULL || pLLDuenos == NULL)
+    {
+        return -1;
+    }
+
+    int currentNodeIndex = 0;
+    int linkedListSize = ll_len(pLLDuenos);
+
+    Dueno* currentDueno;
+    Node* currentNode = pLLDuenos->pFirstNode;
+
+    // Escribimos los headers del CSV
+    fprintf(pFile, "ID,NOMBRE,TELEFONO\n");
+
+    // Recorremos la Linked List con un índice (un número)
+    while (currentNodeIndex < linkedListSize)
+    {
+        currentDueno = (Dueno*)ll_get(pLLDuenos, currentNodeIndex);
+
+        fprintf(pFile, "%d,%s,%s\n",
+                currentDueno->ID,
+                currentDueno->nombre,
+                currentDueno->telefono);
+
+        currentNode = currentNode->pNextNode;
+        currentNodeIndex++;
+    }
+
+    fclose(pFile);
+
+    printf("\nLos cambios para la lista de duenos, han sido guardados correctamente.\n");
+
+    return 0;
+}
+
+int controller_saveMascotasAsBinary(char* path, LinkedList* pLLMascotas)
+{
+    FILE* pFile= fopen(path, "wb");
+
+    if (pFile == NULL || pLLMascotas == NULL)
+    {
+        return -1;
+    }
+
+    int currentNodeIndex = 0;
+    int linkedListSize = ll_len(pLLMascotas);
+
+    Mascota* currentMascota;
+    Node* currentNode = pLLMascotas->pFirstNode;
+
+    while (currentNodeIndex < linkedListSize)
+    {
+        currentMascota = (Mascota*)ll_get(pLLMascotas, currentNodeIndex);
+
+        fwrite(currentMascota, sizeof(Mascota), 1, pFile);
+
+        currentNode = currentNode->pNextNode;
+        currentNodeIndex++;
+    }
+
+    fclose(pFile);
+
+    return 0;
+}
+
+int controller_saveDuenosAsBinary(char* path, LinkedList* pLLDuenos)
+{
+    FILE* pFile= fopen(path, "wb");
+
+    if (pFile == NULL || pLLDuenos == NULL)
+    {
+        return -1;
+    }
+
+    int currentNodeIndex = 0;
+    int linkedListSize = ll_len(pLLDuenos);
+
+    Dueno* currentDueno;
+    Node* currentNode = pLLDuenos->pFirstNode;
+
+    while (currentNodeIndex < linkedListSize)
+    {
+        currentDueno = (Dueno*)ll_get(pLLDuenos, currentNodeIndex);
+
+        fwrite(currentDueno, sizeof(Dueno), 1, pFile);
+
+        currentNode = currentNode->pNextNode;
+        currentNodeIndex++;
+    }
+
+    fclose(pFile);
+
+    return 0;
 }
 
 int controller_freeResources(LinkedList* this)

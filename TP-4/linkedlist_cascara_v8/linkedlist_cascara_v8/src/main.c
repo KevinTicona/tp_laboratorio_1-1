@@ -28,6 +28,8 @@
 #include "../inc/Menu.h"
 #define PATH_MASCOTAS_TXT "animales.csv"
 #define PATH_DUENOS_TXT "duenios.csv"
+#define PATH_MASCOTAS_BIN "animales.bin"
+#define PATH_DUENOS_BIN "duenios.bin"
 
 int main(void)
 {
@@ -53,14 +55,18 @@ int main(void)
             switch(option)
             {
             case 1:
-                if(controller_loadFromText(PATH_MASCOTAS_TXT,PATH_DUENOS_TXT,petList,ownersList) == 0)
+                if(!controller_loadMascotasFromText(PATH_MASCOTAS_TXT,petList) && !controller_loadDuenosFromText(PATH_DUENOS_TXT,ownersList))
                 {
                     printf("\nSe han cargado %d mascotas desde el archivo %s\n", ll_len(petList), PATH_MASCOTAS_TXT);
                     printf("\nSe han cargado %d Duenios desde el archivo %s\n", ll_len(ownersList), PATH_DUENOS_TXT);
                 }
                 break;
             case 2:
-                printf("\nOpcion en mantenimiento...\n");
+                if(!controller_loadMascotasFromBinary(PATH_MASCOTAS_BIN,petList) && !controller_loadDuenosFromBinary(PATH_DUENOS_BIN,ownersList))
+                {
+                    printf("\nSe han cargado %d mascotas desde el archivo %s\n", ll_len(petList), PATH_MASCOTAS_BIN);
+                    printf("\nSe han cargado %d Duenios desde el archivo %s\n", ll_len(ownersList), PATH_DUENOS_BIN);
+                }
                 break;
             case 3:
                 if(!controller_addMascota(petList, ownersList))
@@ -83,7 +89,14 @@ int main(void)
                 }
                 break;
             case 5:
-                controller_removeMascota(petList,ownersList);
+                if(!controller_removeMascota(petList,ownersList))
+                {
+                    printf("\nMascota eliminada con exito.\n");
+                }
+                else
+                {
+                    printf("\nOcurrio un problema al intentar eliminar la mascota, vuelva a intentarlo mas tarde.\n");
+                }
                 break;
             case 6:
                 controller_ListMascotas(petList,ownersList);
@@ -95,10 +108,18 @@ int main(void)
                 printf("\nOpcion en mantenimiento...\n");
                 break;
             case 9:
-                printf("\nOpcion en mantenimiento...\n");
+                if(!controller_saveMascotasAsText(PATH_MASCOTAS_TXT,petList) && !controller_saveDuenosAsText(PATH_DUENOS_TXT,ownersList))
+                {
+                    printf("\nSe han guardado %d mascotas en el archivo %s.\n", petList->size, PATH_MASCOTAS_TXT);
+                    printf("\nSe han guardado %d duenos en el archivo %s.\n", ownersList->size, PATH_DUENOS_TXT);
+                }
                 break;
             case 10:
-                printf("\nOpcion en mantenimiento...\n");
+                if(!controller_saveMascotasAsBinary(PATH_MASCOTAS_BIN,petList) && !controller_saveDuenosAsBinary(PATH_DUENOS_BIN,ownersList))
+                {
+                    printf("\nSe han guardado %d mascotas en el archivo %s.\n", petList->size, PATH_MASCOTAS_BIN);
+                    printf("\nSe han guardado %d duenos en el archivo %s.\n", ownersList->size, PATH_DUENOS_BIN);
+                }
                 break;
             case 11:
                 //controller_freeResources(petList);

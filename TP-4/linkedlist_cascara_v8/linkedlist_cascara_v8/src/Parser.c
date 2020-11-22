@@ -88,26 +88,47 @@ int parser_duenoFromText(FILE* pFile, LinkedList* pLinkedListDuenos)
     return 0;
 }
 
-/*
-int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
+int parser_MascotaFromBinary(FILE* pFile, LinkedList* pLLMascotas)
 {
-    if (pFile == NULL || pArrayListEmployee == NULL)
+    if (pFile == NULL || pLLMascotas == NULL)
     {
         return -1;
     }
 
-    Employee* empleadoTemporal;
+    Mascota* mascotaTemporal;
 
     while (!feof(pFile))
     {
-        empleadoTemporal = (Employee*)malloc(sizeof(Employee));
+        mascotaTemporal = (Mascota*)malloc(sizeof(Mascota));
 
-        if (fread(empleadoTemporal, sizeof(Employee), 1, pFile) == 1)
+        if (fread(mascotaTemporal, sizeof(Mascota), 1, pFile) == 1)
         {
-            ll_add(pArrayListEmployee, empleadoTemporal);
+            ll_add(pLLMascotas, mascotaTemporal);
         }
     }
 
     return 0;
 }
-*/
+
+int parser_DuenoFromBinary(FILE* pFile, LinkedList* pLLDueno)
+{
+    if (pFile == NULL || pLLDueno == NULL)
+    {
+        return -1;
+    }
+
+    Dueno* duenoTemporal;
+
+    while (!feof(pFile))
+    {
+        duenoTemporal = (Dueno*)malloc(sizeof(Dueno));
+
+        if (fread(duenoTemporal, sizeof(Dueno), 1, pFile) == 1)
+        {
+            ll_add(pLLDueno, duenoTemporal);
+        }
+    }
+
+    return 0;
+}
+
