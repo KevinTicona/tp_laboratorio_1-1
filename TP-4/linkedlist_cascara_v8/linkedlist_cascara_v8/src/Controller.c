@@ -106,7 +106,9 @@ int controller_addMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
     mascotas_enterType(tipo);
     mascotas_enterSex(sexo);
     mascotas_enterAge(edad);
-    mascotas_enterIdDueno(idDueno,pLLDuenos);
+    //imprimir dueños
+    menu_imprimirDuenos(pLLDuenos);
+    mascotas_enterIdDueno(idDueno);
 
     // Id autoincremental
     Node* currentNode = pLLMascotas->pFirstNode;

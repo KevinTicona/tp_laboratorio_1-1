@@ -311,13 +311,10 @@ void mascotas_enterAge(char* edadValidada)
     strcpy(edadValidada,edad);
 }
 
-void mascotas_enterIdDueno(char* idDuenoValidado, LinkedList* pLLduenos)
+void mascotas_enterIdDueno(char* idDuenoValidado)
 {
     char idDueno[50];
     int idDuenoValido;
-
-    system("cls");
-//    menu_imprimirDuenos(pLLduenos);
 
     printf("\n\nIngrese ID Dueno: ");
     fflush(stdin);

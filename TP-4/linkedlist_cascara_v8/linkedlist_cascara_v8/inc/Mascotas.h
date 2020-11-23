@@ -32,7 +32,7 @@ void mascotas_enterName(char* name);
 void mascotas_enterType(char* tipoValidado);
 void mascotas_enterSex(char* sexoValidado);
 void mascotas_enterAge(char* edadValidada);
-void mascotas_enterIdDueno(char* idDuenoValidado, LinkedList* pLLduenos);
+void mascotas_enterIdDueno(char* idDuenoValidado);
 
 Mascota* mascotas_searchByID(LinkedList* this,int id);
 
