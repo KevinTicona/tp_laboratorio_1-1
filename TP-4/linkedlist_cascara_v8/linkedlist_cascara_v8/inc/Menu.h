@@ -10,4 +10,6 @@ int menu_imprimirDuenos(LinkedList* this);
 
 void menu_encabezadoMascota();
 void menu_modificaciones();
+
+void menu_submenu_order();
 #endif // MENU_H_INCLUDED

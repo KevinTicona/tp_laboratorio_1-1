@@ -125,3 +125,18 @@ void menu_modificaciones()
     printf("4. Volver atras.\n");
     printf("\n\n");
 }
+
+void menu_submenu_order()
+{
+    system("cls");
+    printf("__________________________________________________________________________________\n");
+    printf("                                    MASCOTAS          \n");
+    printf("__________________________________________________________________________________\n");
+    printf("                            SUBMENU DE ORDENAMIENTOS                    \n");
+    printf("__________________________________________________________________________________\n");
+    printf("1. Ordenar mascotas por nombre.\n");
+    printf("2. Ordenar mascotas por ID.\n");
+    printf("3. Ordenar mascotas por tipo.\n");
+    printf("4. Ordenar mascotas por dueno.\n");
+    printf("5. Volver al menu principal.\n");
+}

@@ -105,7 +105,14 @@ int main(void)
                 controller_ListDuenos(ownersList);
                 break;
             case 8:
-                printf("\nOpcion en mantenimiento...\n");
+                if(!controller_sortMascotas(petList,ownersList))
+                {
+                    printf("\nOrdenamiento exitoso.\n");
+                }
+                else
+                {
+                    printf("\nOcurrio un problema al realizar el ordenamiento, vuelva a intentar.\n");
+                }
                 break;
             case 9:
                 if(!controller_saveMascotasAsText(PATH_MASCOTAS_TXT,petList) && !controller_saveDuenosAsText(PATH_DUENOS_TXT,ownersList))

@@ -36,5 +36,9 @@ void mascotas_enterIdDueno(char* idDuenoValidado, LinkedList* pLLduenos);
 
 Mascota* mascotas_searchByID(LinkedList* this,int id);
 
+//Sort
+int mascotas_SortByName(void* mascotaA, void* mascotaB);
+int mascotas_SortByTipo(void* mascotaA, void* mascotaB);
+int mascotas_SortById(void* mascotaA, void* mascotaB);
 
 #endif // MASCOTAS_H_INCLUDED

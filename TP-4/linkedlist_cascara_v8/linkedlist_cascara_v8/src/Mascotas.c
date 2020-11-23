@@ -357,3 +357,67 @@ Mascota* mascotas_searchByID(LinkedList* this,int id)
     }
     return mascota;
 }
+
+//Sorts
+
+int mascotas_SortByName(void* mascotaA, void* mascotaB)
+{
+    int retorno = 0;
+    Mascota* mascA;
+    Mascota* mascB;
+
+    if(mascotaA != NULL && mascotaB != NULL)
+    {
+        mascA = mascotaA;
+        mascB = mascotaB;
+
+        retorno = strcmp(mascA->nombre, mascB->nombre);
+    }
+
+    return retorno;
+}
+
+int mascotas_SortByTipo(void* mascotaA, void* mascotaB)
+{
+    int retorno = 0;
+    Mascota* mascA;
+    Mascota* mascB;
+
+    if(mascotaA != NULL && mascotaB != NULL)
+    {
+        mascA = mascotaA;
+        mascB = mascotaB;
+
+        retorno = strcmp(mascA->tipo, mascB->tipo);
+    }
+
+    return retorno;
+}
+
+int mascotas_SortById(void* mascotaA, void* mascotaB)
+{
+    int retorno = 0;
+    int idA;
+    int idB;
+
+    if(mascotaA != NULL && mascotaB != NULL)
+    {
+        if(
+            !mascotas_getId((Mascota*)mascotaA, &idA) &&
+            !mascotas_getId((Mascota*)mascotaB, &idB)
+        )
+        {
+            if(idA > idB)
+            {
+                retorno = 1;
+            }
+            else
+            {
+                retorno = -1;
+            }
+        }
+
+    }
+
+    return retorno;
+}

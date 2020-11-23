@@ -458,3 +458,61 @@ int controller_freeResources(LinkedList* this)
     return 1;
 }
 
+int controller_sortMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
+{
+    if (ll_isEmpty(pLLMascotas) == 1)
+    {
+        printf("\nNo existen mascotas en el sistema. Intente cargarlaspara poder listarlas.\n");
+        return -1;
+    }
+
+    int optionSort = 0;
+    int selectSort = 0;
+
+    do
+    {
+        menu_submenu_order();
+        selectSort = validations_getOption(
+                         &optionSort,
+                         "\nOpcion invalida, vuelva a intentarlo.\n",
+                         1,
+                         5);
+        if(!selectSort)
+        {
+            switch(optionSort)
+            {
+            case 1:
+                printf("Aguarde, esto podria tardar un momento. Ordenando por nombre ...");
+                ll_sort(pLLMascotas, mascotas_SortByName, 1);
+                printf("\nMascotas ordenadas por nombre exitosamente.\n");
+                system("pause");
+                controller_ListMascotas(pLLMascotas, pLLDuenos);
+                break;
+            case 2:
+                printf("Aguarde, esto podria tardar un momento. Ordenando por ID ...");
+                ll_sort(pLLMascotas, mascotas_SortById,1);
+                printf("\nMascotas ordenadas por ID exitosamente.\n");
+                system("pause");
+                controller_ListMascotas(pLLMascotas,pLLDuenos);
+                break;
+            case 3:
+                printf("Aguarde, esto podria tardar un momento. Ordenando por tipo ...");
+                ll_sort(pLLMascotas, mascotas_SortByTipo, 1);
+                printf("\nMascotas ordenadas por tipo exitosamente.\n");
+                system("pause");
+                controller_ListMascotas(pLLMascotas,pLLDuenos);
+                break;
+            case 4:
+                printf("\nMantenimiento...\n");
+                break;
+            case 5:
+                printf("Volviendo al menu principal...\n");
+                break;
+            }
+            system("pause");
+        }
+    }
+    while(optionSort != 5);
+
+    return 0;
+}
