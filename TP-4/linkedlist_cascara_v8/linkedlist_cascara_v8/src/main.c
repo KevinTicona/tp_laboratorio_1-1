@@ -129,8 +129,8 @@ int main(void)
                 }
                 break;
             case 11:
-                //controller_freeResources(petList);
-                //controller_freeResources(ownersList);
+                controller_freeResources(petList);
+                controller_freeResources(ownersList);
                 printf("\nSaliendo...\n");
                 break;
             }

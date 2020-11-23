@@ -246,8 +246,8 @@ int controller_removeMascota(LinkedList* pLLMascotas,LinkedList* pLLDuenos)
     //Recorrer la lista, si existe la mascota, la muestro y la borro
     int currentNodeIndex = 0;
     int linkedListSize = ll_len(pLLMascotas);
-    Mascota* currentMascota = NULL;
     Node* currentNode = pLLMascotas->pFirstNode;
+    Mascota* currentMascota = NULL;
 
     while (currentNodeIndex < linkedListSize)
     {
@@ -443,19 +443,12 @@ int controller_saveDuenosAsBinary(char* path, LinkedList* pLLDuenos)
 
 int controller_freeResources(LinkedList* this)
 {
-    Node* currentNode = this->pFirstNode;
-    Node* temporaryNode;
-
-    while (currentNode != NULL)
+    if(!ll_deleteLinkedList(this))
     {
-        temporaryNode = currentNode;
-        currentNode = currentNode->pNextNode;
-        free(temporaryNode);
+        return 0;
     }
 
-    ll_deleteLinkedList(this);
-
-    return 1;
+    return -1;
 }
 
 int controller_sortMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
