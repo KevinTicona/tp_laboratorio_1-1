@@ -31,4 +31,9 @@ int controller_freeResources(LinkedList* this);
 int controller_cloneList(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
 int controller_makeSubList(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
 
+int controller_containsList(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
+int controller_settingMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
+
+int controller_pushMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
+
 #endif // CONTROLLER_H_INCLUDED

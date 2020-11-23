@@ -59,7 +59,7 @@ Mascota* mascota_newParams(
     validId = atoi(id);
     validEdad = atoi(edad);
     validIdDueno = atoi(ID_duenio);
-
+        //printf("\nholasa\n");
     Mascota* newMascota = mascota_new();
 
     if(newMascota != NULL)
@@ -76,7 +76,7 @@ Mascota* mascota_newParams(
             newMascota = NULL;
             free(newMascota);
         }
-
+    //printf("\nhola\n");
     }
     return newMascota;
 }

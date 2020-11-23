@@ -107,6 +107,7 @@ int controller_addMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
     mascotas_enterSex(sexo);
     mascotas_enterAge(edad);
     //imprimir dueños
+    system("cls");
     menu_imprimirDuenos(pLLDuenos);
     mascotas_enterIdDueno(idDueno);
 
@@ -568,7 +569,7 @@ int controller_sortMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
 {
     if (ll_isEmpty(pLLMascotas) == 1)
     {
-        printf("\nNo existen mascotas en el sistema. Intente cargarlaspara poder listarlas.\n");
+        printf("\nNo existen mascotas en el sistema. Intente cargarlas para poder listarlas.\n");
         return -1;
     }
 
@@ -582,7 +583,7 @@ int controller_sortMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                          &optionSort,
                          "\nOpcion invalida, vuelva a intentarlo.\n",
                          1,
-                         5);
+                         4);
         if(!selectSort)
         {
             switch(optionSort)
@@ -609,16 +610,13 @@ int controller_sortMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                 controller_ListMascotas(pLLMascotas,pLLDuenos);
                 break;
             case 4:
-                printf("\nMantenimiento...\n");
-                break;
-            case 5:
                 printf("Volviendo al menu principal...\n");
                 break;
             }
             system("pause");
         }
     }
-    while(optionSort != 5);
+    while(optionSort != 4);
 
     return 0;
 }
@@ -627,7 +625,7 @@ int controller_filterMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
 {
     if (ll_isEmpty(pLLMascotas) == 1)
     {
-        printf("\nNo existen mascotas en el sistema. Intente cargarlaspara poder filtrarlas.\n");
+        printf("\nNo existen mascotas en el sistema. Intente cargarlas para poder filtrarlas.\n");
         return -1;
     }
 
@@ -659,7 +657,6 @@ int controller_filterMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                 }
                 else
                 {
-                    printf("\nOcurrió un problema. Vuelva a intentarlo mas tarde\n");
                     ll_deleteLinkedList(perros);
                 }
             }
@@ -677,7 +674,6 @@ int controller_filterMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                 }
                 else
                 {
-                    printf("\nOcurrió un problema. Vuelva a intentarlo mas tarde\n");
                     ll_deleteLinkedList(gatos);
                 }
             }
@@ -695,7 +691,6 @@ int controller_filterMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                 }
                 else
                 {
-                    printf("\nOcurrió un problema. Vuelva a intentarlo mas tarde\n");
                     ll_deleteLinkedList(reptiles);
                 }
             }
@@ -713,7 +708,6 @@ int controller_filterMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                 }
                 else
                 {
-                    printf("\nOcurrió un problema. Vuelva a intentarlo mas tarde\n");
                     ll_deleteLinkedList(roedores);
                 }
             }
@@ -726,6 +720,239 @@ int controller_filterMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
         }
     }
     while(optionSort != 5);
+
+    return 0;
+}
+
+int controller_containsList(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
+{
+    if (ll_isEmpty(pLLMascotas) == 1)
+    {
+        printf("\nNo existen mascotas en el sistema. Intente cargarlas desde el menu principal primero.\n");
+        return -1;
+    }
+    //Generar una sublista de pLLMascotas y ver si esta contenida en pll mascotas
+    //Ver si pLLDueños esta contenido en pLLMascotas
+    int optionSort = 0;
+    int selectSort = 0;
+
+    do
+    {
+        menu_submenu_contains();
+        selectSort = validations_getOption(
+                         &optionSort,
+                         "\nOpcion invalida, vuelva a intentarlo.\n",
+                         1,
+                         3);
+        if(!selectSort)
+        {
+            switch(optionSort)
+            {
+            case 1:
+            {
+                int contiene;
+                LinkedList* listaContenida = ll_subList(pLLMascotas,10,15);
+                system("cls");
+                printf("_____________________________________________________________________________________________\n");
+                printf("                                        Sub-lista 1 \n");
+                menu_imprimirMascotas(listaContenida,pLLDuenos);
+                printf("_____________________________________________________________________________________________\n");
+                printf("\n\nEstara esta sublista contenida en la lista de mascotas principal?\n");
+
+                if(listaContenida != NULL)
+                {
+                    contiene = ll_containsAll(pLLMascotas,listaContenida);
+                    if(contiene == 1)
+                    {
+                        printf("\nSi! La lista esta contenida.\n");
+                        ll_deleteLinkedList(listaContenida);
+                    }
+                    else if(contiene == 0)
+                    {
+                        printf("\nNo, la lista no esta contenida...\n");
+                        ll_deleteLinkedList(listaContenida);
+                    }
+                }
+            }
+            break;
+            case 2:
+            {
+                int contiene;
+                LinkedList* listaContenidaD = ll_subList(pLLDuenos,5,10);
+
+                system("cls");
+                printf("____________________________________________________\n");
+                printf("                 Sub-lista 2 \n");
+                menu_imprimirDuenos(listaContenidaD);
+                printf("____________________________________________________\n");
+                printf("\n\nEstara esta sublista contenida en la lista de mascotas principal?\n");
+
+                if(listaContenidaD != NULL)
+                {
+                    contiene = ll_containsAll(pLLMascotas,listaContenidaD);
+                    if(contiene == 1)
+                    {
+                        printf("\nSi! La lista esta contenida.\n");
+                        ll_deleteLinkedList(listaContenidaD);
+                    }
+                    else if(contiene == 0)
+                    {
+                        printf("\nNo, la lista no esta contenida...\n");
+                        ll_deleteLinkedList(listaContenidaD);
+                    }
+                }
+
+            }
+            break;
+            case 3:
+                printf("Volviendo al menu principal...\n");
+                break;
+            }
+            system("pause");
+        }
+    }
+    while(optionSort != 3);
+
+    return 0;
+}
+
+int controller_settingMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
+{
+    if(ll_isEmpty(pLLMascotas) != 0)
+    {
+        printf("\nSe deben cargar los datos antes de agregar una mascota a la lista.\n");
+        return -1;
+    }
+
+    // preguntar un indice dónde guardarlo (validar!!!!)
+    char indexAsChar[100];
+    int index;
+    int validIndex;
+    int id;
+
+    printf("\n Ingrese una posicion de la lista: ");
+    fflush(stdin);
+    gets(indexAsChar);
+    validIndex = validations_isValidNumber(indexAsChar);
+    while(validIndex != 1)
+    {
+        printf("\n Dato invalido. Ingrese una posicion de la lista: ");
+        fflush(stdin);
+        gets(indexAsChar);
+        validIndex = validations_isValidNumber(indexAsChar);
+    }
+
+    index = atoi(indexAsChar);
+
+    if(index >= 0 && index < ll_len(pLLMascotas))
+    {
+        // de esa mascota sacar el ID -> para ponerlo en la mascota nueva
+        Mascota* masc = ll_get(pLLMascotas,index);
+
+        if(masc != NULL)
+        {
+            id = masc->ID;
+        }
+    }
+    else
+    {
+        printf("\nEl indice se encuentra fuera de rango.\n");
+        return -1;
+    }
+
+    Mascota* newMascota = NULL;
+    char idAsChar[50], nombre[100], tipo[50], sexo[50], edad[50], idDueno[50];
+
+    // Ingresar y validar datos
+    itoa(id,idAsChar,10);
+    mascotas_enterName(nombre);
+    mascotas_enterType(tipo);
+    mascotas_enterSex(sexo);
+    mascotas_enterAge(edad);
+    //imprimir dueños
+    system("cls");
+    menu_imprimirDuenos(pLLDuenos);
+    mascotas_enterIdDueno(idDueno);
+
+    // cree una mascota nueva sin añadirla al LL
+    newMascota = mascota_newParams(idAsChar,nombre,tipo,sexo,edad,idDueno);
+
+    // guardar la mascota
+    if(newMascota != NULL)
+    {
+        ll_set(pLLMascotas,index,newMascota);
+        return 0;
+    }
+
+    return -1;
+}
+
+int controller_pushMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
+{
+    if(ll_isEmpty(pLLMascotas) != 0)
+    {
+        printf("\nSe deben cargar los datos antes de agregar una mascota a la lista.\n");
+        return -1;
+    }
+
+    // preguntar un indice dónde guardarlo (validar!!!!)
+    char indexAsChar[100];
+    int index;
+    int validIndex;
+
+
+    printf("\n Ingrese una posicion de la lista: ");
+    fflush(stdin);
+    gets(indexAsChar);
+    validIndex = validations_isValidNumber(indexAsChar);
+    while(validIndex != 1)
+    {
+        printf("\n Dato invalido. Ingrese una posicion de la lista: ");
+        fflush(stdin);
+        gets(indexAsChar);
+        validIndex = validations_isValidNumber(indexAsChar);
+    }
+
+    index = atoi(indexAsChar);
+
+    if(index < 0 || index >= ll_len(pLLMascotas))
+    {
+        printf("\nIndice fuera del rango. \n");
+        return -1;
+    }
+
+    Mascota* newMascota = NULL;
+    int id;
+    char idAsChar[50], nombre[100], tipo[50], sexo[50], edad[50], idDueno[50];
+
+    // Ingresar y validar datos
+    mascotas_enterName(nombre);
+    mascotas_enterType(tipo);
+    mascotas_enterSex(sexo);
+    mascotas_enterAge(edad);
+    system("cls");
+    menu_imprimirDuenos(pLLDuenos);
+    mascotas_enterIdDueno(idDueno);
+
+    // Id autoincremental
+    Node* currentNode = pLLMascotas->pFirstNode;
+
+    while (currentNode->pNextNode != NULL)
+    {
+        currentNode = currentNode->pNextNode;
+    }
+
+    Mascota* ultimaMascota = (Mascota*)currentNode->pElement;
+    mascotas_getId(ultimaMascota,&id);
+    id += 1;
+    itoa(id, idAsChar, 10);
+
+    newMascota = mascota_newParams(idAsChar,nombre,tipo,sexo,edad,idDueno);
+
+    if(newMascota != NULL)
+    {
+        ll_push(pLLMascotas,index,newMascota);
+    }
 
     return 0;
 }

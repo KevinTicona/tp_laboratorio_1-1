@@ -24,10 +24,13 @@ void menu_main()
     printf("8. Ordenar mascotas.\n");
     printf("9. Filtrar mascotas por tipo.\n");
     printf("10. Clonar mascotas.\n");
-    printf("11. Generar sublista de mascotas.\n");
-    printf("12. Guardar los datos de las mascotas en el archivo data.csv (modo texto).\n");
-    printf("13. Guardar los datos de las mascotas en el archivo data.bin (modo binario)..\n");
-    printf("14. Salir.\n");
+    printf("11. Revisar si una mascota o una lista esta contenida en la lista de mascotas.\n");
+    printf("12. Generar sublista de mascotas.\n");
+    printf("13. Setear una mascota nueva en un indice de la lista de mascotas.\n");
+    printf("14. Hacer un push de una mascota nueva en un indice de la lista de mascotas.\n");
+    printf("15. Guardar los datos de las mascotas en el archivo data.csv (modo texto).\n");
+    printf("16. Guardar los datos de las mascotas en el archivo data.bin (modo binario)..\n");
+    printf("17. Salir.\n");
 }
 
 void menu_imprimirMascota(LinkedList* duenos,Mascota* currentMascota)
@@ -88,7 +91,6 @@ int menu_imprimirDuenos(LinkedList* this)
     Dueno* currentDueno;
     Node* currentNode = this->pFirstNode;
 
-    system("cls");
     printf("____________________________________________________\n");
     printf("                    DUENOS \n");
     printf("____________________________________________________\n");
@@ -139,8 +141,7 @@ void menu_submenu_order()
     printf("1. Ordenar mascotas por nombre.\n");
     printf("2. Ordenar mascotas por ID.\n");
     printf("3. Ordenar mascotas por tipo.\n");
-    printf("4. Ordenar mascotas por dueno.\n");
-    printf("5. Volver al menu principal.\n");
+    printf("4. Volver al menu principal.\n");
 }
 
 void menu_submenu_filter()
@@ -156,4 +157,15 @@ void menu_submenu_filter()
     printf("3. Filtrar reptiles.\n");
     printf("4. Filtrar roedores.\n");
     printf("5. Volver al menu principal.\n");
+}
+
+void menu_submenu_contains()
+{
+    system("cls");
+    printf("__________________________________________________________________________________\n");
+    printf("                                    MASCOTAS          \n");
+    printf("__________________________________________________________________________________\n");
+    printf("1. Revisar si la lista de mascotas esta contenida en la lista de mascotas principal.\n");
+    printf("2. Revisar si la lista de duenos esta contenida en la lista de mascotas.\n");
+    printf("3. Volver al menu principal.\n");
 }

@@ -13,4 +13,6 @@ void menu_modificaciones();
 
 void menu_submenu_order();
 void menu_submenu_filter();
+
+void menu_submenu_contains();
 #endif // MENU_H_INCLUDED

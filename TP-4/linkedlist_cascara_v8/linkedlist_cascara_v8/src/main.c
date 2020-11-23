@@ -48,7 +48,7 @@ int main(void)
                         &option,
                         "\nOpcion invalida, vuelva a intentar.\n",
                         1,
-                        14
+                        17
                     );
         if(!selection)
         {
@@ -117,7 +117,7 @@ int main(void)
             case 9:
                 if(!controller_filterMascotas(petList,ownersList))
                 {
-                    printf("\nFiltración exitosa.\n");
+                    printf("\nFiltracion exitosa.\n");
                 }
                 else
                 {
@@ -135,6 +135,16 @@ int main(void)
                 }
                 break;
             case 11:
+                if(!controller_containsList(petList,ownersList))
+                {
+                    printf("\nEvaluacion realizada exitosamente\n");
+                }
+                else
+                {
+                    printf("\nOcurrio un problema al realizar la evaluacion, vuelva a intentar.\n");
+                }
+                break;
+            case 12:
                 if(!controller_makeSubList(petList,ownersList))
                 {
                     printf("\nSub-lista creada exitosamente\n");
@@ -144,21 +154,41 @@ int main(void)
                     printf("\nOcurrio un problema al crear la sub-lista, vuelva a intentar.\n");
                 }
                 break;
-            case 12:
+            case 13:
+                if(!controller_settingMascota(petList,ownersList))
+                {
+                    printf("\nSe ha colocado la mascota en el indice indicado con exito.\n");
+                }
+                else
+                {
+                    printf("\nOcurrio un problema, vuelva a intentar.\n");
+                }
+                break;
+            case 14:
+                if(!controller_pushMascota(petList,ownersList))
+                {
+                    printf("\nSe ha colocado la mascota en el indice indicado con exito.\n");
+                }
+                else
+                {
+                    printf("\nOcurrio un problema, vuelva a intentar.\n");
+                }
+                break;
+            case 15:
                 if(!controller_saveMascotasAsText(PATH_MASCOTAS_TXT,petList) && !controller_saveDuenosAsText(PATH_DUENOS_TXT,ownersList))
                 {
                     printf("\nSe han guardado %d mascotas en el archivo %s.\n", petList->size, PATH_MASCOTAS_TXT);
                     printf("\nSe han guardado %d duenos en el archivo %s.\n", ownersList->size, PATH_DUENOS_TXT);
                 }
                 break;
-            case 13:
+            case 16:
                 if(!controller_saveMascotasAsBinary(PATH_MASCOTAS_BIN,petList) && !controller_saveDuenosAsBinary(PATH_DUENOS_BIN,ownersList))
                 {
                     printf("\nSe han guardado %d mascotas en el archivo %s.\n", petList->size, PATH_MASCOTAS_BIN);
                     printf("\nSe han guardado %d duenos en el archivo %s.\n", ownersList->size, PATH_DUENOS_BIN);
                 }
                 break;
-            case 14:
+            case 17:
                 controller_freeResources(petList);
                 controller_freeResources(ownersList);
                 printf("\nSaliendo...\n");
@@ -167,7 +197,7 @@ int main(void)
             system("pause");
         }
     }
-    while(option != 14);
+    while(option != 17);
 
     return 0;
 }
