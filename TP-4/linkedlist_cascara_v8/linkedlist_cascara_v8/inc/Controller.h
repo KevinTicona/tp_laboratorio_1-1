@@ -15,6 +15,7 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
 int controller_removeMascota(LinkedList* pLLMascotas,LinkedList* pLLDuenos);
 
 int controller_sortMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
+int controller_filterMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
 
 int controller_ListMascotas(LinkedList* pLLMascotas, LinkedList* duenos);
 int controller_ListDuenos(LinkedList* pLLDuenos);

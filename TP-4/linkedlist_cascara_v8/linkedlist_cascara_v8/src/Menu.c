@@ -22,11 +22,12 @@ void menu_main()
     printf("6. Listar mascotas.\n");
     printf("7. Listar duenos.\n");
     printf("8. Ordenar mascotas.\n");
-    printf("9. Clonar mascotas.\n");
-    printf("10. Generar sublista de mascotas.\n");
-    printf("11. Guardar los datos de las mascotas en el archivo data.csv (modo texto).\n");
-    printf("12. Guardar los datos de las mascotas en el archivo data.bin (modo binario)..\n");
-    printf("13. Salir.\n");
+    printf("9. Filtrar mascotas por tipo.\n");
+    printf("10. Clonar mascotas.\n");
+    printf("11. Generar sublista de mascotas.\n");
+    printf("12. Guardar los datos de las mascotas en el archivo data.csv (modo texto).\n");
+    printf("13. Guardar los datos de las mascotas en el archivo data.bin (modo binario)..\n");
+    printf("14. Salir.\n");
 }
 
 void menu_imprimirMascota(LinkedList* duenos,Mascota* currentMascota)
@@ -142,3 +143,17 @@ void menu_submenu_order()
     printf("5. Volver al menu principal.\n");
 }
 
+void menu_submenu_filter()
+{
+    system("cls");
+    printf("__________________________________________________________________________________\n");
+    printf("                                    MASCOTAS          \n");
+    printf("__________________________________________________________________________________\n");
+    printf("                            FILTRAR MASCOTAS POR TIPO                    \n");
+    printf("__________________________________________________________________________________\n");
+    printf("1. Filtrar perros.\n");
+    printf("2. Filtrar gatos.\n");
+    printf("3. Filtrar reptiles.\n");
+    printf("4. Filtrar roedores.\n");
+    printf("5. Volver al menu principal.\n");
+}

@@ -48,7 +48,7 @@ int main(void)
                         &option,
                         "\nOpcion invalida, vuelva a intentar.\n",
                         1,
-                        13
+                        14
                     );
         if(!selection)
         {
@@ -115,6 +115,16 @@ int main(void)
                 }
                 break;
             case 9:
+                if(!controller_filterMascotas(petList,ownersList))
+                {
+                    printf("\nFiltración exitosa.\n");
+                }
+                else
+                {
+                    printf("\nOcurrio un problema al realizar el filtrado, vuelva a intentar.\n");
+                }
+                break;
+            case 10:
                 if(!controller_cloneList(petList,ownersList))
                 {
                     printf("\nLista clonada exitosamente\n");
@@ -124,7 +134,7 @@ int main(void)
                     printf("\nOcurrio un problema al clonar la lista, vuelva a intentar.\n");
                 }
                 break;
-            case 10:
+            case 11:
                 if(!controller_makeSubList(petList,ownersList))
                 {
                     printf("\nSub-lista creada exitosamente\n");
@@ -134,21 +144,21 @@ int main(void)
                     printf("\nOcurrio un problema al crear la sub-lista, vuelva a intentar.\n");
                 }
                 break;
-            case 11:
+            case 12:
                 if(!controller_saveMascotasAsText(PATH_MASCOTAS_TXT,petList) && !controller_saveDuenosAsText(PATH_DUENOS_TXT,ownersList))
                 {
                     printf("\nSe han guardado %d mascotas en el archivo %s.\n", petList->size, PATH_MASCOTAS_TXT);
                     printf("\nSe han guardado %d duenos en el archivo %s.\n", ownersList->size, PATH_DUENOS_TXT);
                 }
                 break;
-            case 12:
+            case 13:
                 if(!controller_saveMascotasAsBinary(PATH_MASCOTAS_BIN,petList) && !controller_saveDuenosAsBinary(PATH_DUENOS_BIN,ownersList))
                 {
                     printf("\nSe han guardado %d mascotas en el archivo %s.\n", petList->size, PATH_MASCOTAS_BIN);
                     printf("\nSe han guardado %d duenos en el archivo %s.\n", ownersList->size, PATH_DUENOS_BIN);
                 }
                 break;
-            case 13:
+            case 14:
                 controller_freeResources(petList);
                 controller_freeResources(ownersList);
                 printf("\nSaliendo...\n");
@@ -157,7 +167,7 @@ int main(void)
             system("pause");
         }
     }
-    while(option != 13);
+    while(option != 14);
 
     return 0;
 }

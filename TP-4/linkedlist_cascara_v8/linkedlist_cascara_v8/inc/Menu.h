@@ -12,4 +12,5 @@ void menu_encabezadoMascota();
 void menu_modificaciones();
 
 void menu_submenu_order();
+void menu_submenu_filter();
 #endif // MENU_H_INCLUDED

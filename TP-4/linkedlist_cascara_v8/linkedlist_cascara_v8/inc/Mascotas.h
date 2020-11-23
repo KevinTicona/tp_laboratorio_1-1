@@ -41,4 +41,10 @@ int mascotas_SortByName(void* mascotaA, void* mascotaB);
 int mascotas_SortByTipo(void* mascotaA, void* mascotaB);
 int mascotas_SortById(void* mascotaA, void* mascotaB);
 
+//Filtrar
+int mascotas_filtrarGatos(void* mascota);
+int mascotas_filtrarPerros(void* mascota);
+int mascotas_filtrarRoedores(void* mascota);
+int mascotas_filtrarReptiles(void* mascota);
+
 #endif // MASCOTAS_H_INCLUDED

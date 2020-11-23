@@ -305,7 +305,7 @@ int controller_cloneList(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
 {
     if (ll_isEmpty(pLLMascotas) == 1 && ll_isEmpty(pLLDuenos) == 1)
     {
-        printf("\nNo existen mascotas en el sistema. Intente cargarlos desde el menu para poder visualizarlos.\n");
+        printf("\nNo existen mascotas en el sistema. Intente cargarlos desde el menu para poder clonarlas.\n");
         return -1;
     }
 
@@ -330,7 +330,7 @@ int controller_makeSubList(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
 {
     if (ll_isEmpty(pLLMascotas) == 1 && ll_isEmpty(pLLDuenos) == 1)
     {
-        printf("\nNo existen mascotas en el sistema. Intente cargarlos desde el menu para poder visualizarlos.\n");
+        printf("\nNo existen mascotas en el sistema. Intente cargarlos desde el menu para poder realizar una sublista.\n");
         return -1;
     }
 
@@ -611,6 +611,113 @@ int controller_sortMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
             case 4:
                 printf("\nMantenimiento...\n");
                 break;
+            case 5:
+                printf("Volviendo al menu principal...\n");
+                break;
+            }
+            system("pause");
+        }
+    }
+    while(optionSort != 5);
+
+    return 0;
+}
+
+int controller_filterMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
+{
+    if (ll_isEmpty(pLLMascotas) == 1)
+    {
+        printf("\nNo existen mascotas en el sistema. Intente cargarlaspara poder filtrarlas.\n");
+        return -1;
+    }
+
+    int optionSort = 0;
+    int selectSort = 0;
+
+    do
+    {
+        menu_submenu_filter();
+        selectSort = validations_getOption(
+                         &optionSort,
+                         "\nOpcion invalida, vuelva a intentarlo.\n",
+                         1,
+                         5);
+        if(!selectSort)
+        {
+            switch(optionSort)
+            {
+            case 1:
+            {
+                LinkedList* perros = ll_filter(pLLMascotas,mascotas_filtrarPerros);
+                if(perros != NULL)
+                {
+                    system("cls");
+                    printf("_____________________________________________________________________________________________\n");
+                    printf("                                          PERROS \n");
+                    menu_imprimirMascotas(perros,pLLDuenos);
+                    ll_deleteLinkedList(perros);
+                }
+                else
+                {
+                    printf("\nOcurrió un problema. Vuelva a intentarlo mas tarde\n");
+                    ll_deleteLinkedList(perros);
+                }
+            }
+            break;
+            case 2:
+            {
+                LinkedList* gatos = ll_filter(pLLMascotas,mascotas_filtrarGatos);
+                if(gatos != NULL)
+                {
+                    system("cls");
+                    printf("_____________________________________________________________________________________________\n");
+                    printf("                                          GATOS \n");
+                    menu_imprimirMascotas(gatos,pLLDuenos);
+                    ll_deleteLinkedList(gatos);
+                }
+                else
+                {
+                    printf("\nOcurrió un problema. Vuelva a intentarlo mas tarde\n");
+                    ll_deleteLinkedList(gatos);
+                }
+            }
+            break;
+            case 3:
+            {
+                LinkedList* reptiles = ll_filter(pLLMascotas,mascotas_filtrarReptiles);
+                if(reptiles != NULL)
+                {
+                    system("cls");
+                    printf("_____________________________________________________________________________________________\n");
+                    printf("                                          REPTILES \n");
+                    menu_imprimirMascotas(reptiles,pLLDuenos);
+                    ll_deleteLinkedList(reptiles);
+                }
+                else
+                {
+                    printf("\nOcurrió un problema. Vuelva a intentarlo mas tarde\n");
+                    ll_deleteLinkedList(reptiles);
+                }
+            }
+            break;
+            case 4:
+            {
+                LinkedList* roedores = ll_filter(pLLMascotas,mascotas_filtrarRoedores);
+                if(roedores != NULL)
+                {
+                    system("cls");
+                    printf("_____________________________________________________________________________________________\n");
+                    printf("                                          ROEDORES \n");
+                    menu_imprimirMascotas(roedores,pLLDuenos);
+                    ll_deleteLinkedList(roedores);
+                }
+                else
+                {
+                    printf("\nOcurrió un problema. Vuelva a intentarlo mas tarde\n");
+                    ll_deleteLinkedList(roedores);
+                }
+            }
+            break;
             case 5:
                 printf("Volviendo al menu principal...\n");
                 break;

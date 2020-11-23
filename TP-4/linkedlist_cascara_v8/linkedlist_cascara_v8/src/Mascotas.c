@@ -418,3 +418,71 @@ int mascotas_SortById(void* mascotaA, void* mascotaB)
 
     return retorno;
 }
+
+int mascotas_filtrarGatos(void* mascota)
+{
+    int retorno = 0;
+    Mascota* masc = NULL;
+
+    if(mascota != NULL)
+    {
+        masc = (Mascota*) mascota;
+
+        if(strcmp(masc->tipo,"Gato") == 0)
+        {
+            retorno = 1;
+        }
+    }
+    return retorno;
+}
+
+int mascotas_filtrarPerros(void* mascota)
+{
+    int retorno = 0;
+    Mascota* masc = NULL;
+
+    if(mascota != NULL)
+    {
+        masc = (Mascota*) mascota;
+
+        if(strcmp(masc->tipo,"Perro") == 0)
+        {
+            retorno = 1;
+        }
+    }
+    return retorno;
+}
+
+int mascotas_filtrarRoedores(void* mascota)
+{
+    int retorno = 0;
+    Mascota* masc = NULL;
+
+    if(mascota != NULL)
+    {
+        masc = (Mascota*) mascota;
+
+        if(strcmp(masc->tipo,"Roedor") == 0)
+        {
+            retorno = 1;
+        }
+    }
+    return retorno;
+}
+
+int mascotas_filtrarReptiles(void* mascota)
+{
+    int retorno = 0;
+    Mascota* masc = NULL;
+
+    if(mascota != NULL)
+    {
+        masc = (Mascota*) mascota;
+
+        if(strcmp(masc->tipo,"Reptil") == 0)
+        {
+            retorno = 1;
+        }
+    }
+    return retorno;
+}
