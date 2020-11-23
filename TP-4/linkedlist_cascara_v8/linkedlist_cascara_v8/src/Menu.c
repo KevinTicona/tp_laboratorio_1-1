@@ -22,9 +22,11 @@ void menu_main()
     printf("6. Listar mascotas.\n");
     printf("7. Listar duenos.\n");
     printf("8. Ordenar mascotas.\n");
-    printf("9. Guardar los datos de las mascotas en el archivo data.csv (modo texto).\n");
-    printf("10. Guardar los datos de las mascotas en el archivo data.bin (modo binario)..\n");
-    printf("11. Salir.\n");
+    printf("9. Clonar mascotas.\n");
+    printf("10. Generar sublista de mascotas.\n");
+    printf("11. Guardar los datos de las mascotas en el archivo data.csv (modo texto).\n");
+    printf("12. Guardar los datos de las mascotas en el archivo data.bin (modo binario)..\n");
+    printf("13. Salir.\n");
 }
 
 void menu_imprimirMascota(LinkedList* duenos,Mascota* currentMascota)
@@ -51,7 +53,6 @@ int menu_imprimirMascotas(LinkedList* pLLMascotas,LinkedList* duenos)
     // Recorremos la Linked List con un índice (un número)
     // Aunque también podríamos recorrer la lista hasta llegar al final verificando si el pNextNode del Nodo actual no sea NULL
 
-    system("cls");
     printf("_____________________________________________________________________________________________\n");
     printf("                                            MASCOTAS \n");
     printf("_____________________________________________________________________________________________\n");
@@ -140,3 +141,4 @@ void menu_submenu_order()
     printf("4. Ordenar mascotas por dueno.\n");
     printf("5. Volver al menu principal.\n");
 }
+

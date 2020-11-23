@@ -148,6 +148,7 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
     char idChar[50], newName[100], newType[30], newAge[30];
 
     //Validar ingreso de datos
+    system("cls");
     menu_imprimirMascotas(pLLMascotas,pLLDuenos);
     printf("\nIngrese el ID de la mascota que desea modificar\n");
     fflush(stdin);
@@ -281,6 +282,7 @@ int controller_ListMascotas(LinkedList* pLLMascotas, LinkedList* duenos)
         return 0;
     }
 
+    system("cls");
     menu_imprimirMascotas(pLLMascotas,duenos);
 
     return 1;
@@ -299,8 +301,98 @@ int controller_ListDuenos(LinkedList* pLLDuenos)
     return 1;
 }
 
+int controller_cloneList(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
+{
+    if (ll_isEmpty(pLLMascotas) == 1 && ll_isEmpty(pLLDuenos) == 1)
+    {
+        printf("\nNo existen mascotas en el sistema. Intente cargarlos desde el menu para poder visualizarlos.\n");
+        return -1;
+    }
+
+    int error = -1;
+
+    LinkedList* cloneList = ll_clone(pLLMascotas);
+
+    if(cloneList != NULL)
+    {
+        system("cls");
+        printf("_____________________________________________________________________________________________\n");
+        printf("                                         LISTA CLONADA \n");
+        menu_imprimirMascotas(cloneList,pLLDuenos);
+        ll_deleteLinkedList(cloneList);
+        error = 0;
+    }
+
+    return error;
+}
+
+int controller_makeSubList(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
+{
+    if (ll_isEmpty(pLLMascotas) == 1 && ll_isEmpty(pLLDuenos) == 1)
+    {
+        printf("\nNo existen mascotas en el sistema. Intente cargarlos desde el menu para poder visualizarlos.\n");
+        return -1;
+    }
+
+    int error = -1;
+    LinkedList* subList = NULL;
+    char fromAsChar[100];
+    char toAsChar[100];
+    int validFrom;
+    int validTo;
+    int from;
+    int to;
+
+    printf("\nIngrese un indice entero desde donde quiere comenzar a copiar\n");
+    fflush(stdin);
+    gets(fromAsChar);
+    validFrom = validations_isValidNumber(fromAsChar);
+    while(validFrom != 1)
+    {
+        printf("\nDato invalido. Ingrese un indice entero desde donde quiere comenzar a copiar\n");
+        fflush(stdin);
+        gets(fromAsChar);
+        validFrom = validations_isValidNumber(fromAsChar);
+    }
+
+    printf("\nIngrese un indice entero desde donde quiere finalizar el copiado\n");
+    fflush(stdin);
+    gets(toAsChar);
+    validTo = validations_isValidNumber(toAsChar);
+    while(validTo != 1)
+    {
+        printf("\nDato invalido. Ingrese un indice entero desde donde quiere finalizar el copiado\n");
+        fflush(stdin);
+        gets(toAsChar);
+        validTo = validations_isValidNumber(toAsChar);
+    }
+
+    from = atoi(fromAsChar);
+    to = atoi(toAsChar);
+
+    subList = ll_subList(pLLMascotas,from,to);
+
+    if(subList != NULL)
+    {
+        system("cls");
+        printf("_____________________________________________________________________________________________\n");
+        printf("                                       SUB-LISTA\n");
+        menu_imprimirMascotas(subList,pLLDuenos);
+        ll_deleteLinkedList(subList);
+        error = 0;
+    }
+
+    return error;
+}
+
 int controller_saveMascotasAsText(char* path, LinkedList* pLLMascotas)
 {
+    if (ll_isEmpty(pLLMascotas) == 1)
+    {
+        printf("\nPrimero deben haber mascotas cargadas.\n");
+        return -1;
+    }
+
     FILE *pFile;
 
     pFile = fopen(path, "w");
@@ -345,6 +437,12 @@ int controller_saveMascotasAsText(char* path, LinkedList* pLLMascotas)
 
 int controller_saveDuenosAsText(char* path, LinkedList* pLLDuenos)
 {
+    if (ll_isEmpty(pLLDuenos) == 1)
+    {
+        printf("\nPrimero deben haber duenos cargados.\n");
+        return -1;
+    }
+
     FILE *pFile;
 
     pFile = fopen(path, "w");
@@ -386,6 +484,12 @@ int controller_saveDuenosAsText(char* path, LinkedList* pLLDuenos)
 
 int controller_saveMascotasAsBinary(char* path, LinkedList* pLLMascotas)
 {
+    if (ll_isEmpty(pLLMascotas) == 1)
+    {
+        printf("\nPrimero deben haber mascotas cargadas.\n");
+        return -1;
+    }
+
     FILE* pFile= fopen(path, "wb");
 
     if (pFile == NULL || pLLMascotas == NULL)
@@ -416,6 +520,12 @@ int controller_saveMascotasAsBinary(char* path, LinkedList* pLLMascotas)
 
 int controller_saveDuenosAsBinary(char* path, LinkedList* pLLDuenos)
 {
+    if (ll_isEmpty(pLLDuenos) == 1)
+    {
+        printf("\nPrimero deben haber duenos cargados.\n");
+        return -1;
+    }
+
     FILE* pFile= fopen(path, "wb");
 
     if (pFile == NULL || pLLDuenos == NULL)

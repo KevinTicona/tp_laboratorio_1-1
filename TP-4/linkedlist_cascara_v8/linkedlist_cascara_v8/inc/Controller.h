@@ -27,4 +27,7 @@ int controller_saveDuenosAsBinary(char* path, LinkedList* pLLDuenos);
 
 int controller_freeResources(LinkedList* this);
 
+int controller_cloneList(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
+int controller_makeSubList(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
+
 #endif // CONTROLLER_H_INCLUDED
