@@ -63,7 +63,7 @@ int validations_isValidNumber(char* str)
     int retorno = 1;
     int len = strlen(str);
 
-    for(int i = 0; i < len-1; i++)
+    for(int i = 0; i < len; i++)
     {
         if(str[i] < '0' || str[i] > '9')
         {

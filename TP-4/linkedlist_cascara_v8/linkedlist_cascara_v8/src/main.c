@@ -137,7 +137,7 @@ int main(void)
             system("pause");
         }
     }
-    while(option!=11);
+    while(option != 11);
 
     return 0;
 }

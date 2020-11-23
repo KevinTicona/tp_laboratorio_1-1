@@ -148,6 +148,7 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
     char idChar[50], newName[100], newType[30], newAge[30];
 
     //Validar ingreso de datos
+    menu_imprimirMascotas(pLLMascotas,pLLDuenos);
     printf("\nIngrese el ID de la mascota que desea modificar\n");
     fflush(stdin);
     gets(idChar);
