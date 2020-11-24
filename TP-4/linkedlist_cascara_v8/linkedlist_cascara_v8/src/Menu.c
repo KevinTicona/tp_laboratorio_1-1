@@ -174,17 +174,19 @@ void menu_submenu_contains()
 
 void menu_confirmar(char* decision)
 {
-    char confirmation;
+    char confirmation[50];
     printf("\nConfirmar cambios? s - si; n - no\n");
     fflush(stdin);
-    scanf("%c", &confirmation);
-    confirmation = tolower(confirmation);
-    while(confirmation != 's' && confirmation != 'n')
+    gets(confirmation);
+    strlwr(confirmation);
+
+    while(strcmp(confirmation,"s") != 0 && strcmp(confirmation,"si") != 0
+            && strcmp(confirmation,"n") != 0 && strcmp(confirmation,"no") != 0)
     {
-        printf("Opción invalida. s - si; n - no\n");
+        printf("Opcion invalida. s - si; n - no\n");
         fflush(stdin);
-        scanf("%c", &confirmation);
-        confirmation = tolower(confirmation);
+        gets(confirmation);
+        strlwr(confirmation);
     }
-    *decision = confirmation;
+    strcpy(decision, confirmation);
 }

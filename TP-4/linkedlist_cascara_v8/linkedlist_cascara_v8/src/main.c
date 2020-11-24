@@ -122,7 +122,7 @@ int main(void)
             case 9:
                 if(!controller_sortMascotas(petList,ownersList))
                 {
-                    printf("\nOrdenamiento exitoso.\n");
+                    printf("\nOperacion realizada con exito.\n");
                 }
                 else
                 {
@@ -132,7 +132,7 @@ int main(void)
             case 10:
                 if(!controller_filterMascotas(petList,ownersList))
                 {
-                    printf("\nFiltracion exitosa.\n");
+                    printf("\nOperacion realizada con exito.\n");
                 }
                 else
                 {
