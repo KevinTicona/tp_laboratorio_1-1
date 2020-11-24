@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "../inc/LinkedList.h"
 #include "../inc/Duenos.h"
 #include "../inc/Mascotas.h"
@@ -168,4 +169,21 @@ void menu_submenu_contains()
     printf("1. Revisar si la lista de mascotas esta contenida en la lista de mascotas principal.\n");
     printf("2. Revisar si la lista de duenos esta contenida en la lista de mascotas.\n");
     printf("3. Volver al menu principal.\n");
+}
+
+void menu_confirmar(char* decision)
+{
+    char confirmation;
+    printf("\nConfirmar modificacion? s - si; n - no\n");
+    fflush(stdin);
+    scanf("%c", &confirmation);
+    confirmation = tolower(confirmation);
+    while(confirmation != 's' && confirmation != 'n')
+    {
+        printf("Opción invalida. s - si; n - no\n");
+        fflush(stdin);
+        scanf("%c", &confirmation);
+        confirmation = tolower(confirmation);
+    }
+    *decision = confirmation;
 }

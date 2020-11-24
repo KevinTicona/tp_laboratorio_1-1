@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include <string.h>
 #include "../inc/Controller.h"
 #include "../inc/Parser.h"
@@ -148,6 +149,7 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
     Mascota* mascotaAModificar = NULL;
     int validarEntero, id, selection, option, integerAge;
     char idChar[50], newName[100], newType[30], newAge[30];
+    char confirmation;
 
     //Validar ingreso de datos
     system("cls");
@@ -185,25 +187,60 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                 switch(option)
                 {
                 case 1:
+                    //Pedir dato
                     mascotas_enterName(newName);
-                    if(!mascotas_setNombre(mascotaAModificar,newName))
+                    //mostrar dato
+                    printf("\nNombre ingresado: %s\nNombre anterior: %s\n",newName,mascotaAModificar->nombre);
+                    //Confirmar modificacion
+                    menu_confirmar(&confirmation);
+
+                    if(confirmation == 's')
                     {
-                        printf("\nNombre modificado con exito.\n");
+                        mascotas_setNombre(mascotaAModificar,newName);
+                        printf("\nSe ha modificado el nombre.\n");
+                        break;
+                    }
+                    else if(confirmation == 'n')
+                    {
+                        printf("\nModificacion cancelada por usuario.\n");
+                        break;
                     }
                     break;
                 case 2:
                     mascotas_enterType(newType);
-                    if(!mascotas_setTipo(mascotaAModificar,newType))
+                    printf("\nTipo ingresado: %s\nTipo anterior: %s\n",newType,mascotaAModificar->tipo);
+
+                    menu_confirmar(&confirmation);
+
+                    if(confirmation == 's')
                     {
-                        printf("\nTipo modificado con exito.\n");
+                        mascotas_setTipo(mascotaAModificar,newType);
+                        printf("\nSe ha modificado el tipo.\n");
+                        break;
+                    }
+                    else if(confirmation == 'n')
+                    {
+                        printf("\nModificacion cancelada por usuario.\n");
+                        break;
                     }
                     break;
                 case 3:
                     mascotas_enterAge(newAge);
                     integerAge = atoi(newAge);
-                    if(!mascotas_setEdad(mascotaAModificar,integerAge))
+                    printf("\nEdad ingresada: %d\nEdad anterior: %d\n",integerAge,mascotaAModificar->edad);
+
+                    menu_confirmar(&confirmation);
+
+                    if(confirmation == 's')
                     {
-                        printf("\nEdad modificada con exito.\n");
+                        mascotas_setEdad(mascotaAModificar,integerAge);
+                        printf("\nSe ha modificado la edad.\n");
+                        break;
+                    }
+                    else if(confirmation == 'n')
+                    {
+                        printf("\nModificacion cancelada por usuario.\n");
+                        break;
                     }
                     break;
                 case 4:

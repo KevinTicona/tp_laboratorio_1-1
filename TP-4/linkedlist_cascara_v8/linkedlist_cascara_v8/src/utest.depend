@@ -4845,7 +4845,7 @@
 	<string.h>
 	"../inc/LinkedList.h"
 
-1606170088 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\main.c
+1606221842 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -4859,9 +4859,10 @@
 
 1560475730 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\testing\inc\main_test.h
 
-1606172792 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\controller.c
+1606222625 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\controller.c
 	<stdio.h>
 	<stdlib.h>
+	<ctype.h>
 	<string.h>
 	"../inc/Controller.h"
 	"../inc/Parser.h"
@@ -4889,7 +4890,7 @@
 1605920028 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\duenos.h
 	"../inc/LinkedList.h"
 
-1606161846 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\mascotas.c
+1606222417 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\mascotas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -4917,14 +4918,15 @@
 
 1605991190 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\validations.h
 
-1606170467 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\menu.c
+1606222440 source:c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\src\menu.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<ctype.h>
 	"../inc/LinkedList.h"
 	"../inc/Duenos.h"
 	"../inc/Mascotas.h"
 	"../inc/Menu.h"
 
-1606156359 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\menu.h
+1606222362 c:\users\micae\onedrive\escritorio\utn\prog & lab\trabajo práctico - 1\tp-4\linkedlist_cascara_v8\linkedlist_cascara_v8\inc\menu.h
 

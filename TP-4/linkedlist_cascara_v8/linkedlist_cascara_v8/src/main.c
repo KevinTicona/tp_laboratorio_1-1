@@ -35,8 +35,7 @@ int main(void)
 {
     //validations_testLL(20); //Esto corre todos los test del LinkedList
 
-    int option;
-    int selection;
+    int option, selection;
 
     LinkedList* petList = ll_newLinkedList();
     LinkedList* ownersList = ll_newLinkedList();

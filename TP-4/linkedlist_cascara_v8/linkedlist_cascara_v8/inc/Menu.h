@@ -15,4 +15,6 @@ void menu_submenu_order();
 void menu_submenu_filter();
 
 void menu_submenu_contains();
+
+void menu_confirmar(char* decision);
 #endif // MENU_H_INCLUDED
