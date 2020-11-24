@@ -955,7 +955,7 @@ int controller_settingMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
 
         if(masc != NULL)
         {
-            id = masc->ID;
+            mascotas_getId(masc, &id);
         }
     }
     else
