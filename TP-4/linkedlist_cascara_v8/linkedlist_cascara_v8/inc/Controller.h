@@ -13,6 +13,7 @@ int controller_addMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
 int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
 
 int controller_removeMascota(LinkedList* pLLMascotas,LinkedList* pLLDuenos);
+int controller_removeMascotaWithPop(LinkedList* pLLMascotas,LinkedList* pLLDuenos);
 
 int controller_sortMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos);
 int controller_filterMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos);

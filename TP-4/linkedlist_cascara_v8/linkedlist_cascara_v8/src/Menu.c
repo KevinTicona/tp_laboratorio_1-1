@@ -20,18 +20,19 @@ void menu_main()
     printf("3. Alta de mascota.\n");
     printf("4. Modificar datos de mascota.\n");
     printf("5. Baja de mascota.\n");
-    printf("6. Listar mascotas.\n");
-    printf("7. Listar duenos.\n");
-    printf("8. Ordenar mascotas.\n");
-    printf("9. Filtrar mascotas por tipo.\n");
-    printf("10. Clonar mascotas.\n");
-    printf("11. Revisar si una mascota o una lista esta contenida en la lista de mascotas.\n");
-    printf("12. Generar sublista de mascotas.\n");
-    printf("13. Setear una mascota nueva en un indice de la lista de mascotas.\n");
-    printf("14. Hacer un push de una mascota nueva en un indice de la lista de mascotas.\n");
-    printf("15. Guardar los datos de las mascotas en el archivo data.csv (modo texto).\n");
-    printf("16. Guardar los datos de las mascotas en el archivo data.bin (modo binario)..\n");
-    printf("17. Salir.\n");
+    printf("6. Baja de mascota con pop.\n");
+    printf("7. Listar mascotas.\n");
+    printf("8. Listar duenos.\n");
+    printf("9. Ordenar mascotas.\n");
+    printf("10. Filtrar mascotas por tipo.\n");
+    printf("11. Clonar mascotas.\n");
+    printf("12. Revisar si una mascota o una lista esta contenida en la lista de mascotas.\n");
+    printf("13. Generar sublista de mascotas.\n");
+    printf("14. Setear una mascota nueva en un indice de la lista de mascotas.\n");
+    printf("15. Hacer un push de una mascota nueva en un indice de la lista de mascotas.\n");
+    printf("16. Guardar los datos de las mascotas en el archivo data.csv (modo texto).\n");
+    printf("17. Guardar los datos de las mascotas en el archivo data.bin (modo binario)..\n");
+    printf("18. Salir.\n");
 }
 
 void menu_imprimirMascota(LinkedList* duenos,Mascota* currentMascota)
@@ -174,7 +175,7 @@ void menu_submenu_contains()
 void menu_confirmar(char* decision)
 {
     char confirmation;
-    printf("\nConfirmar modificacion? s - si; n - no\n");
+    printf("\nConfirmar cambios? s - si; n - no\n");
     fflush(stdin);
     scanf("%c", &confirmation);
     confirmation = tolower(confirmation);

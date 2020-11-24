@@ -142,7 +142,7 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
 {
     if(ll_isEmpty(pLLMascotas) != 0)
     {
-        printf("\nSe deben cargar los datos antes de agregar una mascota a la lista.\n");
+        printf("\nSe deben cargar los datos antes de editar una mascota de la lista.\n");
         return -1;
     }
 
@@ -154,13 +154,13 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
     //Validar ingreso de datos
     system("cls");
     menu_imprimirMascotas(pLLMascotas,pLLDuenos);
-    printf("\nIngrese el ID de la mascota que desea modificar\n");
+    printf("\nIngrese el ID de la mascota que desea modificar: ");
     fflush(stdin);
     gets(idChar);
     validarEntero = validations_isValidID(idChar);
     while(validarEntero != 1)
     {
-        printf("\nNumeracion invalida. Ingrese el ID de la mascota que desea modificar\n");
+        printf("\nNumeracion invalida. Ingrese el ID de la mascota que desea modificar: ");
         fflush(stdin);
         gets(idChar);
         validarEntero = validations_isValidID(idChar);
@@ -179,7 +179,7 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
             menu_modificaciones();
             selection = validations_getOption(
                             &option,
-                            "\nOpcion invalida. Ingrese una opcion corrcta\n",
+                            "\nOpcion invalida. Vuelva a intentarlo.\n",
                             1,
                             4);
             if(!selection)
@@ -262,6 +262,70 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
 }
 
 int controller_removeMascota(LinkedList* pLLMascotas,LinkedList* pLLDuenos)
+{
+    if(ll_isEmpty(pLLMascotas) != 0)
+    {
+        printf("\nSe deben cargar los datos antes de eliminar una mascota a la lista.\n");
+        return -1;
+    }
+
+    int validarEntero, id;
+    char confirmacion;
+    char idChar[50];
+
+    //Validar ingreso de datos
+    system("cls");
+    menu_imprimirMascotas(pLLMascotas,pLLDuenos);
+    printf("\nIngrese el ID de la mascota que desea eliminar: ");
+    fflush(stdin);
+    gets(idChar);
+    validarEntero = validations_isValidID(idChar);
+    while(validarEntero != 1)
+    {
+        printf("\nNumeracion invalida. Ingrese el ID de la mascota que desea eliminar: ");
+        fflush(stdin);
+        gets(idChar);
+        validarEntero = validations_isValidID(idChar);
+    }
+    id = atoi(idChar);
+
+    //Recorrer la lista, si existe la mascota, la muestro y la borro
+    int currentNodeIndex = 0;
+    int linkedListSize = ll_len(pLLMascotas);
+    Node* currentNode = pLLMascotas->pFirstNode;
+    Mascota* currentMascota = NULL;
+
+    while (currentNodeIndex < linkedListSize)
+    {
+        currentMascota = (Mascota*)ll_get(pLLMascotas, currentNodeIndex);
+
+        if (currentMascota->ID == id)
+        {
+            menu_encabezadoMascota();
+            menu_imprimirMascota(pLLDuenos,currentMascota);
+            menu_confirmar(&confirmacion);
+            if(confirmacion == 's')
+            {
+                ll_remove(pLLMascotas,currentNodeIndex);
+                printf("\nSe ha eliminado esta mascota.\n");
+                return 0;
+            }
+            else if (confirmacion == 'n')
+            {
+                printf("\nBaja cancelada por usuario.\n");
+                return 0;
+            }
+        }
+
+        currentNode = currentNode->pNextNode;
+        currentNodeIndex++;
+    }
+
+    printf("\nNo se encontro una mascota con ese ID.\n");
+    return -1;
+}
+
+int controller_removeMascotaWithPop(LinkedList* pLLMascotas,LinkedList* pLLDuenos)
 {
     if(ll_isEmpty(pLLMascotas) != 0)
     {
