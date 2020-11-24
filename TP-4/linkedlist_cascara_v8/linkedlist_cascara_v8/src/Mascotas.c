@@ -334,7 +334,7 @@ void mascotas_enterIdDueno(char* idDuenoValidado)
 
 Mascota* mascotas_searchByID(LinkedList* this,int id)
 {
-    Mascota* mascota;
+    Mascota* mascota = NULL;
     int len = ll_len(this);
     int index = 0;
     Node* currentNode = this->pFirstNode;
