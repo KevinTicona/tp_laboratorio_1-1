@@ -251,6 +251,7 @@ void mascotas_enterName(char* nombreValidado)
         gets(nombre);
         nombreValido = validations_isValidName(nombre);
     }
+    validations_formatStr(nombre);
     strcpy(nombreValidado,nombre);
 }
 

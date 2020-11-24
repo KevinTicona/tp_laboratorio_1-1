@@ -75,13 +75,13 @@ int validations_isValidNumber(char* str)
     return retorno;
 }
 
-void formatStr(char* str)
+void validations_formatStr(char* str)
 {
-    //int len;
+    int len;
     strlwr(str);
     str[0] = toupper(str[0]);
-    //len = strlen(str);
-    /*for(int i = 0; i < len; i++)
+    len = strlen(str);
+    for(int i = 0; i < len; i++)
     {
         if(str[i] == ' ')
         {
@@ -91,7 +91,7 @@ void formatStr(char* str)
                 str[i] = toupper(str[i]);
             }
         }
-    }*/
+    }
 }
 
 int validations_isValidName(char* nombre)
@@ -113,7 +113,7 @@ int validations_isValidType(char* type)
 
     if(!valid && len < 50 && len > 0)
     {
-        formatStr(type);
+        validations_formatStr(type);
         if(
             strcmp(type, "Gato") == 0 ||
             strcmp(type, "Perro") == 0 ||

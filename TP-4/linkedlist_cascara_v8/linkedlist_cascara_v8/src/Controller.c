@@ -337,6 +337,8 @@ int controller_removeMascotaWithPop(LinkedList* pLLMascotas,LinkedList* pLLDueno
     char idChar[50];
 
     //Validar ingreso de datos
+    system("cls");
+    menu_imprimirMascotas(pLLMascotas,pLLDuenos);
     printf("\nIngrese el ID de la mascota que desea eliminar\n");
     fflush(stdin);
     gets(idChar);

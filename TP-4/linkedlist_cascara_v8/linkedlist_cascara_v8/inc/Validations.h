@@ -50,7 +50,7 @@ int validations_getOption(int* pResult, char* errorMsj, int min, int max);
  * \param char* Str string a formatear
  *
  */
- void formatStr(char* str);
+void validations_formatStr(char* str);
 
  int validations_isValidID(char* id);
  int validations_isValidType(char* type);
