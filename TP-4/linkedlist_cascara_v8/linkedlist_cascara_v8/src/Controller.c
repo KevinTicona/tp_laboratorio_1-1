@@ -187,10 +187,13 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                 switch(option)
                 {
                 case 1:
+                {
                     //Pedir dato
                     mascotas_enterName(newName);
+                    char nombreAnterior[100];
+                    mascotas_getNombre(mascotaAModificar,nombreAnterior);
                     //mostrar dato
-                    printf("\nNombre ingresado: %s\nNombre anterior: %s\n",newName,mascotaAModificar->nombre);
+                    printf("\nNombre ingresado: %s\nNombre anterior: %s\n",newName,nombreAnterior);
                     //Confirmar modificacion
                     menu_confirmar(&confirmation);
 
@@ -205,10 +208,14 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                         printf("\nModificacion cancelada por usuario.\n");
                         break;
                     }
-                    break;
+                }
+                break;
                 case 2:
+                {
                     mascotas_enterType(newType);
-                    printf("\nTipo ingresado: %s\nTipo anterior: %s\n",newType,mascotaAModificar->tipo);
+                    char tipoAnterior[100];
+                    mascotas_getTipo(mascotaAModificar,tipoAnterior);
+                    printf("\nTipo ingresado: %s\nTipo anterior: %s\n",newType,tipoAnterior);
 
                     menu_confirmar(&confirmation);
 
@@ -223,11 +230,15 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                         printf("\nModificacion cancelada por usuario.\n");
                         break;
                     }
-                    break;
+                }
+                break;
                 case 3:
+                {
                     mascotas_enterAge(newAge);
                     integerAge = atoi(newAge);
-                    printf("\nEdad ingresada: %d\nEdad anterior: %d\n",integerAge,mascotaAModificar->edad);
+                    int edadAnterior;
+                    mascotas_getEdad(mascotaAModificar,&edadAnterior);
+                    printf("\nEdad ingresada: %d\nEdad anterior: %d\n",integerAge,edadAnterior);
 
                     menu_confirmar(&confirmation);
 
@@ -242,7 +253,8 @@ int controller_editMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                         printf("\nModificacion cancelada por usuario.\n");
                         break;
                     }
-                    break;
+                }
+                break;
                 case 4:
                     printf("\nVolviendo al menu principal...\n");
                     break;
@@ -294,12 +306,14 @@ int controller_removeMascota(LinkedList* pLLMascotas,LinkedList* pLLDuenos)
     int linkedListSize = ll_len(pLLMascotas);
     Node* currentNode = pLLMascotas->pFirstNode;
     Mascota* currentMascota = NULL;
+    int idActual;
 
     while (currentNodeIndex < linkedListSize)
     {
         currentMascota = (Mascota*)ll_get(pLLMascotas, currentNodeIndex);
+        mascotas_getId(currentMascota,&idActual);
 
-        if (currentMascota->ID == id)
+        if (idActual == id)
         {
             menu_encabezadoMascota();
             menu_imprimirMascota(pLLDuenos,currentMascota);
@@ -357,12 +371,14 @@ int controller_removeMascotaWithPop(LinkedList* pLLMascotas,LinkedList* pLLDueno
     int linkedListSize = ll_len(pLLMascotas);
     Node* currentNode = pLLMascotas->pFirstNode;
     Mascota* currentMascota = NULL;
+    int idActual;
 
     while (currentNodeIndex < linkedListSize)
     {
         currentMascota = (Mascota*)ll_get(pLLMascotas, currentNodeIndex);
+        mascotas_getId(currentMascota, &idActual);
 
-        if (currentMascota->ID == id)
+        if (idActual == id)
         {
             currentMascota = ll_pop(pLLMascotas,currentNodeIndex);
             menu_encabezadoMascota();
@@ -509,6 +525,8 @@ int controller_saveMascotasAsText(char* path, LinkedList* pLLMascotas)
 
     int currentNodeIndex = 0;
     int linkedListSize = ll_len(pLLMascotas);
+    int idActual, edadActual, idDuenoActual;
+    char nombreActual[100], tipoActual[100], sexoActual[50];
 
     Mascota* currentMascota;
     Node* currentNode = pLLMascotas->pFirstNode;
@@ -520,14 +538,20 @@ int controller_saveMascotasAsText(char* path, LinkedList* pLLMascotas)
     while (currentNodeIndex < linkedListSize)
     {
         currentMascota = (Mascota*)ll_get(pLLMascotas, currentNodeIndex);
+        mascotas_getId(currentMascota,&idActual);
+        mascotas_getEdad(currentMascota,&edadActual);
+        mascotas_getIdDuenio(currentMascota,&idDuenoActual);
+        mascotas_getNombre(currentMascota,nombreActual);
+        mascotas_getTipo(currentMascota,tipoActual);
+        mascotas_getSexo(currentMascota,sexoActual);
 
         fprintf(pFile, "%d,%s,%s,%s,%d,%d\n",
-                currentMascota->ID,
-                currentMascota->nombre,
-                currentMascota->tipo,
-                currentMascota->sexo,
-                currentMascota->edad,
-                currentMascota->ID_Duenio);
+                idActual,
+                nombreActual,
+                tipoActual,
+                sexoActual,
+                edadActual,
+                idDuenoActual);
 
         currentNode = currentNode->pNextNode;
         currentNodeIndex++;
@@ -559,6 +583,8 @@ int controller_saveDuenosAsText(char* path, LinkedList* pLLDuenos)
 
     int currentNodeIndex = 0;
     int linkedListSize = ll_len(pLLDuenos);
+    int idActual;
+    char nombreActual[100], telefonoActual[100];
 
     Dueno* currentDueno;
     Node* currentNode = pLLDuenos->pFirstNode;
@@ -570,11 +596,14 @@ int controller_saveDuenosAsText(char* path, LinkedList* pLLDuenos)
     while (currentNodeIndex < linkedListSize)
     {
         currentDueno = (Dueno*)ll_get(pLLDuenos, currentNodeIndex);
+        duenos_getId(currentDueno,&idActual);
+        duenos_getNombre(currentDueno,nombreActual);
+        duenos_getTelefono(currentDueno,telefonoActual);
 
         fprintf(pFile, "%d,%s,%s\n",
-                currentDueno->ID,
-                currentDueno->nombre,
-                currentDueno->telefono);
+                idActual,
+                nombreActual,
+                telefonoActual);
 
         currentNode = currentNode->pNextNode;
         currentNodeIndex++;
