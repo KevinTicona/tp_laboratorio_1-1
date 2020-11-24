@@ -2,7 +2,7 @@
 #define CONTROLLER_H_INCLUDED
 #include "../inc/LinkedList.h"
 
-/** \brief Carga los datos de las macotas desde el archivo data.csv (modo texto).
+/** \brief Carga los datos de las macotas desde el archivo animales.csv (modo texto).
  *
  * \param path char*
  * \param pLLMascotas LinkedList*
@@ -11,7 +11,7 @@
  */
 int controller_loadMascotasFromText(char* path, LinkedList* pLLMascotas);
 
-/** \brief Carga los datos de los dueños desde el archivo data.csv (modo texto).
+/** \brief Carga los datos de los dueños desde el archivo duenios.csv (modo texto).
  *
  * \param path char*
  * \param pLLDuenos LinkedList*
@@ -20,7 +20,7 @@ int controller_loadMascotasFromText(char* path, LinkedList* pLLMascotas);
  */
 int controller_loadDuenosFromText(char* path, LinkedList* pLLDuenos);
 
-/** \brief Carga los datos de las macotas desde el archivo data.bin (modo binario).
+/** \brief Carga los datos de las macotas desde el archivo animales.bin (modo binario).
  *
  * \param path char*
  * \param pLLMascotas LinkedList*
@@ -29,7 +29,7 @@ int controller_loadDuenosFromText(char* path, LinkedList* pLLDuenos);
  */
 int controller_loadMascotasFromBinary(char* path, LinkedList* pLLMascotas);
 
-/** \brief Carga los datos de las macotas desde el archivo data.bin (modo binario).
+/** \brief Carga los datos de las macotas desde el archivo duenios.bin (modo binario).
  *
  * \param path char*
  * \param pLLDuenos LinkedList*

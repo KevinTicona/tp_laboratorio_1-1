@@ -481,7 +481,7 @@ int controller_makeSubList(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
     {
         system("cls");
         printf("_____________________________________________________________________________________________\n");
-        printf("                                       SUB-LISTA\n");
+        printf("                                           SUB-LISTA\n");
         menu_imprimirMascotas(subList,pLLDuenos);
         ll_deleteLinkedList(subList);
         error = 0;
@@ -755,7 +755,7 @@ int controller_filterMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                 {
                     system("cls");
                     printf("_____________________________________________________________________________________________\n");
-                    printf("                                          PERROS \n");
+                    printf("                                             PERROS \n");
                     menu_imprimirMascotas(perros,pLLDuenos);
                     ll_deleteLinkedList(perros);
                 }
@@ -772,7 +772,7 @@ int controller_filterMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                 {
                     system("cls");
                     printf("_____________________________________________________________________________________________\n");
-                    printf("                                          GATOS \n");
+                    printf("                                             GATOS \n");
                     menu_imprimirMascotas(gatos,pLLDuenos);
                     ll_deleteLinkedList(gatos);
                 }
@@ -789,7 +789,7 @@ int controller_filterMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                 {
                     system("cls");
                     printf("_____________________________________________________________________________________________\n");
-                    printf("                                          REPTILES \n");
+                    printf("                                            REPTILES \n");
                     menu_imprimirMascotas(reptiles,pLLDuenos);
                     ll_deleteLinkedList(reptiles);
                 }
@@ -806,7 +806,7 @@ int controller_filterMascotas(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                 {
                     system("cls");
                     printf("_____________________________________________________________________________________________\n");
-                    printf("                                          ROEDORES \n");
+                    printf("                                           ROEDORES \n");
                     menu_imprimirMascotas(roedores,pLLDuenos);
                     ll_deleteLinkedList(roedores);
                 }
@@ -858,7 +858,7 @@ int controller_containsList(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
                 LinkedList* listaContenida = ll_subList(pLLMascotas,10,15);
                 system("cls");
                 printf("_____________________________________________________________________________________________\n");
-                printf("                                        Sub-lista 1 \n");
+                printf("                                           Sub-lista 1 \n");
                 menu_imprimirMascotas(listaContenida,pLLDuenos);
                 printf("_____________________________________________________________________________________________\n");
                 printf("\n\nEstara esta sublista contenida en la lista de mascotas principal?\n");
@@ -886,7 +886,7 @@ int controller_containsList(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
 
                 system("cls");
                 printf("____________________________________________________\n");
-                printf("                 Sub-lista 2 \n");
+                printf("                  Sub-lista 2 \n");
                 menu_imprimirDuenos(listaContenidaD);
                 printf("____________________________________________________\n");
                 printf("\n\nEstara esta sublista contenida en la lista de mascotas principal?\n");

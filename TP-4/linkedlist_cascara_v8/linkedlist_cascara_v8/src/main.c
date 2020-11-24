@@ -40,6 +40,12 @@ int main(void)
     LinkedList* petList = ll_newLinkedList();
     LinkedList* ownersList = ll_newLinkedList();
 
+    if(petList == NULL || ownersList == NULL)
+    {
+        return -1;
+        printf("\nNo se ha conseguido espacio en memoria para poder agregar listas.\n");
+    }
+
     do
     {
         menu_main();

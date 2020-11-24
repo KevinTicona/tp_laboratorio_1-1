@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "../inc/LinkedList.h"
 
-/** \brief Parsea los datos de las mascotas desde el archivo data.csv (modo texto).
+/** \brief Parsea los datos de las mascotas desde el archivo animales.csv (modo texto).
  *
  * \param FILE* pFile
  * \param LinkedList* pLinkedListMascotas
@@ -12,7 +12,7 @@
  */
 int parser_MascotaFromText(FILE* pFile, LinkedList* pLinkedListMascotas);
 
-/** \brief Parsea los datos de los dueños desde el archivo data.csv (modo texto).
+/** \brief Parsea los datos de los dueños desde el archivo duenios.csv (modo texto).
  *
  * \param FILE* pFile
  * \param inkedList* pLinkedListDuenos
@@ -21,7 +21,7 @@ int parser_MascotaFromText(FILE* pFile, LinkedList* pLinkedListMascotas);
  */
 int parser_duenoFromText(FILE* pFile, LinkedList* pLinkedListDuenos);
 
-/** \brief Parsea los datos de las mascotas desde el archivo data.bin (modo binario).
+/** \brief Parsea los datos de las mascotas desde el archivo animales.bin (modo binario).
  *
  * \param FILE* pFile
  * \param LinkedList* pLinkedListMascotas
@@ -30,7 +30,7 @@ int parser_duenoFromText(FILE* pFile, LinkedList* pLinkedListDuenos);
  */
 int parser_MascotaFromBinary(FILE* pFile, LinkedList* pLLMascotas);
 
-/** \brief Parsea los datos de los dueños desde el archivo data.bin (modo binario).
+/** \brief Parsea los datos de los dueños desde el archivo duenios.bin (modo binario).
  *
  * \param FILE* pFile
  * \param inkedList* pLinkedListDuenos
