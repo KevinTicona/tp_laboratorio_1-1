@@ -122,7 +122,8 @@ int controller_addMascota(LinkedList* pLLMascotas, LinkedList* pLLDuenos)
     // Al terminar el while, currentNode será el último Nodo en nuestra Linked List
     // Luego de encontrar la ultima mascota en la Linked List, utilizamos su Id y le agregamos 1.
     Mascota* ultimaMascota = (Mascota*)currentNode->pElement;
-    id = ultimaMascota->ID + 1;
+    mascotas_getId(ultimaMascota,&id);
+    id += 1;
     itoa(id, idAsChar, 10);
 
     //Creamos la mascota con los datos recibidos
