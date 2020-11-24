@@ -52,11 +52,45 @@ int validations_getOption(int* pResult, char* errorMsj, int min, int max);
  */
 void validations_formatStr(char* str);
 
+ /** \brief Valida que un ID sea valido.
+ *
+ * \param Char* id
+ * \return Retorna [1] Si esta todo OK, [0] si hay errores
+ *
+ */
  int validations_isValidID(char* id);
+
+/** \brief Valida que un tipo sea valido.
+ *
+ * \param Char* tipo
+ * \return Retorna [1] Si esta todo OK, [0] si hay errores
+ *
+ */
  int validations_isValidType(char* type);
+
+/** \brief Valida que un sexo sea valido.
+ *
+ * \param Char* sexo
+ * \return Retorna [1] Si esta todo OK, [0] si hay errores
+ *
+ */
  int validations_isValidSex(char* sex);
+
+ /** \brief Valida que una edad sea valida.
+ *
+ * \param Char* edad
+ * \return Retorna [1] Si esta todo OK, [0] si hay errores
+ *
+ */
  int validations_isValidEdad(char* edad);
- int validations_isValid_IDDueno(char* edad);
+
+  /** \brief Valida que un id_dueno sea valido.
+ *
+ * \param Char* id_dueno
+ * \return Retorna [1] Si esta todo OK, [0] si hay errores
+ *
+ */
+ int validations_isValid_IDDueno(char* idDueno);
 
 
 #endif // VALIDATIONS_H_INCLUDED
