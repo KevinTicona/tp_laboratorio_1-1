@@ -417,6 +417,7 @@ int controller_ListDuenos(LinkedList* pLLDuenos)
         return 0;
     }
 
+    system("cls");
     menu_imprimirDuenos(pLLDuenos);
 
     return 1;
