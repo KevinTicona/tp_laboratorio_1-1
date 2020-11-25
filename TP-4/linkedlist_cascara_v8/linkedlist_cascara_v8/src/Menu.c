@@ -38,14 +38,23 @@ void menu_main()
 void menu_imprimirMascota(LinkedList* duenos,Mascota* currentMascota)
 {
     Dueno* auxDueno = duenos_searchByID(duenos,currentMascota->ID_Duenio);
+    int idActual, edadActual;
+    char nombreActual[100], tipoActual[100], sexoActual[50], nombreDueno[100];
+
+    mascotas_getId(currentMascota,&idActual);
+    mascotas_getEdad(currentMascota,&edadActual);
+    mascotas_getNombre(currentMascota,nombreActual);
+    mascotas_getTipo(currentMascota,tipoActual);
+    mascotas_getSexo(currentMascota,sexoActual);
+    duenos_getNombre(auxDueno,nombreDueno);
 
     printf("\n%4d  %15s   %15s            %2s     %4d        %20s\n",
-           currentMascota->ID,
-           currentMascota->nombre,
-           currentMascota->tipo,
-           currentMascota->sexo,
-           currentMascota->edad,
-           auxDueno->nombre);
+           idActual,
+           nombreActual,
+           tipoActual,
+           sexoActual,
+           edadActual,
+           nombreDueno);
 }
 
 int menu_imprimirMascotas(LinkedList* pLLMascotas,LinkedList* duenos)
@@ -80,10 +89,17 @@ int menu_imprimirMascotas(LinkedList* pLLMascotas,LinkedList* duenos)
 
 void menu_imprimirDueno(Dueno* currentDueno)
 {
+    int idActual;
+    char nombre[100], telefono[100];
+
+    duenos_getId(currentDueno,&idActual);
+    duenos_getNombre(currentDueno, nombre);
+    duenos_getTelefono(currentDueno,telefono);
+
     printf("\n%4d  %20s           %15s\n",
-           currentDueno->ID,
-           currentDueno->nombre,
-           currentDueno->telefono);
+           idActual,
+           nombre,
+           telefono);
 }
 
 int menu_imprimirDuenos(LinkedList* this)
